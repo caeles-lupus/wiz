@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public virtual void GetDamage()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Die()
     {
-        
+        Destroy(this.gameObject);
     }
+
 }

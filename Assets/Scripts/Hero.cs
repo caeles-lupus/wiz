@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Hero : MonoBehaviour
+public class Hero : Entity
 {
     /// <summary>
     /// Возвращает экзмепляр "героя"
@@ -27,6 +27,7 @@ public class Hero : MonoBehaviour
         Instance = this;
     }
 
+    // 
     private void Update()
     {
         Restart();
@@ -40,11 +41,15 @@ public class Hero : MonoBehaviour
 
         }
     }
+
+    // Касается другого коллайдера.
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // TODO: при касании чего угодно, отключается анимация прыжка.
         anim.SetBool("isJump", false);
     }
 
+    // Бежит.
     void Run()
     {
         Vector3 moveVelocity = Vector3.zero;
@@ -73,6 +78,8 @@ public class Hero : MonoBehaviour
         }
         transform.position += moveVelocity * movePower * Time.deltaTime;
     }
+
+    // Прыгает.
     void Jump()
     {
         if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0)
@@ -93,10 +100,16 @@ public class Hero : MonoBehaviour
 
         isJumping = false;
     }
+
+    // Атакует.
     void Attack()
     {
         anim.SetTrigger("attack");
     }
+
+    /// <summary>
+    /// Получает урон.
+    /// </summary>
     void Hurt()
     {
         anim.SetTrigger("hurt");
@@ -105,11 +118,17 @@ public class Hero : MonoBehaviour
         else
             rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
     }
-    void Die()
+
+    /// <summary>
+    /// Умирает.
+    /// </summary>
+    public override void Die()
     {
         anim.SetTrigger("die");
         alive = false;
     }
+
+    // Воскрешение?
     void Restart()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -119,8 +138,10 @@ public class Hero : MonoBehaviour
         }
     }
 
-    public void GetDamage()
+    // Получает урон.
+    public override void GetDamage()
     {
+        //base.GetDamage();
         lives -= 1;
         if (lives > 0)
         {
