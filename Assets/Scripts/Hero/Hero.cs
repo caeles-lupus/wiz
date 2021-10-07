@@ -142,14 +142,16 @@ public class Hero : Entity
     public override void GetDamage()
     {
         //base.GetDamage();
-        lives -= 1;
+        lives --;
         if (lives > 0)
         {
             Hurt();
+
         }
         else
         {
             Die();
+
         }
         Debug.Log(lives);
     }
