@@ -47,6 +47,12 @@ public class Hero : Entity
     {
         // TODO: при касании чего угодно, отключается анимация прыжка.
         anim.SetBool("isJump", false);
+
+        if (other.tag.Equals("Coin"))
+        {
+            CoinCollect.CoinCount += 1;
+            Destroy(other.gameObject);
+        }
     }
 
     // Бежит.
