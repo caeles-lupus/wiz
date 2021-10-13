@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Hero : Entity
 {
@@ -6,6 +8,8 @@ public class Hero : Entity
     /// Возвращает экзмепляр "героя"
     /// </summary>
     public static Hero Instance { get; set; }
+
+    [SerializeField] GameObject attack_Staff;
 
     public float movePower = 10f;
     public float jumpPower = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
@@ -17,6 +21,7 @@ public class Hero : Entity
     private int direction = 1;
     bool isJumping = false;
     private bool alive = true;
+    private bool isAttacking = false;
 
 
     // Start is called before the first frame update
@@ -24,6 +29,8 @@ public class Hero : Entity
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        attack_Staff = GameObject.Find("/Hero/Skeletal/15 Staff/Attack_Staff");
+        attack_Staff.SetActive(false);
         Instance = this;
     }
 
@@ -35,7 +42,7 @@ public class Hero : Entity
         {
             if (Input.GetKeyDown(KeyCode.Alpha2)) Hurt();
             if (Input.GetKeyDown(KeyCode.Alpha3)) Die();
-            if (Input.GetKeyDown(KeyCode.Alpha1)) Attack();
+            if (Input.GetButtonDown("Fire1") && !isAttacking) Attack();
             Jump();
             Run();
 
@@ -51,6 +58,11 @@ public class Hero : Entity
         if (other.tag.Equals("Coin"))
         {
             CoinCollect.CoinCount += 1;
+            Destroy(other.gameObject);
+        }
+        else if (other.tag.Equals("Crystal"))
+        {
+            //CrystalCollect.CrystalCount += 1;
             Destroy(other.gameObject);
         }
     }
@@ -111,6 +123,16 @@ public class Hero : Entity
     void Attack()
     {
         anim.SetTrigger("attack");
+        StartCoroutine(DoAttack());
+    }
+
+    IEnumerator DoAttack()
+    {
+        attack_Staff.SetActive(true);
+        yield return new WaitForSeconds(.5f);
+        attack_Staff.SetActive(false);
+
+        isAttacking = false;
     }
 
     /// <summary>
@@ -141,6 +163,7 @@ public class Hero : Entity
         {
             anim.SetTrigger("idle");
             alive = true;
+            lives = 10;
         }
     }
 
