@@ -33,7 +33,7 @@ public class AI : Entity
     void Start()
     {
         MovingRight = false;
-        sprite = GetComponent<SpriteRenderer>();
+        //sprite = GetComponent<SpriteRenderer>();
         startPos = transform.position;
 
         //chill = true;
@@ -48,12 +48,12 @@ public class AI : Entity
         if (transform.position.x > startPos.x + PositionOfPatrol)
         {
             MovingRight = false;
-            sprite.flipX = false;
+            //sprite.flipX = false;
         }
         else if (transform.position.x < startPos.x - PositionOfPatrol)
         {
             MovingRight = true;
-            sprite.flipX = true;
+            //sprite.flipX = true;
         }
 
         if (MovingRight)
@@ -70,7 +70,7 @@ public class AI : Entity
     /// </summary>
     void Angry()
     {
-        sprite.flipX = transform.position.x < Hero.Instance.transform.position.x;
+        //sprite.flipX = transform.position.x < Hero.Instance.transform.position.x;
         transform.position = Vector2.MoveTowards(transform.position, Hero.Instance.transform.position, Speed * Time.deltaTime);
     }
     /// <summary>
@@ -78,7 +78,7 @@ public class AI : Entity
     /// </summary>
     void GoBack()
     {
-        sprite.flipX = transform.position.x < startPos.x;
+        //sprite.flipX = transform.position.x < startPos.x;
         transform.position = Vector2.MoveTowards(transform.position, startPos, Speed * Time.deltaTime);
     }
 
@@ -126,7 +126,7 @@ public class AI : Entity
         if (collision.gameObject != Hero.Instance.gameObject)
         {
             MovingRight = !MovingRight;
-            sprite.flipX = !sprite.flipX;
+            //sprite.flipX = !sprite.flipX;
         }
     }
 
