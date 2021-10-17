@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Fill -= Time.deltaTime * 0.1f;
+        Fill -= Time.deltaTime * 0.1f;
         Bar.fillAmount = Fill;
     }
 }
