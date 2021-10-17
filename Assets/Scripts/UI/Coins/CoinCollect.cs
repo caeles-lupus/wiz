@@ -11,7 +11,6 @@ public class CoinCollect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         coinCounter = GetComponent<Text>();
         coinCounter.color = Color.white;
         CoinCount = 0;
