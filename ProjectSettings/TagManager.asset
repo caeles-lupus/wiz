@@ -49,15 +49,12 @@ TagManager:
   - name: Stuff
     uniqueID: 748320033
     locked: 0
-  - name: Monster
-    uniqueID: 1499347525
-    locked: 0
   - name: Hero
     uniqueID: 1390774475
     locked: 0
   - name: Backgorund
     uniqueID: 97729355
     locked: 0
-  - name: UI
-    uniqueID: 4167991301
+  - name: Monster
+    uniqueID: 1499347525
     locked: 0
