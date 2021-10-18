@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hero : Entity
 {
+    public bool Stopped = false;
+
     /// <summary>
     /// Возвращает экзмепляр "героя"
     /// </summary>
@@ -37,7 +39,12 @@ public class Hero : Entity
     // 
     private void Update()
     {
-        Restart();
+        if (Stopped)
+        {
+            anim.SetTrigger("idle");
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0)) Restart();
         if (alive)
         {
             if (Input.GetKeyDown(KeyCode.Alpha2)) Hurt();
@@ -45,7 +52,6 @@ public class Hero : Entity
             if (Input.GetButtonDown("Fire1") && !isAttacking) Attack();
             Jump();
             Run();
-
         }
     }
 
@@ -159,12 +165,9 @@ public class Hero : Entity
     // Воскрешение?
     void Restart()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            anim.SetTrigger("idle");
-            alive = true;
-            lives = 10;
-        }
+        anim.SetTrigger("idle");
+        alive = true;
+        lives = 10;
     }
 
     // Получает урон.
