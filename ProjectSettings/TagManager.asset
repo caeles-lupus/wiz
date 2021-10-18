@@ -43,7 +43,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Water
+  - name: WaterBackground
     uniqueID: 4047169841
     locked: 0
   - name: Stuff
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: Hero
     uniqueID: 1390774475
+    locked: 0
+  - name: Water
+    uniqueID: 2799396305
     locked: 0
   - name: Backgorund
     uniqueID: 97729355

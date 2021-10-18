@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Hero : Entity
 {
-    public bool Stopped = false;
-
     /// <summary>
     /// Возвращает экзмепляр "героя"
     /// </summary>
@@ -25,6 +23,7 @@ public class Hero : Entity
     private bool alive = true;
     private bool isAttacking = false;
 
+    private bool isStopped;
 
     // Start is called before the first frame update
     void Start()
@@ -39,19 +38,17 @@ public class Hero : Entity
     // 
     private void Update()
     {
-        if (Stopped)
+        if (!isStopped)
         {
-            anim.SetTrigger("idle");
-            return;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0)) Restart();
-        if (alive)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha2)) Hurt();
-            if (Input.GetKeyDown(KeyCode.Alpha3)) Die();
-            if (Input.GetButtonDown("Fire1") && !isAttacking) Attack();
-            Jump();
-            Run();
+            if (Input.GetKeyDown(KeyCode.Alpha0)) Restart();
+            if (alive)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha2)) Hurt();
+                if (Input.GetKeyDown(KeyCode.Alpha3)) Die();
+                if (Input.GetButtonDown("Fire1") && !isAttacking) Attack();
+                Jump();
+                Run();
+            }
         }
     }
 
@@ -73,8 +70,19 @@ public class Hero : Entity
         }
     }
 
-    // Бежит.
-    void Run()
+
+    public void Stop()
+    {
+        anim.SetTrigger("idle");
+        isStopped = true;
+    }
+    public void Play()
+    {
+        isStopped = false;
+    }
+
+// Бежит.
+void Run()
     {
         Vector3 moveVelocity = Vector3.zero;
         anim.SetBool("isRun", false);
