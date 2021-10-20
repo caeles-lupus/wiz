@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 95973312}
   m_Layer: 0
   m_Name: Crates_02 (2)
-  m_TagString: Untagged
+  m_TagString: Decor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1429,7 +1429,7 @@ GameObject:
   - component: {fileID: 338864259}
   m_Layer: 0
   m_Name: Crates_02
-  m_TagString: Untagged
+  m_TagString: Decor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1620,6 +1620,9 @@ MonoBehaviour:
     - "\u041A \u0441\u0447\u0430\u0441\u0442\u044C\u044E, \u043D\u0435 \u0432\u0441\u0435
       \u043F\u043E\u0442\u0435\u0440\u044F\u043D\u043E! \u0422\u044B \u0441\u043C\u043E\u0436\u0435\u0448\u044C
       \u0432\u0435\u0440\u043D\u0443\u0442\u044C \u0441\u0432\u043E\u0438 \u0441\u0438\u043B\u044B!"
+  isReusable: 0
+  HeroStop: 1
+  isActive: 1
 --- !u!1 &352575383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,7 +1637,7 @@ GameObject:
   - component: {fileID: 352575388}
   m_Layer: 0
   m_Name: Hazards_04
-  m_TagString: Untagged
+  m_TagString: Traps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1980,7 +1983,7 @@ GameObject:
   - component: {fileID: 437454040}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Monsters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2445,7 +2448,7 @@ GameObject:
   - component: {fileID: 504652103}
   m_Layer: 0
   m_Name: Hazards_12
-  m_TagString: Untagged
+  m_TagString: Traps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2803,6 +2806,10 @@ PrefabInstance:
     - target: {fileID: 8420477889273750708, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: m_Name
       value: BlackCaptus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420477889273750708, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
+      propertyPath: m_TagString
+      value: Monsters
       objectReference: {fileID: 0}
     - target: {fileID: 8420477889273750711, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: m_RootOrder
@@ -3472,7 +3479,7 @@ GameObject:
   - component: {fileID: 688476975}
   m_Layer: 0
   m_Name: Traps
-  m_TagString: Untagged
+  m_TagString: Traps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3592,8 +3599,8 @@ GameObject:
   m_Component:
   - component: {fileID: 701830815}
   m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
+  m_Name: Monsters
+  m_TagString: Monsters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3691,7 +3698,7 @@ GameObject:
   - component: {fileID: 737664952}
   m_Layer: 0
   m_Name: Hazards_12 (1)
-  m_TagString: Untagged
+  m_TagString: Traps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3854,6 +3861,9 @@ MonoBehaviour:
       \u0431\u043B\u0430\u0433\u043E\u0434\u0430\u0440\u044F \u0438\u043C, \u0442\u044B
       \u043C\u043E\u0436\u0435\u0448\u044C \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0442\u044C
       \u0441\u0432\u043E\u0451 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435!"
+  isReusable: 1
+  HeroStop: 0
+  isActive: 0
 --- !u!61 &830934544
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5131,7 +5141,7 @@ GameObject:
   - component: {fileID: 1292547223}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59809,7 +59819,7 @@ GameObject:
   - component: {fileID: 1411852491}
   m_Layer: 0
   m_Name: Crates_02 (1)
-  m_TagString: Untagged
+  m_TagString: Decor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60294,7 +60304,7 @@ GameObject:
   - component: {fileID: 1502693699}
   m_Layer: 0
   m_Name: Boxes
-  m_TagString: Untagged
+  m_TagString: Decor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61223,6 +61233,18 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -126975995
       objectReference: {fileID: 0}
+    - target: {fileID: 7201465314810249509, guid: 3c3f1ce387d9a5d46979910fdd19ae14, type: 3}
+      propertyPath: m_Color.b
+      value: 0.023584902
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201465314810249509, guid: 3c3f1ce387d9a5d46979910fdd19ae14, type: 3}
+      propertyPath: m_Color.g
+      value: 0.023584902
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201465314810249509, guid: 3c3f1ce387d9a5d46979910fdd19ae14, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c3f1ce387d9a5d46979910fdd19ae14, type: 3}
 --- !u!1 &1847047594
@@ -61908,6 +61930,11 @@ Transform:
   m_Father: {fileID: 1892626989}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2017603513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2434146922550152183, guid: d65f8d7e7f32b784b8c35faacb52cb9c, type: 3}
+  m_PrefabInstance: {fileID: 7547545565103431109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2059203293
 GameObject:
   m_ObjectHideFlags: 0
@@ -61993,7 +62020,7 @@ GameObject:
   - component: {fileID: 2118759773}
   m_Layer: 0
   m_Name: Rocks_07
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62295,6 +62322,10 @@ PrefabInstance:
       propertyPath: jumpPower
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7547545564590634786, guid: d65f8d7e7f32b784b8c35faacb52cb9c, type: 3}
+      propertyPath: attack_Staff
+      value: 
+      objectReference: {fileID: 2017603513}
     - target: {fileID: 7547545564590634793, guid: d65f8d7e7f32b784b8c35faacb52cb9c, type: 3}
       propertyPath: m_RootOrder
       value: 5

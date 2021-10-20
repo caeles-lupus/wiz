@@ -9,7 +9,7 @@ public class Hero : Entity
     /// </summary>
     public static Hero Instance { get; set; }
 
-    [SerializeField] GameObject attack_Staff;
+    public GameObject attack_Staff;
 
     public float movePower = 10f;
     public float jumpPower = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
@@ -17,7 +17,7 @@ public class Hero : Entity
 
     private Rigidbody2D rb;
     private Animator anim;
-    Vector3 movement;
+
     private int direction = 1;
     bool isJumping = false;
     private bool alive = true;
@@ -30,7 +30,7 @@ public class Hero : Entity
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        attack_Staff = GameObject.Find("/Hero/Skeletal/15 Staff/Attack_Staff");
+        //attack_Staff = GameObject.Find("/Hero/Skeletal/15 Staff/Attack_Staff");
         attack_Staff.SetActive(false);
         Instance = this;
     }
@@ -55,8 +55,9 @@ public class Hero : Entity
     // Касается другого коллайдера.
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // TODO: при касании чего угодно, отключается анимация прыжка.
-        anim.SetBool("isJump", false);
+        List<string> tagsOfRealObjects = new List<string>{ "Monsters", "Decor", "Ground", "Traps"};
+
+        if (tagsOfRealObjects.Contains(other.tag)) anim.SetBool("isJump", false);
 
         if (other.tag.Equals("Coin"))
         {
@@ -70,9 +71,13 @@ public class Hero : Entity
         }
     }
 
-
+    /// <summary>
+    /// Останавливает анимацию героя, включает анимацию "простоя" и блокирует управление.
+    /// </summary>
     public void Stop()
     {
+        anim.SetBool("isJump", false);
+        anim.SetBool("isRun", false);
         anim.SetTrigger("idle");
         isStopped = true;
     }
@@ -81,8 +86,8 @@ public class Hero : Entity
         isStopped = false;
     }
 
-// Бежит.
-void Run()
+    // Бежит.
+    void Run()
     {
         Vector3 moveVelocity = Vector3.zero;
         anim.SetBool("isRun", false);
@@ -114,8 +119,7 @@ void Run()
     // Прыгает.
     void Jump()
     {
-        if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0)
-        && !anim.GetBool("isJump"))
+        if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0) && !anim.GetBool("isJump"))
         {
             isJumping = true;
             anim.SetBool("isJump", true);

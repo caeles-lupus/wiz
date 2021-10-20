@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Coin
   - Crystal
+  - Ground
+  - Traps
+  - Decor
+  - Monsters
   layers:
   - Default
   - TransparentFX
