@@ -10,6 +10,7 @@ TagManager:
   - Traps
   - Decor
   - Monsters
+  - Platform
   layers:
   - Default
   - TransparentFX
