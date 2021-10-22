@@ -4,12 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Coin
-  - Crystal
   - Ground
-  - Traps
-  - Decor
-  - Monsters
   layers:
   - Default
   - TransparentFX
@@ -46,25 +41,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: WaterBackground
-    uniqueID: 4047169841
-    locked: 0
-  - name: Stuff
-    uniqueID: 748320033
-    locked: 0
-  - name: Monster
-    uniqueID: 1499347525
-    locked: 0
-  - name: Hero
-    uniqueID: 1390774475
-    locked: 0
-  - name: Water
-    uniqueID: 2799396305
-    locked: 0
-  - name: Backgorund
-    uniqueID: 97729355
-    locked: 0
-  - name: UI
-    uniqueID: 4167991301
     locked: 0
