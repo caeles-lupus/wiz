@@ -55,7 +55,7 @@ public class Hero : Entity
     // Касается другого коллайдера.
     private void OnTriggerEnter2D(Collider2D other)
     {
-        List<string> tagsOfRealObjects = new List<string>{ "Monsters", "Decor", "Ground", "Traps"};
+        List<string> tagsOfRealObjects = new List<string>{ "Monsters", "Decor", "Ground", "Traps", "Platform"};
 
         if (tagsOfRealObjects.Contains(other.tag)) anim.SetBool("isJump", false);
 

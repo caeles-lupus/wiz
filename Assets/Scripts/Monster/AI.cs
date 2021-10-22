@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class AI : Entity
 {
+    //TODO: чтобы можно было задавать стартовое направление.
+    public enum dir
+    {
+        toLeft,
+        toRight
+    };
+    /// <summary>
+    /// Стартовое направление.
+    /// </summary>
+    public dir StartDrirection = dir.toLeft;
+
     /// <summary>
     /// 
     /// </summary>
@@ -21,21 +32,21 @@ public class AI : Entity
     /// </summary>
     public float StoppingDistance;
 
-    private bool MovingRight;
     private bool chill;
     private bool angry;
     private bool goBack;
+    bool MoveRight;
 
-
-    private SpriteRenderer sprite;
+    void Awake()
+    {
+        startPos = transform.position;
+        MoveRight = false;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        MovingRight = false;
         //sprite = GetComponent<SpriteRenderer>();
-        startPos = transform.position;
-
         //chill = true;
         //angry = false;
         //goBack = false;
@@ -45,18 +56,18 @@ public class AI : Entity
     /// </summary>
     void Chill()
     {
-        if (transform.position.x > startPos.x + PositionOfPatrol)
+        if (transform.position.x > (startPos.x + PositionOfPatrol))
         {
-            MovingRight = false;
-            //sprite.flipX = false;
+            Turn(false);
+            MoveRight = false;
         }
-        else if (transform.position.x < startPos.x - PositionOfPatrol)
+        else if (transform.position.x < (startPos.x - PositionOfPatrol))
         {
-            MovingRight = true;
-            //sprite.flipX = true;
+            Turn(true);
+            MoveRight = true;
         }
 
-        if (MovingRight)
+        if (MoveRight)
         {
             transform.position = new Vector2(transform.position.x + Speed * Time.deltaTime, transform.position.y);
         }
@@ -70,7 +81,8 @@ public class AI : Entity
     /// </summary>
     void Angry()
     {
-        //sprite.flipX = transform.position.x < Hero.Instance.transform.position.x;
+
+        Turn(transform.position.x < Hero.Instance.transform.position.x);
         transform.position = Vector2.MoveTowards(transform.position, Hero.Instance.transform.position, Speed * Time.deltaTime);
     }
     /// <summary>
@@ -78,26 +90,26 @@ public class AI : Entity
     /// </summary>
     void GoBack()
     {
-        //sprite.flipX = transform.position.x < startPos.x;
+        Turn(transform.position.x < startPos.x);
         transform.position = Vector2.MoveTowards(transform.position, startPos, Speed * Time.deltaTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(transform.position.x - startPos.x) < PositionOfPatrol && !angry)
+        if (Mathf.Abs(transform.position.x - startPos.x) < PositionOfPatrol && transform.position.y == startPos.y && !angry)
         {
             chill = true;
         }
 
-        if(Vector2.Distance(transform.position, Hero.Instance.transform.position) < StoppingDistance)
+        if (Vector2.Distance(transform.position, Hero.Instance.transform.position) < StoppingDistance)
         {
             angry = true;
             chill = false;
             goBack = false;
         }
 
-        if(Vector2.Distance(transform.position, Hero.Instance.transform.position) > StoppingDistance)
+        if (Vector2.Distance(transform.position, Hero.Instance.transform.position) > StoppingDistance)
         {
             goBack = true;
             angry = false;
@@ -119,15 +131,32 @@ public class AI : Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject == Hero.Instance.gameObject)
-        //{
-        //    Hero.Instance.GetDamage();
-        //}
         if (collision.gameObject != Hero.Instance.gameObject)
         {
-            MovingRight = !MovingRight;
-            //sprite.flipX = !sprite.flipX;
+            FlipX();
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="MovingRight"></param>
+    private void Turn(bool MovingRight = false)
+    {
+        var x = Mathf.Abs(transform.localScale.x);
+        if (!MovingRight)
+            transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
+        else
+            transform.localScale = new Vector3(-x, transform.localScale.y, transform.localScale.z);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void FlipX()
+    {
+        var x = transform.localScale.x * -1;
+        transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
     }
 
 }
