@@ -4387,9 +4387,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartDrirection: 0
-  Speed: 3.5
-  PositionOfPatrol: 5
-  StoppingDistance: 10
+  Speed: 2
+  DistanceOfPatrol: 10
+  DistanceOfArgession: 5
 --- !u!50 &437454035
 Rigidbody2D:
   serializedVersion: 4
@@ -6027,8 +6027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartDrirection: 0
   Speed: 3.5
-  PositionOfPatrol: 5
-  StoppingDistance: 10
+  DistanceOfPatrol: 5
+  DistanceOfArgession: 5
 --- !u!4 &568207824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8420477889273750711, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
@@ -51741,8 +51741,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartDrirection: 0
   Speed: 5
-  PositionOfPatrol: 2
-  StoppingDistance: 4
+  DistanceOfPatrol: 4
+  DistanceOfArgession: 3
 --- !u!1 &800038712
 GameObject:
   m_ObjectHideFlags: 0
@@ -53920,6 +53920,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocks
       objectReference: {fileID: 0}
+    - target: {fileID: 7081418443172809960, guid: 32d37d7718e1d438599d346a53767369, type: 3}
+      propertyPath: m_TagString
+      value: Decor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32d37d7718e1d438599d346a53767369, type: 3}
 --- !u!4 &1121124517 stripped
@@ -54387,19 +54391,6 @@ PolygonCollider2D:
       - {x: 1.4471208, y: -0.48459232}
       - {x: 1.2598333, y: 0.25889924}
       - {x: 1.1139581, y: 0.6551883}
---- !u!114 &1167838729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167838727}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5204ad0b9c9a41a44b675b63df68d7a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 3.5
 --- !u!4 &1167838730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6290743565568937645, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
@@ -54417,10 +54408,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3110466822a6549b2e5dfd2656926a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartDrirection: 0
+  StartDrirection: 1
   Speed: 3.5
-  PositionOfPatrol: 5
-  StoppingDistance: 0
+  DistanceOfPatrol: 10
+  DistanceOfArgession: 0
 --- !u!1001 &1169266119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115175,7 +115166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547545564590634793, guid: d65f8d7e7f32b784b8c35faacb52cb9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 405.02
+      value: -235.75
       objectReference: {fileID: 0}
     - target: {fileID: 7547545564590634793, guid: d65f8d7e7f32b784b8c35faacb52cb9c, type: 3}
       propertyPath: m_LocalPosition.y
