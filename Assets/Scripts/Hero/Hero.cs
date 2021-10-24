@@ -7,7 +7,7 @@ public class Hero : Entity
     /// <summary>
     /// Возвращает экзмепляр "героя"
     /// </summary>
-    public static Hero Instance { get; set; }
+    public static Hero Instance;
 
     public GameObject attack_Staff;
 
@@ -28,11 +28,11 @@ public class Hero : Entity
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //attack_Staff = GameObject.Find("/Hero/Skeletal/15 Staff/Attack_Staff");
         attack_Staff.SetActive(false);
-        Instance = this;
     }
 
     // 
@@ -55,20 +55,24 @@ public class Hero : Entity
     // Касается другого коллайдера.
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Список тегов, которыми помечены объекты, на которых гг может стоять.
         List<string> tagsOfRealObjects = new List<string>{ "Monsters", "Decor", "Ground", "Traps", "Platform"};
 
         if (tagsOfRealObjects.Contains(other.tag)) anim.SetBool("isJump", false);
 
+        // Для сбора монеток.
         if (other.tag.Equals("Coin"))
         {
             CoinCollect.CoinCount += 1;
             Destroy(other.gameObject);
         }
+        // Для сбора кристаллов.
         else if (other.tag.Equals("Crystal"))
         {
             //CrystalCollect.CrystalCount += 1;
             Destroy(other.gameObject);
         }
+
     }
 
     /// <summary>
@@ -89,6 +93,9 @@ public class Hero : Entity
     // Бежит.
     void Run()
     {
+        // Если происходит атака, то прерываем движение.
+        if (isAttacking) return;
+
         Vector3 moveVelocity = Vector3.zero;
         anim.SetBool("isRun", false);
 
@@ -140,6 +147,7 @@ public class Hero : Entity
     // Атакует.
     void Attack()
     {
+        isAttacking = true;
         anim.SetTrigger("attack");
         StartCoroutine(DoAttack());
     }
