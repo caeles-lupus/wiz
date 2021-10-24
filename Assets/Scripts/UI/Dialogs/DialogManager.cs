@@ -13,6 +13,7 @@ public class DialogManager : MonoBehaviour
 
     private bool heroStop = true;
     private DialogTrigger sender;
+    private Coroutine coroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class DialogManager : MonoBehaviour
     {
         // Запоминаем триггер, вызвавший менеджера.
         this.sender = sender;
-        // Надо останавливается ли герой.
+        // Останавливается ли герой.
         this.heroStop = sender.HeroStop;
         // Включаем анимацию появления диалога.
         animator.SetBool("isOne", true);
@@ -49,11 +50,15 @@ public class DialogManager : MonoBehaviour
 
         string sentence = this.sentences.Dequeue();
         //dlgText.text = sentence;
-        StartCoroutine(TypeSentence(sentence));
+        if (coroutine != null) StopCoroutine(coroutine);
+
+        coroutine = StartCoroutine(TypeSentence(sentence));
+        
     }
 
     IEnumerator TypeSentence(string sentence)
     {
+
         dlgText.text = "";
         foreach (var letter in sentence.ToCharArray())
         {
