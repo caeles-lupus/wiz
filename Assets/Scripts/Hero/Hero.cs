@@ -55,10 +55,9 @@ public class Hero : Entity
     // Касается другого коллайдера.
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Список тегов, которыми помечены объекты, на которых гг может стоять.
-        List<string> tagsOfRealObjects = new List<string>{ "Monsters", "Decor", "Ground", "Traps", "Platform"};
+        
 
-        if (tagsOfRealObjects.Contains(other.tag)) anim.SetBool("isJump", false);
+        if (TagsSets.tagsOfRealObjects.Contains(other.tag)) anim.SetBool("isJump", false);
 
         // Для сбора монеток.
         if (other.tag.Equals("Coin"))

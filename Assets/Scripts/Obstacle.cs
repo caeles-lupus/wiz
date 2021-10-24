@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Obstacle : Entity
 {
     //private bool inContact = false;
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //TODO: GetGameObjectOfDecor переделать на GetDecorOfGameObject. ƒолжен возвращать мой тип.
+        if (collision.gameObject == ListsOfObjects.GetGameObjectOfDecor())
+        {
+
+        }
+
         if (collision.gameObject == Hero.Instance.gameObject)
         {
             Hero.Instance.GetDamage();

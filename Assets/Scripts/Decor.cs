@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyObjects : MonoBehaviour
+public class Decor : Entity
 {
+
     bool isShaking = false;
     float shake = .2f;
-    float health = 5;
     Vector3 pos;
 
     // Start is called before the first frame update
@@ -26,11 +26,6 @@ public class DestroyObjects : MonoBehaviour
             tmpv3.z = pos.z;
             transform.position = tmpv3;
         }
-        if (health <= 0)
-        {
-            DestroyItObject();
-            //Invoke("DestroyItObject", .5f);
-        }
     }
 
     //=====================================================
@@ -43,7 +38,7 @@ public class DestroyObjects : MonoBehaviour
             isShaking = true;
             pos = transform.position;
             Invoke("StopShaking", .3f);
-            health--;
+            GetDamage();
         }
 
     }
@@ -54,9 +49,4 @@ public class DestroyObjects : MonoBehaviour
         transform.position = pos;
     }
 
-
-    void DestroyItObject()
-    {
-        Destroy(gameObject);
-    }
 }
