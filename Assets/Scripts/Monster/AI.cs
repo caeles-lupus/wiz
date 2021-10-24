@@ -10,27 +10,28 @@ public class AI : Entity
         toLeft,
         toRight
     };
+
     /// <summary>
     /// Стартовое направление.
     /// </summary>
-    public dir StartDrirection = dir.toLeft;
-
+    public dir StartDrirection;
     /// <summary>
-    /// 
+    /// Скорость передвижения.
     /// </summary>
     public float Speed = 3.5f;
     /// <summary>
     /// Расстояние на котором он патрулирует.
     /// </summary>
-    public int PositionOfPatrol;
+    public int DistanceOfPatrol = 10;
+    /// <summary>
+    /// Расстояние, на котором кончается агр.
+    /// </summary>
+    public float DistanceOfArgession = 5;
+
     /// <summary>
     /// Начальная точка.
     /// </summary>
     private Vector3 startPos;
-    /// <summary>
-    /// Расстояние, на котором кончается агр.
-    /// </summary>
-    public float StoppingDistance;
 
     private bool chill;
     private bool angry;
@@ -40,7 +41,8 @@ public class AI : Entity
     void Awake()
     {
         startPos = transform.position;
-        MoveRight = false;
+        MoveRight = StartDrirection == dir.toRight;
+        //GameObject go = gameObject;
     }
 
     // Start is called before the first frame update
@@ -56,12 +58,12 @@ public class AI : Entity
     /// </summary>
     void Chill()
     {
-        if (transform.position.x > (startPos.x + PositionOfPatrol))
+        if (transform.position.x > (startPos.x + DistanceOfPatrol))
         {
             Turn(false);
             MoveRight = false;
         }
-        else if (transform.position.x < (startPos.x - PositionOfPatrol))
+        else if (transform.position.x < (startPos.x - DistanceOfPatrol))
         {
             Turn(true);
             MoveRight = true;
@@ -97,19 +99,19 @@ public class AI : Entity
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(transform.position.x - startPos.x) < PositionOfPatrol && transform.position.y == startPos.y && !angry)
+        if (Mathf.Abs(transform.position.x - startPos.x) < DistanceOfPatrol && transform.position.y == startPos.y && !angry)
         {
             chill = true;
         }
 
-        if (Vector2.Distance(transform.position, Hero.Instance.transform.position) < StoppingDistance)
+        if (Vector2.Distance(transform.position, Hero.Instance.transform.position) < DistanceOfArgession)
         {
             angry = true;
             chill = false;
             goBack = false;
         }
 
-        if (Vector2.Distance(transform.position, Hero.Instance.transform.position) > StoppingDistance)
+        if (Vector2.Distance(transform.position, Hero.Instance.transform.position) > DistanceOfArgession)
         {
             goBack = true;
             angry = false;
@@ -144,10 +146,11 @@ public class AI : Entity
     private void Turn(bool MovingRight = false)
     {
         var x = Mathf.Abs(transform.localScale.x);
-        if (!MovingRight)
-            transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
-        else
+
+        if (MovingRight ^ StartDrirection == dir.toRight) //Xor
             transform.localScale = new Vector3(-x, transform.localScale.y, transform.localScale.z);
+        else
+            transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
     }
 
     /// <summary>
