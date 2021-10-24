@@ -11,6 +11,13 @@ public class AI : Entity
         toRight
     };
 
+    [Header("Полёт")]
+    /// <summary>
+    /// True - если монстр летающий.
+    /// </summary>
+    public bool isFlying = false;
+
+    [Header("Общие")]
     /// <summary>
     /// Стартовое направление.
     /// </summary>
@@ -45,14 +52,6 @@ public class AI : Entity
         //GameObject go = gameObject;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //sprite = GetComponent<SpriteRenderer>();
-        //chill = true;
-        //angry = false;
-        //goBack = false;
-    }
     /// <summary>
     /// Обычное движение.
     /// </summary>
@@ -83,9 +82,16 @@ public class AI : Entity
     /// </summary>
     void Angry()
     {
-
         Turn(transform.position.x < Hero.Instance.transform.position.x);
-        transform.position = Vector2.MoveTowards(transform.position, Hero.Instance.transform.position, Speed * Time.deltaTime);
+        if (isFlying)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, Hero.Instance.transform.position, Speed * Time.deltaTime);
+        }
+        else
+        {
+            Vector2 target = new Vector2(Hero.Instance.transform.position.x, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
+        }
     }
     /// <summary>
     /// Домой.
@@ -93,17 +99,28 @@ public class AI : Entity
     void GoBack()
     {
         Turn(transform.position.x < startPos.x);
-        transform.position = Vector2.MoveTowards(transform.position, startPos, Speed * Time.deltaTime);
+        if (isFlying)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, startPos, Speed * Time.deltaTime);
+        }
+        else
+        {
+            Vector2 target = new Vector2(startPos.x, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(transform.position.x - startPos.x) < DistanceOfPatrol && transform.position.y == startPos.y && !angry)
+
+        if (Mathf.Abs(transform.position.x - startPos.x) < DistanceOfPatrol && 
+            transform.position.y == startPos.y && !angry)
         {
             chill = true;
+            goBack = false;
         }
-
+        
         if (Vector2.Distance(transform.position, Hero.Instance.transform.position) < DistanceOfArgession)
         {
             angry = true;
