@@ -48,6 +48,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Backgorund
+    uniqueID: 97729355
+    locked: 0
   - name: WaterBackground
     uniqueID: 4047169841
     locked: 0
@@ -63,8 +66,11 @@ TagManager:
   - name: Water
     uniqueID: 2799396305
     locked: 0
-  - name: Backgorund
-    uniqueID: 97729355
+  - name: Ground
+    uniqueID: 2434436251
+    locked: 0
+  - name: BeforeBG
+    uniqueID: 3109216805
     locked: 0
   - name: UI
     uniqueID: 4167991301
