@@ -13,7 +13,6 @@ public class Hero : Entity
 
     public float movePower = 10f;
     public float jumpPower = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
-    public int lives = 10;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -186,15 +185,15 @@ public class Hero : Entity
     {
         anim.SetTrigger("idle");
         alive = true;
-        lives = 10;
+        Health = 10;
     }
 
     // Получает урон.
     public override void GetDamage()
     {
         //base.GetDamage();
-        lives --;
-        if (lives > 0)
+        Health--;
+        if (Health > 0)
         {
             Hurt();
 
@@ -204,6 +203,6 @@ public class Hero : Entity
             Die();
 
         }
-        Debug.Log(lives);
+        Debug.Log(Health);
     }
 }

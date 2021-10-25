@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    [Header("Прочность")]
+    /// <summary>
+    /// Не убиваемое/не разрушаемое.
+    /// </summary>
+    public bool Immortal = false;
     /// <summary>
     /// Запас прочности/здоровья.
     /// </summary>
@@ -27,6 +32,8 @@ public class Entity : MonoBehaviour
     /// </summary>
     public virtual void GetDamage()
     {
+        if (Immortal) return;
+
         Health--;
         if (Health <= 0)
         {

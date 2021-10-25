@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Monster : Entity
 {
-
     bool isShaking = false;
     float shake = .2f;
     Vector3 pos;
@@ -12,7 +11,7 @@ public class Monster : Entity
     // Start is called before the first frame update
     void Start()
     {
-
+        ListsOfObjects.AddMonster(this);
     }
 
     // Update is called once per frame
@@ -33,14 +32,13 @@ public class Monster : Entity
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Attack_Staff")
+        if (!Immortal && collision.gameObject.name == "Attack_Staff")
         {
             isShaking = true;
             pos = transform.position;
             Invoke("StopShaking", .3f);
             GetDamage();
         }
-
     }
 
     private void StopShaking()

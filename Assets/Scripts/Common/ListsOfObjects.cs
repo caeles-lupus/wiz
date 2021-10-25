@@ -29,20 +29,16 @@ public static class ListsOfObjects
     //======================================================
     //======================================================
 
-    //TODO
-    public static GameObject GetGameObjectOfDecor(Decor decor)
+    public static Decor GetDecorOfGameObject(GameObject gameObject)
     {
-        return Decors.Find(dec => dec == decor).gameObject;
+        return Decors.Find(dec => dec.gameObject == gameObject);
     }
-    //TODO
-
-    public static GameObject GetGameObjectOfMonster(Monster monster)
+    public static Monster GetMonsterOfGameObject(GameObject gameObject)
     {
-        return Monsters.Find(dec => dec == monster).gameObject;
+        return Monsters.Find(monster => monster.gameObject == gameObject);
     }
-    //TODO
-    public static GameObject GetGameObjectOfObstacles(Obstacle obstacle)
+    public static Obstacle GetObstacleOfGameObject(GameObject gameObject)
     {
-        return Obstacles.Find(dec => dec == obstacle).gameObject;
+        return Obstacles.Find(obstacle => obstacle.gameObject == gameObject);
     }
 }
