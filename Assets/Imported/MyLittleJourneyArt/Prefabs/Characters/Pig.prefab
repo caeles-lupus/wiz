@@ -1257,6 +1257,7 @@ GameObject:
   - component: {fileID: 8059014561265236222}
   - component: {fileID: 2597263400716034070}
   - component: {fileID: 4977348746213772160}
+  - component: {fileID: 1374728821208267359}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Untagged
@@ -1324,6 +1325,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 8059014561265236222}
   isFlying: 0
+  isCompanion: 0
+  Friend: {fileID: 0}
+  DistanceOfFollow: 10
   StartDrirection: 1
   Speed: 3.5
   DistanceOfPatrol: 10
@@ -1361,6 +1365,27 @@ PolygonCollider2D:
       - {x: 0.5879893, y: -1.4168841}
       - {x: 1.1939222, y: -0.7079944}
       - {x: 1.1699383, y: 0.37636536}
+--- !u!50 &1374728821208267359
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290743565568937644}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &6290743565638606306
 GameObject:
   m_ObjectHideFlags: 0

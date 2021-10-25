@@ -60,7 +60,7 @@ public class AI: MonoBehaviour
     /// </summary>
     private Vector3 startPos;
 
-    private bool chill;
+    private bool chill = true;
     private bool angry;
     private bool goBack;
     private bool follow;
@@ -169,8 +169,9 @@ public class AI: MonoBehaviour
             }
         }
 
-        if (!angry && !follow && Mathf.Abs(transform.position.x - startPos.x) < DistanceOfPatrol && 
-            transform.position.y == startPos.y)
+        // ToChill
+        if (!chill && !angry && !follow && Mathf.Abs(transform.position.x - startPos.x) < DistanceOfPatrol && 
+            (transform.position.y == startPos.y || !isFlying))
         {
             chill = true;
             goBack = false;
@@ -189,11 +190,12 @@ public class AI: MonoBehaviour
             goBack = true;
             angry = false;
         }
+
         if (follow)
         {
             Follow();
         }
-        if (chill)
+        else if (chill)
         {
             Chill();
         }

@@ -41,4 +41,31 @@ public static class ListsOfObjects
     {
         return Obstacles.Find(obstacle => obstacle.gameObject == gameObject);
     }
+
+    //===============================================
+    //===============================================
+
+    /// <summary>
+    /// Удаляет объект из списка.
+    /// </summary>
+    /// <param name="gameObject"></param>
+    public static void RemoveObj(GameObject gameObject)
+    {
+        int index = Monsters.FindIndex(m => m.gameObject == gameObject);
+        if (index != -1) Monsters.RemoveAt(index);
+        else
+        {
+            index = Obstacles.FindIndex(m => m.gameObject == gameObject);
+            if (index != -1) Obstacles.RemoveAt(index);
+            else
+            {
+                index = Decors.FindIndex(m => m.gameObject == gameObject);
+                if (index != -1) Decors.RemoveAt(index);
+                else
+                {
+
+                }
+            }
+        }
+    }
 }

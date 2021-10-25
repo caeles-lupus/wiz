@@ -44,6 +44,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Die()
     {
+        ListsOfObjects.RemoveObj(this.gameObject);
         Destroy(this.gameObject);
     }
 

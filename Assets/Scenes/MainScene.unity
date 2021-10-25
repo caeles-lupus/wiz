@@ -393,103 +393,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8521348096707904320, guid: d7a2e53863cfe4083910cd0fc21cbddb, type: 3}
   m_PrefabInstance: {fileID: 14306481}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &14306483 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8521348096707904323, guid: d7a2e53863cfe4083910cd0fc21cbddb, type: 3}
-  m_PrefabInstance: {fileID: 14306481}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &14306484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14306483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251e39e48a8ca6743836f2d6fb81bd4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Immortal: 0
-  Health: 5
-  relation: 3
---- !u!114 &14306485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14306483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dfdec6502d6bad4f9fffdafa905dc1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Immortal: 0
-  Health: 5
-  relation: 3
---- !u!60 &14306486
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14306483}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.93824214, y: 0.7728946}
-      - {x: 0.3476089, y: 1.5772812}
-      - {x: -0.70786875, y: 1.4483134}
-      - {x: -0.9982555, y: 0.26182592}
-      - {x: -2.5508847, y: -0.34233633}
-      - {x: -0.9286015, y: -1.6166961}
-      - {x: -0.16306679, y: -1.5404764}
-      - {x: 0.8008853, y: -1.587577}
-      - {x: 1.5593879, y: -1.0911422}
-      - {x: 1.9938364, y: -0.5983979}
-      - {x: 2.8718166, y: -0.31290618}
-      - {x: 2.5185149, y: 0.6794013}
-      - {x: 1.2706467, y: 0.47496346}
-      - {x: 1.1646935, y: 0.40784404}
-      - {x: 0.58778536, y: -0.80901694}
-      - {x: 0.9510565, y: 0.30901712}
---- !u!50 &14306487
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14306483}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1001 &25751854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5904,7 +5807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Immortal: 0
   Health: 5
-  relation: 3
+  relation: 2
 --- !u!61 &504652104
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6545,7 +6448,7 @@ PrefabInstance:
       objectReference: {fileID: 563005059}
     - target: {fileID: 6290743565568937644, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: m_Name
-      value: Pig
+      value: Pig 2
       objectReference: {fileID: 0}
     - target: {fileID: 6290743565568937644, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: m_TagString
@@ -8640,7 +8543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Immortal: 0
   Health: 5
-  relation: 3
+  relation: 2
 --- !u!1 &737761714
 GameObject:
   m_ObjectHideFlags: 0
@@ -8922,7 +8825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800371188711728831, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
       propertyPath: m_Name
-      value: sheep
+      value: Sheep
       objectReference: {fileID: 0}
     - target: {fileID: 800371188711728831, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
       propertyPath: m_TagString
@@ -55881,8 +55784,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 701830815}
     m_Modifications:
     - target: {fileID: 2597263400716034070, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
+      propertyPath: Speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597263400716034070, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: DistanceOfPatrol
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2597263400716034070, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: DistanceOfArgession
@@ -55890,7 +55797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6290743565568937644, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: m_Name
-      value: Pig
+      value: Pig 1
       objectReference: {fileID: 0}
     - target: {fileID: 6290743565568937644, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: m_TagString
@@ -111981,6 +111888,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 701830815}
     m_Modifications:
+    - target: {fileID: 2386065303604340794, guid: 6ac88fd1d181f4c7ca5d078d5dfbc5de, type: 3}
+      propertyPath: Friend
+      value: 
+      objectReference: {fileID: 7547545565103431110}
     - target: {fileID: 5268123180504106518, guid: 6ac88fd1d181f4c7ca5d078d5dfbc5de, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -115645,7 +115556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2386065303604340794, guid: 6ac88fd1d181f4c7ca5d078d5dfbc5de, type: 3}
       propertyPath: DistanceOfArgession
-      value: 69
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5268123180504106518, guid: 6ac88fd1d181f4c7ca5d078d5dfbc5de, type: 3}
       propertyPath: m_RootOrder
