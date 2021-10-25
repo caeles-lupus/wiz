@@ -54320,7 +54320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFlying: 0
-  StartDrirection: 0
+  StartDrirection: 1
   Speed: 3.5
   DistanceOfPatrol: 10
   DistanceOfArgession: 5
