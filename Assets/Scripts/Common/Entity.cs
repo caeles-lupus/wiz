@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 using UnityEngine;
 
 [RequireComponent(typeof(Effect))]
@@ -6,12 +7,17 @@ public class Entity : MonoBehaviour
 {
 
 =======
+=======
+>>>>>>> Stashed changes
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     [Header("Прочность")]
     /// <summary>
@@ -23,7 +29,11 @@ public class Entity : MonoBehaviour
     /// </summary>
     public float Health = 5;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -38,6 +48,7 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// Отношение к окружающим.
     /// </summary>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     [Header("Отношения")]
     public Relation relation = Relation.AggressiveToPlayer;
@@ -81,6 +92,9 @@ public class Entity : MonoBehaviour
 =======
     public Relation relation = Relation.AggressiveToPlayer;
 >>>>>>> Stashed changes
+=======
+    public Relation relation = Relation.AggressiveToPlayer;
+>>>>>>> Stashed changes
 
     /// <summary>
     /// Получение урона существом.
@@ -89,7 +103,11 @@ public class Entity : MonoBehaviour
     {
         if (Immortal) return;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         effectOfDamage.EffectStart();
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -98,6 +116,10 @@ public class Entity : MonoBehaviour
         {
             Die();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+            //Invoke("DestroyItObject", .5f);
+>>>>>>> Stashed changes
 =======
             //Invoke("DestroyItObject", .5f);
 >>>>>>> Stashed changes
