@@ -93,10 +93,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1387330289759189011}
   - component: {fileID: 1387330289759189010}
-  - component: {fileID: 1387330289759189013}
-  - component: {fileID: 1387330289759189014}
-  - component: {fileID: 1387330289759189008}
+  - component: {fileID: 5509391749541065395}
   - component: {fileID: 3975742604275594036}
+  - component: {fileID: 1387330289759189014}
+  - component: {fileID: 1387330289759189013}
+  - component: {fileID: 1387330289759189008}
   m_Layer: 0
   m_Name: GreenHumanoidDragon
   m_TagString: Monsters
@@ -172,6 +173,57 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5509391749541065395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387330289759189017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
+--- !u!114 &3975742604275594036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387330289759189017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46144b8823876b7408d9e061517ecc81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Immortal: 0
+  Health: 5
+  relation: 3
+  effectOfDamage: {fileID: 5509391749541065395}
+--- !u!114 &1387330289759189014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387330289759189017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3110466822a6549b2e5dfd2656926a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 3975742604275594036}
+  isFlying: 0
+  isCompanion: 0
+  Friend: {fileID: 0}
+  DistanceOfFollow: 10
+  StartDrirection: 0
+  Speed: 4
+  DistanceOfPatrol: 10
+  DistanceOfArgession: 10
 --- !u!60 &1387330289759189013
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -206,24 +258,6 @@ PolygonCollider2D:
       - {x: 35.259094, y: 22.204237}
       - {x: 37.63444, y: -114.894424}
       - {x: -98.525185, y: -110.838104}
---- !u!114 &1387330289759189014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387330289759189017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3110466822a6549b2e5dfd2656926a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity: {fileID: 3975742604275594036}
-  isFlying: 0
-  StartDrirection: 0
-  Speed: 4
-  DistanceOfPatrol: 10
-  DistanceOfArgession: 10
 --- !u!50 &1387330289759189008
 Rigidbody2D:
   serializedVersion: 4
@@ -245,21 +279,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3975742604275594036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387330289759189017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46144b8823876b7408d9e061517ecc81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Immortal: 0
-  Health: 5
-  relation: 3
 --- !u!1 &1387330290434001670
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,4 +15,9 @@ public static class TagsSets
     /// </summary>
     public static List<string> tagsOfRealObjects = new List<string> { "Monsters", "Decor", "Ground", "Traps", "Platform" };
 
+    /// <summary>
+    /// Список тегов, которыми помечены объекты, от которых объект со скриптом AI не должен уходить.
+    /// </summary>
+    public static List<string> tagsForAI = new List<string> { "Ground", "Platform", "Player" };
+
 }

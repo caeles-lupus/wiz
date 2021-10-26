@@ -799,9 +799,9 @@ GameObject:
   - component: {fileID: 62474286}
   - component: {fileID: 62474292}
   - component: {fileID: 62474291}
-  - component: {fileID: 62474290}
   - component: {fileID: 62474289}
   - component: {fileID: 62474288}
+  - component: {fileID: 62474293}
   - component: {fileID: 62474287}
   m_Layer: 0
   m_Name: BlackGoblinInArmor
@@ -833,12 +833,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 62474285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251e39e48a8ca6743836f2d6fb81bd4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 46144b8823876b7408d9e061517ecc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Immortal: 0
   Health: 5
   relation: 3
+  effectOfDamage: {fileID: 0}
 --- !u!114 &62474288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,21 +950,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &62474290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 62474285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dfdec6502d6bad4f9fffdafa905dc1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Immortal: 0
-  Health: 5
-  relation: 3
 --- !u!50 &62474291
 Rigidbody2D:
   serializedVersion: 4
@@ -1037,6 +1023,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &62474293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62474285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
 --- !u!1001 &64938321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3740,6 +3740,7 @@ GameObject:
   - component: {fileID: 352575386}
   - component: {fileID: 352575384}
   - component: {fileID: 352575388}
+  - component: {fileID: 352575385}
   m_Layer: 0
   m_Name: Hazards_04
   m_TagString: Traps
@@ -3793,6 +3794,20 @@ PolygonCollider2D:
       - {x: 0.6056986, y: 0.012005896}
       - {x: 0.61059177, y: 0.014241673}
       - {x: 0.515, y: 0.21}
+--- !u!114 &352575385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352575383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
 --- !u!212 &352575386
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3872,8 +3887,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Immortal: 0
-  Health: 5
+  Health: 50
   relation: 2
+  effectOfDamage: {fileID: 352575385}
 --- !u!1001 &365525820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5786,6 +5802,7 @@ GameObject:
   - component: {fileID: 504652105}
   - component: {fileID: 504652104}
   - component: {fileID: 504652103}
+  - component: {fileID: 504652107}
   m_Layer: 0
   m_Name: Hazards_12
   m_TagString: Traps
@@ -5808,6 +5825,7 @@ MonoBehaviour:
   Immortal: 0
   Health: 5
   relation: 2
+  effectOfDamage: {fileID: 504652107}
 --- !u!61 &504652104
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5900,6 +5918,20 @@ Transform:
   m_Father: {fileID: 688476975}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &504652107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504652102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
 --- !u!1001 &532544251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8430,6 +8462,7 @@ GameObject:
   - component: {fileID: 737664950}
   - component: {fileID: 737664949}
   - component: {fileID: 737664952}
+  - component: {fileID: 737664948}
   m_Layer: 0
   m_Name: Hazards_12 (1)
   m_TagString: Traps
@@ -8437,6 +8470,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &737664948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737664947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
 --- !u!61 &737664949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8544,6 +8591,7 @@ MonoBehaviour:
   Immortal: 0
   Health: 5
   relation: 2
+  effectOfDamage: {fileID: 737664948}
 --- !u!1 &737761714
 GameObject:
   m_ObjectHideFlags: 0
@@ -9023,6 +9071,7 @@ MonoBehaviour:
   Immortal: 0
   Health: 5
   relation: 3
+  effectOfDamage: {fileID: 854245624}
 --- !u!60 &854245623
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9070,6 +9119,20 @@ PolygonCollider2D:
       - {x: 1.8066177, y: -0.95848656}
       - {x: 2.0063324, y: 1.179445}
       - {x: 1.4076437, y: 1.776957}
+--- !u!114 &854245624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854245621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
 --- !u!1001 &855365129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55788,8 +55851,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2597263400716034070, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
+      propertyPath: StartDrirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597263400716034070, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: DistanceOfPatrol
-      value: 20
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2597263400716034070, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: DistanceOfArgession
@@ -118921,3 +118988,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bar: {fileID: 0}
   Fill: 0
+--- !u!114 &7547545565103431119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547545565103431110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390395b27ff178248bacb40e0b94f63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3

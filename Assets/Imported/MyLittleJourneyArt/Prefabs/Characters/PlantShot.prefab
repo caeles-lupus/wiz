@@ -509,6 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8521348096707904320}
+  - component: {fileID: 4758881377544828908}
   - component: {fileID: 8981271869815221991}
   - component: {fileID: 3826727933537188727}
   - component: {fileID: 1963704948996472255}
@@ -541,6 +542,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4758881377544828908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8521348096707904323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
 --- !u!114 &8981271869815221991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,6 +571,7 @@ MonoBehaviour:
   Immortal: 0
   Health: 5
   relation: 3
+  effectOfDamage: {fileID: 4758881377544828908}
 --- !u!60 &3826727933537188727
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Effect))]
 public class Entity : MonoBehaviour
 {
+
     [Header("Прочность")]
     /// <summary>
     /// Не убиваемое/не разрушаемое.
@@ -13,7 +13,7 @@ public class Entity : MonoBehaviour
     /// Запас прочности/здоровья.
     /// </summary>
     public float Health = 5;
-
+    
     public enum Relation
     {
         FrendlyToAll,
@@ -25,7 +25,45 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// Отношение к окружающим.
     /// </summary>
+    [Header("Отношения")]
     public Relation relation = Relation.AggressiveToPlayer;
+    
+    /// <summary>
+    /// Эффект при получении урона.
+    /// </summary>
+    [Header("Эффект получения урона")]
+    public Effect effectOfDamage;
+
+    //======================================================
+    //======================================================
+
+    public void Update()
+    {
+
+    }
+
+    public void Start()
+    {
+        if (effectOfDamage == null)
+        {
+            //effectOfDamage = new Effect();
+            Debug.Log("К объекту " + gameObject.name + " не привязан эффект разрушения/ранения!");
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Attack_Staff")
+        {
+            GetDamage();
+        }
+    }
+
 
     /// <summary>
     /// Получение урона существом.
@@ -33,12 +71,11 @@ public class Entity : MonoBehaviour
     public virtual void GetDamage()
     {
         if (Immortal) return;
-
+        effectOfDamage.EffectStart();
         Health--;
         if (Health <= 0)
         {
             Die();
-            //Invoke("DestroyItObject", .5f);
         }
     }
 

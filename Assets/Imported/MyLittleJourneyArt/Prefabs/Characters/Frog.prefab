@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6996363180346104985}
+  - component: {fileID: 345352246741144396}
   - component: {fileID: 6993090891904306168}
   - component: {fileID: 514585548475851225}
   - component: {fileID: 4213105626472478703}
@@ -118,6 +119,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &345352246741144396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6996363180346104984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
 --- !u!114 &6993090891904306168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +148,7 @@ MonoBehaviour:
   Immortal: 0
   Health: 5
   relation: 3
+  effectOfDamage: {fileID: 345352246741144396}
 --- !u!114 &514585548475851225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 6993090891904306168}
   isFlying: 0
+  isCompanion: 0
+  Friend: {fileID: 0}
+  DistanceOfFollow: 10
   StartDrirection: 0
   Speed: 5
   DistanceOfPatrol: 10
