@@ -90,6 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 800371188711728830}
+  - component: {fileID: 2237131845586857928}
   m_Layer: 0
   m_Name: sheep
   m_TagString: Untagged
@@ -121,6 +122,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2237131845586857928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800371188711728831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
 --- !u!1 &800371189083680869
 GameObject:
   m_ObjectHideFlags: 0
