@@ -1,9 +1,18 @@
+<<<<<<< Updated upstream
 using UnityEngine;
 
 [RequireComponent(typeof(Effect))]
 public class Entity : MonoBehaviour
 {
 
+=======
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Entity : MonoBehaviour
+{
+>>>>>>> Stashed changes
     [Header("Прочность")]
     /// <summary>
     /// Не убиваемое/не разрушаемое.
@@ -13,7 +22,11 @@ public class Entity : MonoBehaviour
     /// Запас прочности/здоровья.
     /// </summary>
     public float Health = 5;
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     public enum Relation
     {
         FrendlyToAll,
@@ -25,6 +38,7 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// Отношение к окружающим.
     /// </summary>
+<<<<<<< Updated upstream
     [Header("Отношения")]
     public Relation relation = Relation.AggressiveToPlayer;
     
@@ -64,6 +78,9 @@ public class Entity : MonoBehaviour
         }
     }
 
+=======
+    public Relation relation = Relation.AggressiveToPlayer;
+>>>>>>> Stashed changes
 
     /// <summary>
     /// Получение урона существом.
@@ -71,11 +88,19 @@ public class Entity : MonoBehaviour
     public virtual void GetDamage()
     {
         if (Immortal) return;
+<<<<<<< Updated upstream
         effectOfDamage.EffectStart();
+=======
+
+>>>>>>> Stashed changes
         Health--;
         if (Health <= 0)
         {
             Die();
+<<<<<<< Updated upstream
+=======
+            //Invoke("DestroyItObject", .5f);
+>>>>>>> Stashed changes
         }
     }
 
