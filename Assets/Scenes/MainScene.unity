@@ -839,7 +839,7 @@ MonoBehaviour:
   Immortal: 0
   Health: 5
   relation: 3
-  effectOfDamage: {fileID: 0}
+  effectOfDamage: {fileID: 62474293}
 --- !u!114 &62474288
 MonoBehaviour:
   m_ObjectHideFlags: 0
