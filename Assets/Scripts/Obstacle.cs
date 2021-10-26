@@ -2,16 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Obstacle : Entity
 {
     //private bool inContact = false;
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == Hero.Instance.gameObject)
+        if (relation == Relation.AggressiveToAll)
         {
-            Hero.Instance.GetDamage();
-            //inContact = true;
+            //Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
+            //if (dec)
+            //{
+            //    dec.GetDamage();
+            //}
+            Monster monster = ListsOfObjects.GetMonsterOfGameObject(collision.gameObject);
+            if (monster)
+            {
+                monster.GetDamage();
+            }
+            //Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
+            //if (obstacle)
+            //{
+            //    obstacle.GetDamage();
+            //}
+            Hero hero = Hero.Instance;
+            if (collision.gameObject == hero.gameObject)
+            {
+                hero.GetDamage();
+                //inContact = true;
+            }
+        }
+        else if (relation == Relation.AggressiveToPlayer)
+        {
+            Hero hero = Hero.Instance;
+            if (collision.gameObject == hero.gameObject)
+            {
+                hero.GetDamage();
+                //inContact = true;
+            }
+        }
+        else if (relation == Relation.FrendlyToPlayer)
+        {
+            //Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
+            //if (dec)
+            //{
+            //    dec.GetDamage();
+            //}
+            Monster monster = ListsOfObjects.GetMonsterOfGameObject(collision.gameObject);
+            if (monster)
+            {
+                monster.GetDamage();
+            }
+            //Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
+            //if (obstacle)
+            //{
+            //    obstacle.GetDamage();
+            //}
         }
     }
 
@@ -26,7 +73,7 @@ public class Obstacle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ListsOfObjects.AddObstacle(this);
     }
 
     private void FixedUpdate()
