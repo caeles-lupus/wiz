@@ -67,14 +67,6 @@ public class AI: MonoBehaviour
 
     bool MoveRight;
 
-    private void Start()
-    {
-        if (entity == null)
-        {
-            Debug.LogError("У объекта " + gameObject.name + " не привязан скрипт entity или его потомки к скрипту AI!");
-        }
-    }
-
     void Awake()
     {
         startPos = transform.position;
@@ -163,11 +155,6 @@ public class AI: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (gameObject.name == "Pig 1")
-        //{
-        //    Debug.Log("11");
-        //}
-        
         if (entity.relation != Entity.Relation.AggressiveToAll && isCompanion)
         {
             if (Friend)
@@ -198,7 +185,7 @@ public class AI: MonoBehaviour
             goBack = false;
         }
 
-        if (angry && (Vector2.Distance(transform.position, Hero.Instance.transform.position) > DistanceOfArgession))
+        if (!follow && Vector2.Distance(transform.position, Hero.Instance.transform.position) > DistanceOfArgession)
         {
             goBack = true;
             angry = false;
@@ -224,10 +211,9 @@ public class AI: MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!TagsSets.tagsForAI.Contains(collision.gameObject.tag))
+        if (collision.gameObject != Hero.Instance.gameObject)
         {
             FlipX();
-            MoveRight = !MoveRight;
         }
     }
 
