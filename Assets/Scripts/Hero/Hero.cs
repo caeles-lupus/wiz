@@ -25,8 +25,9 @@ public class Hero : Entity
     private bool isStopped;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         Instance = this;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -35,8 +36,9 @@ public class Hero : Entity
     }
 
     // 
-    private void Update()
+    private new void Update()
     {
+        base.Update();
         if (!isStopped)
         {
             if (Input.GetKeyDown(KeyCode.Alpha0)) Restart();
@@ -52,9 +54,9 @@ public class Hero : Entity
     }
 
     // Касается другого коллайдера.
-    private void OnTriggerEnter2D(Collider2D other)
+    private new void OnTriggerEnter2D(Collider2D other)
     {
-        
+        base.OnTriggerEnter2D(other);
 
         if (TagsSets.tagsOfRealObjects.Contains(other.tag)) anim.SetBool("isJump", false);
 
