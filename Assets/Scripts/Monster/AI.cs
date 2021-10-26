@@ -2,14 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Указывает, что для данного скрипта необходим скрипт либо Entity, либо основанные на нём.
-[RequireComponent(typeof(Entity))]
-
-public class AI: MonoBehaviour
+public class AI : Entity
 {
-    [Header("Сущность")]
-    public Entity entity;
-
     //TODO: чтобы можно было задавать стартовое направление.
     public enum dir
     {
@@ -22,20 +16,6 @@ public class AI: MonoBehaviour
     /// True - если монстр летающий.
     /// </summary>
     public bool isFlying = false;
-    
-    [Header("Компаньон")]
-    /// <summary>
-    /// Режим компаньона
-    /// </summary>
-    public bool isCompanion = false;
-    /// <summary>
-    /// Friend.
-    /// </summary>
-    public GameObject Friend;
-    /// <summary>
-    /// Расстояние на котором он "видит" друга, за которым будет следовать.
-    /// </summary>
-    [Range(2, 10000)] public float DistanceOfFollow = 10f;
 
     [Header("Общие")]
     /// <summary>
@@ -49,22 +29,20 @@ public class AI: MonoBehaviour
     /// <summary>
     /// Расстояние на котором он патрулирует.
     /// </summary>
-    [Range(2, 10000)] public int DistanceOfPatrol = 10;
+    public int DistanceOfPatrol = 10;
     /// <summary>
     /// Расстояние, на котором кончается агр.
     /// </summary>
-    [Range(5, 10000)] public float DistanceOfArgession = 5;
+    public float DistanceOfArgession = 5;
 
     /// <summary>
     /// Начальная точка.
     /// </summary>
     private Vector3 startPos;
 
-    private bool chill = true;
+    private bool chill;
     private bool angry;
     private bool goBack;
-    private bool follow;
-
     bool MoveRight;
 
     void Awake()
@@ -72,26 +50,6 @@ public class AI: MonoBehaviour
         startPos = transform.position;
         MoveRight = StartDrirection == dir.toRight;
         //GameObject go = gameObject;
-    }
-
-    void Follow()
-    {
-        Turn(transform.position.x < Friend.transform.position.x);
-        // Если летающий.
-        if (isFlying)
-        {
-            // Определяем координату головы ГГ. TODO: не сработает для любого другого юнита.
-            float FriendY = Friend.GetComponent<CapsuleCollider2D>().bounds.max.y + 0.5f;
-            // Создаем новую коорду-цель.
-            Vector2 target = new Vector2(Friend.transform.position.x, FriendY);
-            // Перемещаемся на новую коорду.
-            transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
-        }
-        else
-        {
-            Vector2 target = new Vector2(Friend.transform.position.x, transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
-        }
     }
 
     /// <summary>
@@ -155,47 +113,28 @@ public class AI: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (entity.relation != Entity.Relation.AggressiveToAll && isCompanion)
-        {
-            if (Friend)
-            {
-                if (Vector2.Distance(transform.position, Friend.transform.position) < DistanceOfFollow)
-                {
-                    follow = true;
-                    angry = false;
-                    chill = false;
-                    goBack = false;
-                }
-            }
-        }
 
-        // ToChill
-        if (!chill && !angry && !follow && Mathf.Abs(transform.position.x - startPos.x) < DistanceOfPatrol && 
-            (transform.position.y == startPos.y || !isFlying))
+        if (Mathf.Abs(transform.position.x - startPos.x) < DistanceOfPatrol && 
+            transform.position.y == startPos.y && !angry)
         {
             chill = true;
             goBack = false;
         }
         
-        if (entity.relation == Entity.Relation.AggressiveToAll || entity.relation == Entity.Relation.AggressiveToPlayer &&
-            Vector2.Distance(transform.position, Hero.Instance.transform.position) < DistanceOfArgession)
+        if (Vector2.Distance(transform.position, Hero.Instance.transform.position) < DistanceOfArgession)
         {
             angry = true;
             chill = false;
             goBack = false;
         }
 
-        if (!follow && Vector2.Distance(transform.position, Hero.Instance.transform.position) > DistanceOfArgession)
+        if (Vector2.Distance(transform.position, Hero.Instance.transform.position) > DistanceOfArgession)
         {
             goBack = true;
             angry = false;
         }
-
-        if (follow)
-        {
-            Follow();
-        }
-        else if (chill)
+        
+        if (chill)
         {
             Chill();
         }
