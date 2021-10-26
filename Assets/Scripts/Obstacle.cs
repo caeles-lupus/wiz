@@ -7,8 +7,10 @@ public class Obstacle : Entity
     //private bool inContact = false;
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private new void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D(collision);
+
         if (relation == Relation.AggressiveToAll)
         {
             //Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
@@ -70,9 +72,17 @@ public class Obstacle : Entity
         //}
     }
 
-    // Start is called before the first frame update
-    void Start()
+    new void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
+
+    }
+
+
+    // Start is called before the first frame update
+    new void Start()
+    {
+        base.Start();
         ListsOfObjects.AddObstacle(this);
     }
 
@@ -84,8 +94,9 @@ public class Obstacle : Entity
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
+        base.Update();
     }
 
     //void HeroDamage()
