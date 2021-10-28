@@ -28,6 +28,8 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: d47f7aba535874c8a81c8c95121f838e, type: 3}
@@ -35,8 +37,9 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 8d64e43290c9d4ff6bd2e8d8268ad392, type: 3}
     - {fileID: 2800000, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
     - {fileID: 2800000, guid: 69ae5fc9872484597b9d7314c9961c21, type: 3}
-    totalSpriteSurfaceArea: 9190423
     bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: -1538352052946049631, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
@@ -210,5 +213,6 @@ SpriteAtlas:
   - ground_hole_front
   - key
   - tube
+  m_RenderDataMap: {}
   m_Tag: Enviroment
   m_IsVariant: 0

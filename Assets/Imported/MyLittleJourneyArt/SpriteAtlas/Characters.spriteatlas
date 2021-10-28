@@ -40,13 +40,16 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 6156dbdc660b84f5f9703ccf0f41c6ab, type: 3}
     - {fileID: 2800000, guid: 4b86f827d2fe04fd9812d726434afc05, type: 3}
     - {fileID: 2800000, guid: 9dc7d14879d9a4ce3951fea071483e12, type: 3}
-    totalSpriteSurfaceArea: 4023818
     bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: -7668714769705111319, guid: 4b86f827d2fe04fd9812d726434afc05, type: 3}
@@ -238,5 +241,6 @@ SpriteAtlas:
   - frog_eyelid_R
   - frog_mouth_down
   - bird_eye
+  m_RenderDataMap: {}
   m_Tag: Characters
   m_IsVariant: 0

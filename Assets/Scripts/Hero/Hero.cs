@@ -69,7 +69,7 @@ public class Hero : Entity
         // Для сбора кристаллов.
         else if (other.tag.Equals("Crystal"))
         {
-            //CrystalCollect.CrystalCount += 1;
+            CrystalCollect.CrystalCount += 1;
             Destroy(other.gameObject);
         }
 
