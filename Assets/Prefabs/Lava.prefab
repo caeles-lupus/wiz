@@ -493,6 +493,7 @@ MonoBehaviour:
   Health: 5
   relation: 2
   effectOfDamage: {fileID: 6900746706671829953}
+  AttackValue: 0.5
 --- !u!114 &6900746706671829953
 MonoBehaviour:
   m_ObjectHideFlags: 0

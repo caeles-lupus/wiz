@@ -343,12 +343,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8420477889273750711}
-  - component: {fileID: 4098226507554035201}
-  - component: {fileID: 9037555949650137944}
-  - component: {fileID: 7165351960800583639}
+  - component: {fileID: 6523329214103747536}
+  - component: {fileID: 5402930714636525423}
+  - component: {fileID: 8075480184555522331}
+  - component: {fileID: 874460123896432807}
+  - component: {fileID: 8491475518237192190}
   m_Layer: 0
   m_Name: BlackCaptus
-  m_TagString: Untagged
+  m_TagString: Monsters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,7 +370,73 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4098226507554035201
+--- !u!60 &6523329214103747536
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8420477889273750708}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.013706654, y: 0.7761245}
+      - {x: -0.725493, y: 0.08869913}
+      - {x: -0.33074772, y: -0.7145952}
+      - {x: 0.43566114, y: -0.7618058}
+      - {x: 0.729135, y: -0.25909543}
+      - {x: 0.8688165, y: 0.19936365}
+--- !u!50 &5402930714636525423
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8420477889273750708}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 1
+  m_Mass: 1.581504
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &8075480184555522331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8420477889273750708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfWorking: 0.3
+  PowerOfShake: 0.2
+--- !u!114 &874460123896432807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,22 +451,10 @@ MonoBehaviour:
   Immortal: 0
   Health: 5
   relation: 3
-  effectOfDamage: {fileID: 9037555949650137944}
---- !u!114 &9037555949650137944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8420477889273750708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fc3b76f9bba5224b8b5b30330e2471e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeOfWorking: 0.3
-  PowerOfShake: 0.2
---- !u!114 &7165351960800583639
+  effectOfDamage: {fileID: 8075480184555522331}
+  AttackValue: 1
+  AttackPeriod: 0.5
+--- !u!114 &8491475518237192190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -410,15 +466,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3110466822a6549b2e5dfd2656926a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 4098226507554035201}
+  entity: {fileID: 874460123896432807}
   isFlying: 1
   isCompanion: 0
   Friend: {fileID: 0}
   DistanceOfFollow: 10
   StartDrirection: 0
-  Speed: 3.5
+  Speed: 8
   DistanceOfPatrol: 10
-  DistanceOfArgession: 10
+  DistanceOfArgession: 5
 --- !u!1 &8420477889804687211
 GameObject:
   m_ObjectHideFlags: 0

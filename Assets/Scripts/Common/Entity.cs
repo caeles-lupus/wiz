@@ -68,11 +68,11 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// Получение урона существом.
     /// </summary>
-    public virtual void GetDamage()
+    public virtual void GetDamage(float DamageValue = 1)
     {
         if (Immortal) return;
-        effectOfDamage.EffectStart();
-        Health--;
+        if (effectOfDamage) effectOfDamage.EffectStart();
+        Health -= DamageValue;
         if (Health <= 0)
         {
             Die();

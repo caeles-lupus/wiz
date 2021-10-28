@@ -191,10 +191,10 @@ public class Hero : Entity
     }
 
     // Получает урон.
-    public override void GetDamage()
+    public override void GetDamage(float DamageValue = 1f)
     {
         //base.GetDamage();
-        Health--;
+        Health -= DamageValue;
         if (Health > 0)
         {
             Hurt();

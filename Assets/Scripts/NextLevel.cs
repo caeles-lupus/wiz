@@ -33,10 +33,10 @@ public class NextLevel : MonoBehaviour
     public void ChangeLevel()
     {
         level2.SetActive(true);
-        Destroy(level1);
+
+        //Destroy(level1);
 
         // Включаем небо
-
         Nebula.SetActive(true);
 
         // Выключаем статистику

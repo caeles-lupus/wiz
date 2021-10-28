@@ -2039,6 +2039,8 @@ MonoBehaviour:
   Health: 5
   relation: 3
   effectOfDamage: {fileID: 116050514}
+  AttackValue: 1
+  AttackPeriod: 0.5
 --- !u!60 &116050517
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4769,6 +4771,8 @@ MonoBehaviour:
   Health: 50
   relation: 2
   effectOfDamage: {fileID: 352575385}
+  AttackValue: 1
+  AttackPeriod: 0.5
 --- !u!1001 &365525820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6848,6 +6852,8 @@ MonoBehaviour:
   Health: 5
   relation: 2
   effectOfDamage: {fileID: 504652107}
+  AttackValue: 1
+  AttackPeriod: 0.5
 --- !u!61 &504652104
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7766,6 +7772,14 @@ PrefabInstance:
     - target: {fileID: 1521797867807651502, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: DistanceOfPatrol
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4098226507554035201, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
+      propertyPath: relation
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4098226507554035201, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
+      propertyPath: AttackValue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7165351960800583639, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: DistanceOfPatrol
@@ -10230,6 +10244,8 @@ MonoBehaviour:
   Health: 5
   relation: 2
   effectOfDamage: {fileID: 737664948}
+  AttackValue: 1
+  AttackPeriod: 0.5
 --- !u!1 &737761714
 GameObject:
   m_ObjectHideFlags: 0
@@ -10583,6 +10599,10 @@ PrefabInstance:
       propertyPath: DistanceOfPatrol
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3425805942478754103, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
+      propertyPath: AttackValue
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
 --- !u!4 &787625868 stripped
@@ -10870,6 +10890,8 @@ MonoBehaviour:
   Health: 5
   relation: 3
   effectOfDamage: {fileID: 854245624}
+  AttackValue: 1
+  AttackPeriod: 0.5
 --- !u!60 &854245623
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -79419,7 +79441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1035754122
 Transform:
   m_ObjectHideFlags: 0
@@ -137236,6 +137258,10 @@ PrefabInstance:
       propertyPath: Friend
       value: 
       objectReference: {fileID: 7547545565103431110}
+    - target: {fileID: 3148732437977535024, guid: 6ac88fd1d181f4c7ca5d078d5dfbc5de, type: 3}
+      propertyPath: Friend
+      value: 
+      objectReference: {fileID: 7547545565103431110}
     - target: {fileID: 5268123180504106518, guid: 6ac88fd1d181f4c7ca5d078d5dfbc5de, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -138811,6 +138837,8 @@ MonoBehaviour:
   Health: 5
   relation: 3
   effectOfDamage: {fileID: 0}
+  AttackValue: 1
+  AttackPeriod: 0.5
 --- !u!114 &1543835378
 MonoBehaviour:
   m_ObjectHideFlags: 0
