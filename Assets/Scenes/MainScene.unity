@@ -7781,6 +7781,18 @@ PrefabInstance:
       propertyPath: AttackValue
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5402930714636525423, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
+      propertyPath: m_Mass
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402930714636525423, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402930714636525423, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7165351960800583639, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: DistanceOfPatrol
       value: 18
@@ -7820,6 +7832,10 @@ PrefabInstance:
     - target: {fileID: 8420477889273750708, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: m_Name
       value: BlackCaptus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420477889273750708, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8420477889273750708, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: m_TagString
@@ -10557,7 +10573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800371188711728830, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 800371188711728830, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -79441,7 +79457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1035754122
 Transform:
   m_ObjectHideFlags: 0
@@ -138836,22 +138852,9 @@ MonoBehaviour:
   Immortal: 0
   Health: 5
   relation: 3
-  effectOfDamage: {fileID: 0}
+  effectOfDamage: {fileID: 1543835376}
   AttackValue: 1
   AttackPeriod: 0.5
---- !u!114 &1543835378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1543835374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 390395b27ff178248bacb40e0b94f63a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeOfWorking: 0.3
 --- !u!61 &1543835379
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ internal class TargetAndItsTiming: IEquatable<TargetAndItsTiming>
 
     public static bool operator !=(TargetAndItsTiming var1, TargetAndItsTiming var2)
     {
-        return var1 != var2;
+        return !(var1 == var2);
     }
 
     public bool Equals(TargetAndItsTiming p)
