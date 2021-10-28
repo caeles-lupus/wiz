@@ -80869,6 +80869,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 701830815}
     m_Modifications:
+    - target: {fileID: 1942713428324567159, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
+      propertyPath: DistanceOfPatrol
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2597263400716034070, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: Speed
       value: 3
@@ -80899,7 +80903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6290743565568937645, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -220.27
+      value: -219
       objectReference: {fileID: 0}
     - target: {fileID: 6290743565568937645, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -80935,6 +80939,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6290743565568937645, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842248599233670192, guid: 0712af37e33744f02a0066a10d858f8d, type: 3}
+      propertyPath: relation
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
