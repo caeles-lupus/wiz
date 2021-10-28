@@ -7872,6 +7872,10 @@ PrefabInstance:
       propertyPath: DistanceOfPatrol
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 7165351960800583639, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
+      propertyPath: DistanceOfPatrol
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8420477888145409695, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: m_SortingLayer
       value: 3
@@ -7918,11 +7922,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8420477889273750711, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8420477889273750711, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.26
+      value: -3.93
       objectReference: {fileID: 0}
     - target: {fileID: 8420477889273750711, guid: 5911ae0e1fcdb4c9997de948c921ffbc, type: 3}
       propertyPath: m_LocalPosition.z
