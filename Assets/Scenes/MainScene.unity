@@ -10747,7 +10747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800371188711728830, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.9
+      value: 9.91
       objectReference: {fileID: 0}
     - target: {fileID: 800371188711728830, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10792,6 +10792,10 @@ PrefabInstance:
     - target: {fileID: 800371188711728831, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
       propertyPath: m_TagString
       value: Monsters
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672335876460754438, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
+      propertyPath: DistanceOfPatrol
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5847ae259f81e48688502fcce80e786e, type: 3}
