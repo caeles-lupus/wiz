@@ -28,7 +28,7 @@ public class DialogTrigger : MonoBehaviour
             Hero hero = Hero.Instance;
             if (collision.gameObject == hero.gameObject)
             {
-                if (HeroStop) hero.Stop();
+                if (HeroStop) hero.Pause();
                 TriggerDialog();
             }
         }

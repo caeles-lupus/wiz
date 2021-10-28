@@ -78,7 +78,7 @@ public class Hero : Entity
     /// <summary>
     /// Останавливает анимацию героя, включает анимацию "простоя" и блокирует управление.
     /// </summary>
-    public void Stop()
+    public void Pause()
     {
         anim.SetBool("isJump", false);
         anim.SetBool("isRun", false);
