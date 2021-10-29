@@ -53,7 +53,7 @@ public class AI: MonoBehaviour
     /// <summary>
     /// Расстояние, на котором кончается агр.
     /// </summary>
-    [Range(5, 10000)] public float DistanceOfArgession = 5;
+    [Range(5, 10000)] public float DistanceOfArgession = 8;
 
     /// <summary>
     /// Начальная точка.
