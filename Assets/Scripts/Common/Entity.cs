@@ -3,17 +3,24 @@ using UnityEngine;
 [RequireComponent(typeof(Effect))]
 public class Entity : MonoBehaviour
 {
-
     [Header("Прочность")]
     /// <summary>
     /// Не убиваемое/не разрушаемое.
     /// </summary>
     public bool Immortal = false;
     /// <summary>
-    /// Запас прочности/здоровья.
+    /// Текущий запас прочности/здоровья.
     /// </summary>
-    public float Health = 5;
-    
+    public float Health = 10;
+    /// <summary>
+    /// Максимальный запас здоровья.
+    /// </summary>
+    public float MaxHealth = 10;
+    /// <summary>
+    /// 
+    /// </summary>
+    //public float Regeneration = 0f;
+
     public enum Relation
     {
         FrendlyToAll,
@@ -64,6 +71,17 @@ public class Entity : MonoBehaviour
         }
     }
 
+    public virtual void Heal(float HealValue)
+    {
+        if (Immortal) return;
+        //if (effectOfHeal) effectOfHeal.EffectStart();
+        Health += HealValue;
+        if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+    }
+
 
     /// <summary>
     /// Получение урона существом.
@@ -75,6 +93,7 @@ public class Entity : MonoBehaviour
         Health -= DamageValue;
         if (Health <= 0)
         {
+            Health = 0;
             Die();
         }
     }

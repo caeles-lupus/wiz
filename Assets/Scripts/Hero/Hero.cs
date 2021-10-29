@@ -11,8 +11,12 @@ public class Hero : Entity
 
     public GameObject attack_Staff;
 
-    public float movePower = 10f;
-    public float jumpPower = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
+    [Header("Характеристики")]
+    public float MovePower = 10f;
+    public float JumpPower = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
+
+    [Header("Связи с другими компонентами")]
+    public HealthBar healthBar;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -33,6 +37,7 @@ public class Hero : Entity
         anim = GetComponent<Animator>();
         //attack_Staff = GameObject.Find("/Hero/Skeletal/15 Staff/Attack_Staff");
         attack_Staff.SetActive(false);
+        healthBar.UpdateValue(Health, MaxHealth);
     }
 
     // 
@@ -72,6 +77,14 @@ public class Hero : Entity
             CrystalCollect.CrystalCount += 1;
             Destroy(other.gameObject);
         }
+        // Для сбора цветочков.
+        else if (other.tag.Equals("Flowers"))
+        {
+            //CrystalCollect.CrystalCount += 1;
+            Heal(1f);
+            Destroy(other.gameObject);
+        }
+
 
     }
 
@@ -120,7 +133,7 @@ public class Hero : Entity
                 anim.SetBool("isRun", true);
 
         }
-        transform.position += moveVelocity * movePower * Time.deltaTime;
+        transform.position += moveVelocity * MovePower * Time.deltaTime;
     }
 
     // Прыгает.
@@ -138,7 +151,7 @@ public class Hero : Entity
 
         rb.velocity = Vector2.zero;
 
-        Vector2 jumpVelocity = new Vector2(0, jumpPower);
+        Vector2 jumpVelocity = new Vector2(0, JumpPower);
         rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
 
         isJumping = false;
@@ -187,24 +200,34 @@ public class Hero : Entity
     {
         anim.SetTrigger("idle");
         alive = true;
-        Health = 10;
+        Heal(MaxHealth); //Health = MaxHealth;
+    }
+
+    /// <summary>
+    /// Увеличивает текущее здоровье на HealValue, но не более MaxHealth.
+    /// </summary>
+    /// <param name="HealValue"></param>
+    public override void Heal(float HealValue)
+    {
+        base.Heal(HealValue);
+        //TODO: эффект какой-нибудь?
+        healthBar.UpdateValue(Health, MaxHealth);
     }
 
     // Получает урон.
-    public override void GetDamage(float DamageValue = 1f)
+    public override void GetDamage(float DamageValue)
     {
         //base.GetDamage();
         Health -= DamageValue;
         if (Health > 0)
         {
             Hurt();
-
         }
         else
         {
+            Health = 0;
             Die();
-
         }
-        Debug.Log(Health);
+        healthBar.UpdateValue(Health, MaxHealth);
     }
 }

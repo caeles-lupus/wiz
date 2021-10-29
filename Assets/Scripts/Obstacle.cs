@@ -82,14 +82,17 @@ public class Obstacle : Entity
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        TargetAndItsTiming target = Targets.Find(trg => trg.Target == collision.gameObject);
-        if (target != null)
+        if (Targets.Count > 0)
         {
-            target.Timeattack += Time.deltaTime;
-            if (target.Timeattack >= AttackPeriod)
+            TargetAndItsTiming target = Targets.Find(trg => trg.Target == collision.gameObject);
+            if (target != null)
             {
-                target.Timeattack = 0;
-                attackTarget(target.Target.gameObject);
+                target.Timeattack += Time.deltaTime;
+                if (target.Timeattack >= AttackPeriod)
+                {
+                    target.Timeattack = 0;
+                    attackTarget(target.Target.gameObject);
+                }
             }
         }
         //base.OnCollisionStay2D(collision);
@@ -99,20 +102,28 @@ public class Obstacle : Entity
     private new void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
-        TargetAndItsTiming target = new TargetAndItsTiming(collision.gameObject, 0);
-        if (!Targets.Contains(target))
+        if (Targets.Count > 0)
         {
-            Targets.Add(target);
+            TargetAndItsTiming foundTarget = Targets.Find(trg => trg.Target == collision.gameObject);
+            if (foundTarget != null)
+            {
+                return;
+            }            
         }
-        
+
+        TargetAndItsTiming target = new TargetAndItsTiming(collision.gameObject, 0f);
+        Targets.Add(target);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        TargetAndItsTiming target = new TargetAndItsTiming(collision.gameObject, 0);
-        if (Targets.Contains(target))
+        if (Targets.Count > 0)
         {
-            Targets.Remove(target);
+            TargetAndItsTiming target = Targets.Find(trg => trg.Target == collision.gameObject);
+            if (target != null)
+            {
+                Targets.Remove(target);
+            }
         }
     }
 

@@ -11,6 +11,7 @@ TagManager:
   - Decor
   - Monsters
   - Platform
+  - Flowers
   layers:
   - Default
   - TransparentFX
@@ -69,7 +70,7 @@ TagManager:
   - name: Ground
     uniqueID: 2434436251
     locked: 0
-  - name: BeforeBG
+  - name: BeforeGround
     uniqueID: 3109216805
     locked: 0
   - name: UI
