@@ -23,19 +23,11 @@ public class BackgroundController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //if (!_rectTransform) _rectTransform = GetComponent<RectTransform>();
-        //if (!_parentRectTransform) _parentRectTransform = GetComponentInParent<RectTransform>();
-
-        //SetScale();
     }
 
     // Update is called once per frame
     private void Update()
     {
-//#if UNITY_EDITOR
-//        // Only done in the Unity editor since later it is unlikely that your screensize changes
-//        SetScale();
-//#endif
         offset += scroll * Time.deltaTime;
         _image.uvRect = new Rect(offset, repeatCount);
     }

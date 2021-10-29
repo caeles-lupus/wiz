@@ -165,7 +165,7 @@ public class Obstacle : Entity
             Hero hero = Hero.Instance;
             if (target == hero.gameObject)
             {
-                hero.GetDamage();
+                hero.GetDamage(AttackValue);
                 //inContact = true;
             }
         }
@@ -174,7 +174,7 @@ public class Obstacle : Entity
             Hero hero = Hero.Instance;
             if (target == hero.gameObject)
             {
-                hero.GetDamage();
+                hero.GetDamage(AttackValue);
                 //inContact = true;
             }
         }
@@ -188,7 +188,7 @@ public class Obstacle : Entity
             Monster monster = ListsOfObjects.GetMonsterOfGameObject(target);
             if (monster)
             {
-                monster.GetDamage();
+                monster.GetDamage(AttackValue);
             }
             //Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
             //if (obstacle)

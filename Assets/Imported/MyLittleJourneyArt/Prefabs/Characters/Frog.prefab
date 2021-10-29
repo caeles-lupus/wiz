@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 2421330371208484310}
   - component: {fileID: 5064598560904396570}
   - component: {fileID: 1849451657081854425}
+  - component: {fileID: 5745678899821702598}
+  - component: {fileID: 6505034572354828268}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -168,6 +170,66 @@ MonoBehaviour:
   Speed: 6
   DistanceOfPatrol: 20
   DistanceOfArgession: 5
+--- !u!60 &5745678899821702598
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6996363180346104984}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 2.070514, y: -0.035256863}
+      - {x: 1.8764064, y: 0.79917675}
+      - {x: 1.6374853, y: 2.0252433}
+      - {x: 0.78287715, y: 2.733199}
+      - {x: -0.46656188, y: 2.833826}
+      - {x: -1.2221988, y: 1.2456775}
+      - {x: -2.1160142, y: -0.5378789}
+      - {x: -1.3814635, y: -1.9793298}
+      - {x: -1.0341885, y: -4.681497}
+      - {x: -3.3077843, y: -4.9894795}
+      - {x: -3.2014453, y: -5.9122696}
+      - {x: 1.4258521, y: -5.788109}
+      - {x: 1.2881825, y: -2.5988832}
+      - {x: 2.0356126, y: -1.3424637}
+--- !u!50 &6505034572354828268
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6996363180346104984}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 1
+  m_Mass: 9.090984
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &6996363180460908059
 GameObject:
   m_ObjectHideFlags: 0

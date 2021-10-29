@@ -12,7 +12,7 @@ public class CrystalCollect : MonoBehaviour
     void Start()
     {
         ñrystalCounter = GetComponent<Text>();
-        ñrystalCounter.color = Color.white;
+        //ñrystalCounter.color = Color.white;
         CrystalCount = 0;
     }
 

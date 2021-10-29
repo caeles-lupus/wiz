@@ -510,6 +510,8 @@ GameObject:
   - component: {fileID: 8366708368620106222}
   - component: {fileID: 7553516271819218966}
   - component: {fileID: 3148732437977535024}
+  - component: {fileID: 9137998051341195627}
+  - component: {fileID: 9192814268025101737}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -591,6 +593,62 @@ MonoBehaviour:
   Speed: 8
   DistanceOfPatrol: 10
   DistanceOfArgession: 5
+--- !u!60 &9137998051341195627
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5268123180504106519}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.24606335, y: 2.6756558}
+      - {x: -2.55639, y: 2.3830793}
+      - {x: -2.9625216, y: 0.4895886}
+      - {x: -0.84555954, y: 0.4682306}
+      - {x: -0.37571698, y: -0.19686085}
+      - {x: -0.103560686, y: -0.12938023}
+      - {x: 0.16078973, y: 0.32774183}
+      - {x: 1.9308718, y: 0.23808785}
+      - {x: 2.42692, y: 0.68123686}
+      - {x: 1.9119409, y: 2.2893376}
+--- !u!50 &9192814268025101737
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5268123180504106519}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &5268123180513998039
 GameObject:
   m_ObjectHideFlags: 0

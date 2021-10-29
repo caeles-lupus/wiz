@@ -12,7 +12,7 @@ public class CoinCollect : MonoBehaviour
     void Start()
     {
         coinCounter = GetComponent<Text>();
-        coinCounter.color = Color.white;
+        //coinCounter.color = Color.white;
         CoinCount = 0;
     }
 
