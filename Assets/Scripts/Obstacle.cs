@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class TargetAndItsTiming: IEquatable<TargetAndItsTiming>
+internal class TargetAndItsTiming : IEquatable<TargetAndItsTiming>
 {
     public GameObject Target;
     public float Timeattack;
@@ -67,8 +67,6 @@ internal class TargetAndItsTiming: IEquatable<TargetAndItsTiming>
 
 public class Obstacle : Entity
 {
-    //private bool inContact = false;
-
     /// <summary>
     /// Сила атаки. Эта величина будет отниматься каждый кадр пока "враг" соприкасается с "нами".
     /// </summary>
@@ -82,6 +80,9 @@ public class Obstacle : Entity
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        //TODO: надо засекать время для каждого объекта!!!
+
+        //attackTarget(collision.gameObject);
         if (Targets.Count > 0)
         {
             TargetAndItsTiming target = Targets.Find(trg => trg.Target == collision.gameObject);
@@ -95,20 +96,24 @@ public class Obstacle : Entity
                 }
             }
         }
+
         //base.OnCollisionStay2D(collision);
-        
+
     }
 
     private new void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
+
+        //attackTarget(collision.gameObject);
+
         if (Targets.Count > 0)
         {
             TargetAndItsTiming foundTarget = Targets.Find(trg => trg.Target == collision.gameObject);
             if (foundTarget != null)
             {
                 return;
-            }            
+            }
         }
 
         TargetAndItsTiming target = new TargetAndItsTiming(collision.gameObject, 0f);
@@ -141,13 +146,6 @@ public class Obstacle : Entity
         ListsOfObjects.AddObstacle(this);
     }
 
-    private void FixedUpdate()
-    {
-
-        //if (inContact)
-        //    HeroDamage();
-    }
-
     // Update is called once per frame
     new void Update()
     {
@@ -156,6 +154,10 @@ public class Obstacle : Entity
 
     void attackTarget(GameObject target)
     {
+        // Выходим, если этот объект не подходит для атаки (земля, монетки, кристаллы).
+        if (TagsSets.tagsNonTarget.Contains(target.tag)) return;
+
+        //
         if (relation == Relation.AggressiveToAll)
         {
             //Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);

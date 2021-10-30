@@ -57,6 +57,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.6700826, y: 3.1911995}
   m_EdgeRadius: 0
+--- !u!1 &4435490287655889873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4645342351103396524}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4645342351103396524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4435490287655889873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7547545564590634793}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7547545563407739499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,6 +1722,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7547545564278353420}
+  - {fileID: 4645342351103396524}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1791,6 +1822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bar: {fileID: 0}
   text: {fileID: 0}
+  maxValue: 0
 --- !u!114 &6005219854020464804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1825,6 +1857,11 @@ MonoBehaviour:
   MovePower: 10
   JumpPower: 15
   healthBar: {fileID: 0}
+  GroundCheck: {fileID: 4645342351103396524}
+  CheckRaduis: 0.5
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &7547545564590634787
 MonoBehaviour:
   m_ObjectHideFlags: 0

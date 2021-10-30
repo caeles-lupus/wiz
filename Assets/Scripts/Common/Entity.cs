@@ -67,7 +67,7 @@ public class Entity : MonoBehaviour
     {
         if (collision.gameObject.name == "Attack_Staff")
         {
-            GetDamage();
+            GetDamage(Hero.Instance.Attack);
         }
     }
 
@@ -86,7 +86,7 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// Получение урона существом.
     /// </summary>
-    public virtual void GetDamage(float DamageValue = 1)
+    public virtual void GetDamage(float DamageValue)
     {
         if (Immortal) return;
         if (effectOfDamage) effectOfDamage.EffectStart();

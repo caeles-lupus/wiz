@@ -12,9 +12,9 @@ public class Hero : Entity
     public GameObject attack_Staff;
 
     [Header("Характеристики")]
-    public float MovePower = 10f;
-    public float JumpPower = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
-
+    public float MovementSpeed = 10f;
+    public float JumpForce = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
+    public float Attack = 1f;
     [Header("Связи с другими компонентами")]
     public HealthBar healthBar;
 
@@ -22,7 +22,15 @@ public class Hero : Entity
     private Animator anim;
 
     private int direction = 1;
+
     bool isJumping = false;
+
+    bool isGrounded = true;
+    public Transform GroundCheck;
+    public float CheckRaduis;
+    public LayerMask whatIsGround;
+    private CapsuleCollider2D bodyCollider;
+
     private bool alive = true;
     private bool isAttacking = false;
 
@@ -33,17 +41,36 @@ public class Hero : Entity
     {
         base.Start();
         Instance = this;
+        bodyCollider = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //attack_Staff = GameObject.Find("/Hero/Skeletal/15 Staff/Attack_Staff");
         attack_Staff.SetActive(false);
         healthBar.UpdateValue(Health, MaxHealth);
+
+        //checkGrounded();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    void checkGrounded()
+    {
+        //isGrounded = Physics2D.OverlapCircle(GroundCheck.position, CheckRaduis, whatIsGround);
+        List<Collider2D> results = new List<Collider2D>();
+        ContactFilter2D filter = new ContactFilter2D();
+        
+        if (Physics2D.OverlapCollider(bodyCollider, filter.NoFilter(), results) > 0)
+        {
+            isGrounded = results.Find(elem => TagsSets.tagsOfRealObjects.Contains(elem.tag));
+        }
     }
 
     // 
     private new void Update()
     {
         base.Update();
+        //checkGrounded();
         if (!isStopped)
         {
             if (Input.GetKeyDown(KeyCode.Alpha0)) Restart();
@@ -51,8 +78,8 @@ public class Hero : Entity
             {
                 if (Input.GetKeyDown(KeyCode.Alpha2)) Hurt();
                 if (Input.GetKeyDown(KeyCode.Alpha3)) Die();
-                if (Input.GetButtonDown("Fire1") && !isAttacking) Attack();
-                Jump();
+                if (Input.GetButtonDown("Fire1") && !isAttacking) Attacks();
+                if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0)) Jump();
                 Run();
             }
         }
@@ -63,7 +90,11 @@ public class Hero : Entity
     {
         base.OnTriggerEnter2D(other);
 
-        if (TagsSets.tagsOfRealObjects.Contains(other.tag)) anim.SetBool("isJump", false);
+        if (TagsSets.tagsOfRealObjects.Contains(other.tag))
+        {
+            isGrounded = true;
+            anim.SetBool("isJump", false);
+        }
 
         // Для сбора монеток.
         if (other.tag.Equals("Coin"))
@@ -133,32 +164,35 @@ public class Hero : Entity
                 anim.SetBool("isRun", true);
 
         }
-        transform.position += moveVelocity * MovePower * Time.deltaTime;
+        transform.position += moveVelocity * MovementSpeed * Time.deltaTime;
     }
 
     // Прыгает.
     void Jump()
     {
-        if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0) && !anim.GetBool("isJump"))
+        if (isGrounded)
         {
-            isJumping = true;
-            anim.SetBool("isJump", true);
+            if (!anim.GetBool("isJump"))
+            {
+                isJumping = true;
+                anim.SetBool("isJump", true);
+            }
+            if (!isJumping)
+            {
+                return;
+            }
+
+            rb.velocity = Vector2.zero;
+
+            Vector2 jumpVelocity = new Vector2(0, JumpForce);
+            rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
+
+            isJumping = false;
         }
-        if (!isJumping)
-        {
-            return;
-        }
-
-        rb.velocity = Vector2.zero;
-
-        Vector2 jumpVelocity = new Vector2(0, JumpPower);
-        rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
-
-        isJumping = false;
     }
 
     // Атакует.
-    void Attack()
+    void Attacks()
     {
         isAttacking = true;
         anim.SetTrigger("attack");
