@@ -28,8 +28,9 @@ public class Hero : Entity
     bool isGrounded = true;
     public Transform GroundCheck;
     public float CheckRaduis;
-    public LayerMask whatIsGround;
-    private CapsuleCollider2D bodyCollider;
+
+    //private CapsuleCollider2D bodyCollider;
+    private PolygonCollider2D bodyCollider;
 
     private bool alive = true;
     private bool isAttacking = false;
@@ -41,25 +42,27 @@ public class Hero : Entity
     {
         base.Start();
         Instance = this;
-        bodyCollider = GetComponent<CapsuleCollider2D>();
+
+        //bodyCollider = GetComponent<CapsuleCollider2D>();
+        bodyCollider = GetComponent<PolygonCollider2D>();
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        //attack_Staff = GameObject.Find("/Hero/Skeletal/15 Staff/Attack_Staff");
+
         attack_Staff.SetActive(false);
         healthBar.UpdateValue(Health, MaxHealth);
 
-        //checkGrounded();
+        checkGrounded();
     }
 
     /// <summary>
-    /// 
+    /// Проверяет, что гг стоит на земле.
     /// </summary>
     void checkGrounded()
     {
-        //isGrounded = Physics2D.OverlapCircle(GroundCheck.position, CheckRaduis, whatIsGround);
         List<Collider2D> results = new List<Collider2D>();
         ContactFilter2D filter = new ContactFilter2D();
-        
+
         if (Physics2D.OverlapCollider(bodyCollider, filter.NoFilter(), results) > 0)
         {
             isGrounded = results.Find(elem => TagsSets.tagsOfRealObjects.Contains(elem.tag));
@@ -70,7 +73,7 @@ public class Hero : Entity
     private new void Update()
     {
         base.Update();
-        //checkGrounded();
+        checkGrounded();
         if (!isStopped)
         {
             if (Input.GetKeyDown(KeyCode.Alpha0)) Restart();
@@ -92,12 +95,13 @@ public class Hero : Entity
 
         if (TagsSets.tagsOfRealObjects.Contains(other.tag))
         {
-            isGrounded = true;
-            anim.SetBool("isJump", false);
+            if (!isGrounded)
+            {
+                StartCoroutine(Landing());
+            }
         }
-
         // Для сбора монеток.
-        if (other.tag.Equals("Coin"))
+        else if(other.tag.Equals("Coin"))
         {
             CoinCollect.CoinCount += 1;
             Destroy(other.gameObject);
@@ -167,27 +171,31 @@ public class Hero : Entity
         transform.position += moveVelocity * MovementSpeed * Time.deltaTime;
     }
 
+    /// <summary>
+    /// Приземление.
+    /// </summary>
+    IEnumerator Landing()
+    {
+        anim.SetBool("isJump", false);
+        isJumping = false;
+        yield return new WaitForSeconds(0.1f);
+        isGrounded = true;
+    }
+
     // Прыгает.
     void Jump()
     {
-        if (isGrounded)
+        if (isGrounded && !isJumping)
         {
-            if (!anim.GetBool("isJump"))
-            {
-                isJumping = true;
-                anim.SetBool("isJump", true);
-            }
-            if (!isJumping)
-            {
-                return;
-            }
+            isJumping = true;
+            anim.SetBool("isJump", true);
 
             rb.velocity = Vector2.zero;
 
             Vector2 jumpVelocity = new Vector2(0, JumpForce);
             rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
 
-            isJumping = false;
+            //isGrounded = false;
         }
     }
 

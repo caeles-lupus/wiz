@@ -6,12 +6,12 @@ using UnityEngine;
 internal class TargetAndItsTiming : IEquatable<TargetAndItsTiming>
 {
     public GameObject Target;
-    public float Timeattack;
+    public float TimeAttack;
 
     public TargetAndItsTiming(GameObject target, float timeattack)
     {
         this.Target = target;
-        this.Timeattack = timeattack;
+        this.TimeAttack = timeattack;
     }
 
     public override bool Equals(object obj) => this.Equals(obj as TargetAndItsTiming);
@@ -61,7 +61,7 @@ internal class TargetAndItsTiming : IEquatable<TargetAndItsTiming>
         // System.Object, which defines Equals as reference equality.
         return (Target == p.Target);// && (Y == p.Y);
     }
-    public override int GetHashCode() => (Target, Timeattack).GetHashCode();
+    public override int GetHashCode() => (Target, TimeAttack).GetHashCode();
 
 }
 
@@ -80,18 +80,16 @@ public class Obstacle : Entity
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        //TODO: надо засекать время для каждого объекта!!!
-
         //attackTarget(collision.gameObject);
         if (Targets.Count > 0)
         {
             TargetAndItsTiming target = Targets.Find(trg => trg.Target == collision.gameObject);
             if (target != null)
             {
-                target.Timeattack += Time.deltaTime;
-                if (target.Timeattack >= AttackPeriod)
+                target.TimeAttack += Time.deltaTime;
+                if (target.TimeAttack >= AttackPeriod)
                 {
-                    target.Timeattack = 0;
+                    target.TimeAttack = 0;
                     attackTarget(target.Target.gameObject);
                 }
             }
@@ -105,8 +103,9 @@ public class Obstacle : Entity
     {
         base.OnCollisionEnter2D(collision);
 
-        //attackTarget(collision.gameObject);
-
+        // Выходим, если этот объект не подходит для атаки (земля, монетки, кристаллы).
+        if (TagsSets.tagsNonTarget.Contains(collision.gameObject.tag)) return;
+        //
         if (Targets.Count > 0)
         {
             TargetAndItsTiming foundTarget = Targets.Find(trg => trg.Target == collision.gameObject);
@@ -118,6 +117,8 @@ public class Obstacle : Entity
 
         TargetAndItsTiming target = new TargetAndItsTiming(collision.gameObject, 0f);
         Targets.Add(target);
+
+        attackTarget(collision.gameObject);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
