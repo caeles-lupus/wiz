@@ -19,7 +19,25 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    //public float Regeneration = 0f;
+    //public float RegenerationHealth = 0f;
+
+    [Header("Мана")]
+    /// <summary>
+    /// Не использует магию.
+    /// </summary>
+    public bool NoMana = false;
+    /// <summary>
+    /// Текущий запас прочности/здоровья.
+    /// </summary>
+    public float Mana = 10;
+    /// <summary>
+    /// Максимальный запас здоровья.
+    /// </summary>
+    public float MaxMana = 10;
+    /// <summary>
+    /// 
+    /// </summary>
+    //public float RegenerationMana = 0f;
 
     public enum Relation
     {
@@ -105,4 +123,29 @@ public class Entity : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public virtual void RestoringMana(float RestoringValue)
+    {
+        if (NoMana) return;
+        //if (effectOfRestoringMana) effectOfRestoringMana.EffectStart();
+        Mana += RestoringValue;
+        if (Mana > MaxMana)
+        {
+            Mana = MaxMana;
+        }
+    }
+
+    /// <summary>
+    /// Трата магии.
+    /// </summary>
+    public virtual void SpendMana(float spentMana)
+    {
+        if (NoMana) return;
+        //if (effectOfSpendMana) effectOfSpendMana.EffectStart();
+        Mana -= spentMana;
+        if (Mana <= 0)
+        {
+            Mana = 0;
+            //???
+        }
+    }
 }
