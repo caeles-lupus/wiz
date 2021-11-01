@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 8075480184555522331}
   - component: {fileID: 874460123896432807}
   - component: {fileID: 8491475518237192190}
+  - component: {fileID: 5902469531730469328}
   m_Layer: 0
   m_Name: BlackCaptus
   m_TagString: Monsters
@@ -450,6 +451,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Immortal: 0
   Health: 5
+  MaxHealth: 10
+  NoMana: 0
+  Mana: 10
+  MaxMana: 10
   relation: 3
   effectOfDamage: {fileID: 8075480184555522331}
   AttackValue: 1
@@ -475,6 +480,32 @@ MonoBehaviour:
   Speed: 8
   DistanceOfPatrol: 10
   DistanceOfArgession: 5
+--- !u!61 &5902469531730469328
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8420477889273750708}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.5723417, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.0860281, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &8420477889804687211
 GameObject:
   m_ObjectHideFlags: 0

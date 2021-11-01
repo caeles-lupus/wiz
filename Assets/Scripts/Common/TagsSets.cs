@@ -18,7 +18,7 @@ public static class TagsSets
     /// <summary>
     /// Список тегов, которыми помечены объекты, от которых объект со скриптом AI не должен уходить.
     /// </summary>
-    public static List<string> tagsForAI = new List<string> { "Ground", "Platform", "Player" };
+    public static List<string> tagsForAI = new List<string> { "Player", "Coin", "Crystal", "Flowers" };
     /// <summary>
     /// Список тегов, которыми помечены объекты, которые не могут быть целями атаки.
     /// </summary>

@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Effect))]
 public class Entity : MonoBehaviour
 {
     [Header("Прочность")]
