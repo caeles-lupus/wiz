@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum typeAbility
+public enum typeAbility
 {
     Wall,
     Fireball,
@@ -17,10 +17,20 @@ public class Hero : Entity
     /// </summary>
     public static Hero Instance;
 
+    /// <summary>
+    /// Направление
+    /// </summary>
+    public int Direction
+    {
+        get
+        {
+            return direction;
+        }
+    }
+
     [Header("Доп.объекты героя")]
     public GameObject attack_Staff;
     public GameObject wall;
-
 
     [Header("Характеристики")]
     public float MovementSpeed = 10f;
@@ -30,6 +40,7 @@ public class Hero : Entity
     [Header("Связи с другими компонентами")]
     public ParentBar healthBar;
     public ParentBar manaBar;
+    public Magic magic;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -42,8 +53,7 @@ public class Hero : Entity
     private bool isAttacking = false;
 
     private bool isStopped;
-    
-    private Coroutine coroutineWall;
+
 
     // Start is called before the first frame update
     new void Start()
@@ -55,7 +65,6 @@ public class Hero : Entity
         anim = GetComponent<Animator>();
 
         attack_Staff.SetActive(false);
-        wall.SetActive(false);
 
         healthBar.UpdateValue(Health, MaxHealth);
         manaBar.UpdateValue(Mana, MaxMana);
@@ -75,7 +84,7 @@ public class Hero : Entity
                 if (Input.GetKeyDown(KeyCode.Alpha3)) Die();
                 if (Input.GetButtonDown("Fire1") && !isAttacking) Attacks();
                 if (Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0) Jump();
-                if (Input.GetKeyDown(KeyCode.Q)) ToCast(typeAbility.Wall);
+                if (Input.GetKeyDown(KeyCode.Q)) magic.ToCast(typeAbility.Wall);
                 Run();
             }
         }
@@ -259,119 +268,9 @@ public class Hero : Entity
         healthBar.UpdateValue(Health, MaxHealth);
     }
 
-    /// <summary>
-    /// Применение способности(магии).
-    /// </summary>
-    void ToCast(typeAbility ability)
+    public override void SpendMana(float spentMana)
     {
-        switch (ability)
-        {
-            case typeAbility.Wall:
-                float costWall = 1f;
-                if (Mana < costWall)
-                {
-                    notEnoughMana();
-                    return; 
-                }
-                castWall();
-                SpendMana(costWall); // TODO определить оптимальное количество.
-                manaBar.UpdateValue(Mana, MaxMana);
-                break;
-            case typeAbility.Fireball:
-                float costFireball = 1f;
-                if (Mana < costFireball)
-                {
-                    notEnoughMana();
-                    return;
-                }
-                castFireball();
-                SpendMana(costFireball); // TODO определить оптимальное количество.
-                manaBar.UpdateValue(Mana, MaxMana);
-                break;
-            case typeAbility.Fly:
-                float costFly = 1f;
-                if (Mana < costFly)
-                {
-                    notEnoughMana();
-                    return;
-                }
-                castFly();
-                SpendMana(costFly); // TODO определить оптимальное количество.
-                manaBar.UpdateValue(Mana, MaxMana);
-                break;
-            case typeAbility.Heal:
-                float costHeal = 1f;
-                if (Mana < costHeal)
-                {
-                    notEnoughMana();
-                    return;
-                }
-                castHeal();
-                SpendMana(costHeal); // TODO определить оптимальное количество.
-                manaBar.UpdateValue(Mana, MaxMana);
-                break;
-            default:
-                break;
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    void notEnoughMana()
-    {
-        // TODO: выдавать сообщение или мигать манабаром.
-        return;
-    }
-
-    void castWall()
-    {
-        float distance = 4 * direction;
-        //BoxCollider2D collider2D = wall.GetComponent<BoxCollider2D>();
-        //wall.transform.position = new Vector3(
-        //    transform.position.x + 10,
-        //    transform.position.y - collider2D.size.y * transform.localScale.y);
-        wall.transform.position = new Vector3(transform.position.x + distance, wall.transform.position.y);
-
-        // Показываем стену.
-        showWall();
-        // Скрываем стену спустя 5 секунд.
-        if (coroutineWall != null) StopCoroutine(coroutineWall);
-        coroutineWall = StartCoroutine(hideWall(10));
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    void showWall()
-    {
-
-        wall.SetActive(true);
-        //TODO: плавное появление.
-    }
-
-    /// <summary>
-    /// Скрываем стену через waitInSec секунд.
-    /// </summary>
-    IEnumerator hideWall(float waitInSec = 5f)
-    {
-        yield return new WaitForSeconds(waitInSec);
-        wall.SetActive(false);
-
-    }
-
-    void castFireball()
-    {
-
-    }
-
-    void castFly()
-    {
-
-    }
-
-    void castHeal()
-    {
-
+        base.SpendMana(spentMana);
+        manaBar.UpdateValue(Mana, MaxMana);
     }
 }
