@@ -1936,12 +1936,15 @@ MonoBehaviour:
   relation: 3
   effectOfDamage: {fileID: 6005219854020464804}
   attack_Staff: {fileID: 2434146922550152183}
-  MovementSpeed: 10
-  JumpForce: 15
+  Speed: 2
   Attack: 1
+  Protection: 2
+  JumpForce: 15
+  MovementSpeed: 5
   healthBar: {fileID: 658230248134638432}
   manaBar: {fileID: 9218118308585913691}
   magic: {fileID: 1112122170783430541}
+  wizAnim: {fileID: 7547545564590634787}
 --- !u!114 &1112122170783430541
 MonoBehaviour:
   m_ObjectHideFlags: 0

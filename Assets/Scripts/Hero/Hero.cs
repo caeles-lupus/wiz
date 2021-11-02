@@ -32,17 +32,29 @@ public class Hero : Entity
     public GameObject attack_Staff;
 
     [Header("Характеристики")]
-    public float MovementSpeed = 10f;
-    public float JumpForce = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
+    [Range(2f, 99f)]
+    public float Speed = 2f;
     public float Attack = 1f;
+    [Range(0, 99)]
+    public int Protection = 2;
+    //Health in Entity
+    //Mana in Entity
+
+    [Header("Не игровые харак-ки")]
+    public float JumpForce = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
+    public float MovementSpeed = 5f;
 
     [Header("Связи с другими компонентами")]
     public ParentBar healthBar;
     public ParentBar manaBar;
     public Magic magic;
+    public WizAnim wizAnim;
 
     private Rigidbody2D rb;
     private Animator anim;
+
+    // Стандартная длительность анимации атаки.
+    float lengthOfAttack;
 
     private int direction = 1;
 
@@ -54,6 +66,7 @@ public class Hero : Entity
     private bool isStopped;
 
     private Coroutine coroutineLanding;
+    private Coroutine coroutineAttack;
 
     // Start is called before the first frame update
     new void Start()
@@ -68,6 +81,11 @@ public class Hero : Entity
 
         healthBar.UpdateValue(Health, MaxHealth);
         manaBar.UpdateValue(Mana, MaxMana);
+
+        //TODO: длина анимации атаки.
+        lengthOfAttack = .467f;
+
+        Pause();
     }
 
     // 
@@ -85,6 +103,9 @@ public class Hero : Entity
                 if (Input.GetButtonDown("Fire1") && !isAttacking) Attacks();
                 if (Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0) Jump();
                 if (Input.GetKeyDown(KeyCode.Q)) magic.ToCast(typeAbility.Wall);
+
+                if (Input.GetKeyDown(KeyCode.T)) InceasedSpeed();
+                
                 Run();
             }
         }
@@ -147,7 +168,6 @@ public class Hero : Entity
         Vector3 moveVelocity = Vector3.zero;
         anim.SetBool("isRun", false);
 
-
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
             direction = -1;
@@ -168,7 +188,7 @@ public class Hero : Entity
                 anim.SetBool("isRun", true);
 
         }
-        transform.position += moveVelocity * MovementSpeed * Time.deltaTime;
+        transform.position += moveVelocity * (MovementSpeed + Speed) * Time.deltaTime;
     }
 
     /// <summary>
@@ -190,7 +210,7 @@ public class Hero : Entity
 
             anim.SetBool("isJump", true);
             rb.velocity = Vector2.zero;
-            Vector2 jumpVelocity = new Vector2(0, JumpForce);
+            Vector2 jumpVelocity = new Vector2(0, JumpForce + (Speed * 0.9f));
             rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
             isGrounded = false;
         }
@@ -201,15 +221,16 @@ public class Hero : Entity
     {
         isAttacking = true;
         anim.SetTrigger("attack");
-        StartCoroutine(DoAttack());
+        if (coroutineAttack != null) StopCoroutine(coroutineAttack);
+        coroutineAttack = StartCoroutine(DoAttack());
     }
 
     IEnumerator DoAttack()
     {
         attack_Staff.SetActive(true);
-        yield return new WaitForSeconds(.5f);
-        attack_Staff.SetActive(false);
 
+        yield return new WaitForSeconds(lengthOfAttack / (Speed - 1f));
+        attack_Staff.SetActive(false);
         isAttacking = false;
     }
 
@@ -243,6 +264,23 @@ public class Hero : Entity
     }
 
     /// <summary>
+    /// Увеличение брони.
+    /// </summary>
+    /// <param name="valInPercentage">Сколько процентов добавить к проценту брони</param>
+    public void IncreasedProtection(int valInPercentage)
+    {
+        Protection += valInPercentage;
+        if (Protection > 99) Protection = 99;
+        else if (Protection < 0) Protection = 0;
+    }
+
+    public void InceasedSpeed(float val = 0.2f)
+    {
+        Speed += val;
+        anim.SetFloat("speedAttack", Speed - 1f);
+    }
+
+    /// <summary>
     /// Увеличивает текущее здоровье на HealValue, но не более MaxHealth.
     /// </summary>
     /// <param name="HealValue"></param>
@@ -257,7 +295,7 @@ public class Hero : Entity
     public override void GetDamage(float DamageValue, GameObject attacker = null)
     {
         //base.GetDamage();
-        Health -= DamageValue;
+        Health -= (DamageValue - DamageValue * Protection / 100f);
         if (Health > 0)
         {
             Hurt();

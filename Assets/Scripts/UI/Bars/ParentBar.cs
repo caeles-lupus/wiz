@@ -6,14 +6,12 @@ public class ParentBar : MonoBehaviour
     public Image Bar;
     public Text text;
 
-    private float value;
-    private float maxValue;
+    private float value = 1f;
+    private float maxValue = 1f;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
-        value = 1f;
-        maxValue = 1f;
     }
 
     // Update is called once per frame

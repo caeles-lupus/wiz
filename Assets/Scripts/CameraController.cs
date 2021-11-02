@@ -1,20 +1,14 @@
-//using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-    private Vector3 pos;
-    private float offsetY;
+    [SerializeField] private Transform hero;
 
     private void Awake()
     {
-        if (!player)
+        if (!hero)
         {
-            player = FindObjectOfType<Hero>().transform;
-            offsetY = transform.position.y;
+            hero = FindObjectOfType<Hero>().transform;
         }
     }
 
@@ -27,17 +21,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos = player.position;
-        pos.z = -10f;
-        pos.y = offsetY + pos.y; // offsetY - высота, на которую будет "задрана" камера.
-        transform.position = Vector3.Lerp(transform.position, pos, 2f * Time.deltaTime);
-        //transform.position = Vector3.Lerp(transform.position, pos, 1f/256f);
-    }
+        //pos = player.position;
+        //pos.z = -10f;
+        //pos.y = offsetY + pos.y; // offsetY - высота, на которую будет "задрана" камера.
+        //transform.position = Vector3.Lerp(transform.position, pos, 2f * Time.deltaTime);
 
-
-    float Max(float val1, float val2)
-    {
-        return val1 > val2? val1 : val2;
+        transform.position = new Vector3(hero.position.x, 7.55f + hero.position.y, -10f);
     }
 }
 

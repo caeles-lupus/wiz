@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class GoToNextLevel : MonoBehaviour
 {
-    public GameObject NextLevelObject;
-    public GameObject PreviousLevelObject;
-    public Hero Heroin;
-    public GameObject Nebula;
+    public Hero hero;
     public GameObject Statistic;
+    public GameObject PreviousLevelObject;
+    public GameObject PreviuosBackround;
+    public GameObject NextLevelObject;
+    public GameObject NextBackround;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,9 +17,10 @@ public class GoToNextLevel : MonoBehaviour
             // 1 Отображаем статистику
             Statistic.SetActive(true);
             // 2 Выключаем небо
-            Nebula.SetActive(false);
+            PreviuosBackround.SetActive(false);
+            //Destroy(PreviuosBackround);
             // 3 Блокируем героя
-            Heroin.Pause();
+            hero.Pause();
         }
     }
 
@@ -34,13 +36,17 @@ public class GoToNextLevel : MonoBehaviour
         PreviousLevelObject.SetActive(false);
 
         // Включаем небо
-        Nebula.SetActive(true);
+        NextBackround.SetActive(true);
 
         // Выключаем статистику
         Statistic.SetActive(false);
 
+        // Восстанавливаем здоровье и ману.
+        hero.Health = hero.MaxHealth;
+        hero.Mana = hero.MaxMana;
+
         // разБлокируем героя
-        Heroin.Play();
+        hero.Play();
 
     }
 
@@ -57,11 +63,11 @@ public class GoToNextLevel : MonoBehaviour
             Debug.LogError("Для скрипта перехода к новому уровню не был задан объект следующего уровня!");
         }
 
-        if (Heroin == null)
+        if (hero == null)
         {
             Debug.LogError("Для скрипта перехода к новому уровню не был задан объект гг!");
         }
-        if (!Nebula)
+        if (!PreviuosBackround)
         {
             Debug.LogError("Для скрипта перехода к новому уровню не был задан объект фона!");
         }
