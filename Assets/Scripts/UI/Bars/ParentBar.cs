@@ -27,6 +27,7 @@ public class ParentBar : MonoBehaviour
     public virtual float getConvertVal()
     {
         float resVal = value / maxValue;
+
         if (resVal > 1f) resVal = 1f;
         else if (resVal < 0f) resVal = 0f;
         return resVal;

@@ -30,7 +30,6 @@ public class Hero : Entity
 
     [Header("Доп.объекты героя")]
     public GameObject attack_Staff;
-    public GameObject wall;
 
     [Header("Характеристики")]
     public float MovementSpeed = 10f;
