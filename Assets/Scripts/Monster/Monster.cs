@@ -18,8 +18,11 @@ public class Monster : Entity
 
     }
 
-    //=====================================================
-    //=====================================================
+    public override void Die(GameObject attacker = null)
+    {
+        MonsterCollect.MonsterCount++;
+        base.Die(attacker);
+    }
 
     private new void OnTriggerEnter2D(Collider2D collision)
     {

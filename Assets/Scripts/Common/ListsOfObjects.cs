@@ -52,12 +52,19 @@ public static class ListsOfObjects
     public static void RemoveObj(GameObject gameObject)
     {
     int index;
-    if (Monsters != null && (index = Monsters.FindIndex(m => m.gameObject == gameObject)) != -1)
+        if (Monsters != null && (index = Monsters.FindIndex(m => m.gameObject == gameObject)) != -1)
+        {
             Monsters.RemoveAt(index);
+
+        }
         else if (Obstacles != null && (index = Obstacles.FindIndex(m => m.gameObject == gameObject)) != -1)
+        {
             Obstacles.RemoveAt(index);
+        }
         else if (Decors != null && (index = Decors.FindIndex(m => m.gameObject == gameObject)) != -1)
+        {
             Decors.RemoveAt(index);
+        }
         else
         {
 

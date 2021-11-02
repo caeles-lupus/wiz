@@ -103,7 +103,7 @@ public class Entity : MonoBehaviour
     /// <summary>
     /// Получение урона существом.
     /// </summary>
-    public virtual void GetDamage(float DamageValue)
+    public virtual void GetDamage(float DamageValue, GameObject attacker = null)
     {
         if (Immortal) return;
         if (effectOfDamage) effectOfDamage.EffectStart();
@@ -111,11 +111,11 @@ public class Entity : MonoBehaviour
         if (Health <= 0)
         {
             Health = 0;
-            Die();
+            Die(attacker);
         }
     }
 
-    public virtual void Die()
+    public virtual void Die(GameObject attacker = null)
     {
         ListsOfObjects.RemoveObj(this.gameObject);
 

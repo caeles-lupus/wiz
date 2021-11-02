@@ -53,6 +53,7 @@ public class Hero : Entity
 
     private bool isStopped;
 
+    private Coroutine coroutineLanding;
 
     // Start is called before the first frame update
     new void Start()
@@ -96,7 +97,7 @@ public class Hero : Entity
 
         if (TagsSets.tagsOfRealObjects.Contains(other.tag))
         {
-            StartCoroutine(Landing());
+            coroutineLanding = StartCoroutine(Landing());
         }
 
         // Для сбора монеток.
@@ -185,6 +186,8 @@ public class Hero : Entity
     {
         if (isGrounded)
         {
+            if (coroutineLanding != null) StopCoroutine(coroutineLanding);
+
             anim.SetBool("isJump", true);
             rb.velocity = Vector2.zero;
             Vector2 jumpVelocity = new Vector2(0, JumpForce);
@@ -225,7 +228,7 @@ public class Hero : Entity
     /// <summary>
     /// Умирает.
     /// </summary>
-    public override void Die()
+    public override void Die(GameObject attacker = null)
     {
         anim.SetTrigger("die");
         alive = false;
@@ -251,7 +254,7 @@ public class Hero : Entity
     }
 
     // Получает урон.
-    public override void GetDamage(float DamageValue)
+    public override void GetDamage(float DamageValue, GameObject attacker = null)
     {
         //base.GetDamage();
         Health -= DamageValue;
@@ -262,7 +265,7 @@ public class Hero : Entity
         else
         {
             Health = 0;
-            Die();
+            Die(attacker);
         }
         healthBar.UpdateValue(Health, MaxHealth);
     }
