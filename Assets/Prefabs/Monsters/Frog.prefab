@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 6303278689800104822}
   - component: {fileID: 4792947573212016988}
   - component: {fileID: 118649579282408934}
+  - component: {fileID: 4957776922915533915}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Monsters
@@ -263,6 +264,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.26106882, y: 5.6883364}
   m_EdgeRadius: 0
+--- !u!95 &4957776922915533915
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8781294869233637928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 524b48bf431242b4a862d6889cfcab8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8781294869331695787
 GameObject:
   m_ObjectHideFlags: 0

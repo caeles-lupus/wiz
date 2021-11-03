@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Entity;
 
 // Указывает, что для данного скрипта необходим скрипт либо Entity, либо основанные на нём.
 [RequireComponent(typeof(Entity))]
@@ -55,6 +56,14 @@ public class AI: MonoBehaviour
     /// </summary>
     [Range(5, 10000)] public float DistanceOfArgession = 8;
 
+    [Header("Характеристики")]
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Range(0.5f, 10000f)] public float AttackValue = 1f;
+
+
     /// <summary>
     /// Начальная точка.
     /// </summary>
@@ -66,6 +75,9 @@ public class AI: MonoBehaviour
     private bool follow;
 
     bool MoveRight;
+
+    private Animator anim;
+    bool isAnimated = false;
 
     private void Start()
     {
@@ -79,7 +91,14 @@ public class AI: MonoBehaviour
     {
         startPos = transform.position;
         MoveRight = StartDrirection == dir.toRight;
-        //GameObject go = gameObject;
+
+        anim = GetComponent<Animator>();
+        if (anim != null)
+        {
+            isAnimated = true;
+            // Т.к. патрулирование подразумевает под собой постоянное хождение.
+            anim.SetBool("isRun", true);
+        }
     }
 
     void Follow()
@@ -229,6 +248,15 @@ public class AI: MonoBehaviour
             FlipX();
             MoveRight = !MoveRight;
         }
+        else if (collision.gameObject == Hero.Instance.gameObject)
+        {
+            if (isAnimated)
+            {
+                //anim.SetBool("isRun", false);
+                anim.SetTrigger("Attack");
+            }
+            attackEnemy(Hero.Instance.gameObject);
+        }
     }
 
     /// <summary>
@@ -253,5 +281,65 @@ public class AI: MonoBehaviour
         var x = transform.localScale.x * -1;
         transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
     }
+
+    void attackEnemy(GameObject target)
+    {
+        // Выходим, если этот объект не подходит для атаки (земля, монетки, кристаллы).
+        if (TagsSets.tagsNonTarget.Contains(target.tag)) return;
+
+        //
+        if (entity.relation == Relation.AggressiveToAll)
+        {
+            //Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
+            //if (dec)
+            //{
+            //    dec.GetDamage();
+            //}
+            Monster monster = ListsOfObjects.GetMonsterOfGameObject(target);
+            if (monster)
+            {
+                monster.GetDamage(AttackValue, gameObject);
+            }
+            //Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
+            //if (obstacle)
+            //{
+            //    obstacle.GetDamage();
+            //}
+            Hero hero = Hero.Instance;
+            if (target == hero.gameObject)
+            {
+                hero.GetDamage(AttackValue, gameObject);
+                //inContact = true;
+            }
+        }
+        else if (entity.relation == Relation.AggressiveToPlayer)
+        {
+            Hero hero = Hero.Instance;
+            if (target == hero.gameObject)
+            {
+                hero.GetDamage(AttackValue, gameObject);
+                //inContact = true;
+            }
+        }
+        else if (entity.relation == Relation.FrendlyToPlayer)
+        {
+            //Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
+            //if (dec)
+            //{
+            //    dec.GetDamage();
+            //}
+            Monster monster = ListsOfObjects.GetMonsterOfGameObject(target);
+            if (monster)
+            {
+                monster.GetDamage(AttackValue, gameObject);
+            }
+            //Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
+            //if (obstacle)
+            //{
+            //    obstacle.GetDamage();
+            //}
+        }
+    }
+
 
 }
