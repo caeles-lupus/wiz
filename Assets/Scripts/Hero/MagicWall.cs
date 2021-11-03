@@ -22,7 +22,6 @@ public class MagicWall : MonoBehaviour
     BoxCollider2D colliderOfWall;
     float heightOfWall;
     float increasedHeight = 0f;
-    float startingPositionY;
     private Coroutine coroutineWall;
 
 
@@ -36,7 +35,6 @@ public class MagicWall : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-        startingPositionY = transform.position.y;
         // A WALL
         // Коллайдер стены.
         colliderOfWall = GetComponent<BoxCollider2D>();
@@ -81,7 +79,7 @@ public class MagicWall : MonoBehaviour
     void toPlantWall()
     {
         float dirDistance = Distance * hero.Direction;
-        float newY = startingPositionY - heightOfWall;
+        float newY = hero.transform.position.y - heightOfWall / 2;
         transform.position = new Vector3(hero.transform.position.x + dirDistance, newY);
         increasedHeight = 0f;
     }
@@ -97,7 +95,7 @@ public class MagicWall : MonoBehaviour
             // Перестаем расти.
             wallGrowing = false;
 
-            // Скрываем стену спустя k секунд.
+            // Скрываем стену спустя PeriodOfLifeOfWall секунд.
             if (coroutineWall != null) StopCoroutine(coroutineWall);
             coroutineWall = StartCoroutine(hideWall(PeriodOfLifeOfWall));
         }

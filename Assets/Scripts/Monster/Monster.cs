@@ -20,7 +20,7 @@ public class Monster : Entity
 
     public override void Die(GameObject attacker = null)
     {
-        MonsterCollect.MonsterCount++;
+        StatisticCollector.MonsterCount++;
         base.Die(attacker);
     }
 

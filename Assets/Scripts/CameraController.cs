@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -27,6 +29,7 @@ public class CameraController : MonoBehaviour
         //transform.position = Vector3.Lerp(transform.position, pos, 2f * Time.deltaTime);
 
         transform.position = new Vector3(hero.position.x, 7.55f + hero.position.y, -10f);
+
     }
 }
 

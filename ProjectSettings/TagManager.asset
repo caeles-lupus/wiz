@@ -5,13 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Coin
-  - Crystal
   - Ground
   - Traps
   - Decor
   - Monsters
   - Platform
   - Flowers
+  - Crystal_Blue
+  - Crystal_Orange
+  - Crystal_Red
+  - Crystal_DarkBlue
   layers:
   - Default
   - TransparentFX

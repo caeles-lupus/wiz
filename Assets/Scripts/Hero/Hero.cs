@@ -50,23 +50,27 @@ public class Hero : Entity
     public Magic magic;
     public WizAnim wizAnim;
 
+    // Вспомогательные.
     private Rigidbody2D rb;
     private Animator anim;
 
     // Стандартная длительность анимации атаки.
     float lengthOfAttack;
-
+    // Направление.
     private int direction = 1;
-
+    // Состояния.
     bool isGrounded = true;
-
-    private bool alive = true;
+    private bool isAlive = true;
     private bool isAttacking = false;
-
     private bool isStopped;
-
+    // Работа с сопрограммами.
     private Coroutine coroutineLanding;
     private Coroutine coroutineAttack;
+    // Доступность магии.
+    bool allowedMagicWall = false;
+    bool allowedSelfTreatment = false;
+    bool allowedFlight = false;
+    bool allowedFireball = false;
 
     // Start is called before the first frame update
     new void Start()
@@ -96,14 +100,24 @@ public class Hero : Entity
         if (!isStopped)
         {
             if (Input.GetKeyDown(KeyCode.Alpha0)) Restart();
-            if (alive)
+            if (isAlive)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha2)) Hurt();
                 if (Input.GetKeyDown(KeyCode.Alpha3)) Die();
                 if (Input.GetButtonDown("Fire1") && !isAttacking) Attacks();
                 if (Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0) Jump();
-                if (Input.GetKeyDown(KeyCode.Q)) magic.ToCast(typeAbility.Wall);
+                
+                // Magic:
+                if (Input.GetKeyDown(KeyCode.Q) && allowedMagicWall && isGrounded) 
+                    magic.ToCast(typeAbility.Wall);
+                if (Input.GetKeyDown(KeyCode.F) && allowedFireball) 
+                    magic.ToCast(typeAbility.Fireball);
+                if (Input.GetKeyDown(KeyCode.Z) && allowedSelfTreatment) 
+                    magic.ToCast(typeAbility.Heal);
+                if (Input.GetKeyDown(KeyCode.LeftShift) && allowedFlight) 
+                    magic.ToCast(typeAbility.Fly);
 
+                //For test:
                 if (Input.GetKeyDown(KeyCode.T)) InceasedSpeed();
                 
                 Run();
@@ -124,24 +138,57 @@ public class Hero : Entity
         // Для сбора монеток.
         else if(other.tag.Equals("Coin"))
         {
-            CoinCollect.CoinCount += 1;
+            StatisticCollector.CoinCount += 1;
             Destroy(other.gameObject);
         }
         // Для сбора кристаллов.
-        else if (other.tag.Equals("Crystal"))
+        else if (TagsSets.tagsCrystals.Contains(other.tag))
         {
-            CrystalCollect.CrystalCount += 1;
+            // Считаем собранный кристалл.
+            StatisticCollector.CrystalCount += 1;
+            // Определяем что он нам даст.
+            collectingCrystals(other.tag);
+            // Уничтожаем с игрового поля.
             Destroy(other.gameObject);
         }
         // Для сбора цветочков.
         else if (other.tag.Equals("Flowers"))
         {
-            //CrystalCollect.CrystalCount += 1;
+            //FlowerCollect.FlowerCount += 1;
             Heal(1f);
             Destroy(other.gameObject);
         }
 
 
+    }
+    void collectingCrystals(string tagOfCrystall)
+    {
+        switch (tagOfCrystall)
+        {
+            // Земля. Защита. Стена.
+            case "Crystal_Orange":
+                IncreasedProtection(1);
+                if (StatisticCollector.CrystalCount == 10 && !allowedMagicWall)
+                {
+                    allowedMagicWall = true;
+                    Hint.ShowHint("Поздравляю! Собрав 10 эссенций земли, ты получаешь возможность воспользоваться магией полёта! Для этого зажми клавишу Shift и лети! Но помни, пока ты летишь - тратятся запасы магии! Если магия закончится, то полёт прервётся и ты упадёшь!");
+                }
+                break;
+            // Воздух. Скорость. Полёт.
+            case "Crystal_Blue":
+
+                break;
+            // Вода. Макс.здоровье. Исцеление.
+            case "Crystal_DarkBlue":
+
+                break;
+            // Огонь. Атака. Фаербол.
+            case "Crystal_Red":
+
+                break;
+            default:
+                break;
+        }
     }
 
     /// <summary>
@@ -252,14 +299,14 @@ public class Hero : Entity
     public override void Die(GameObject attacker = null)
     {
         anim.SetTrigger("die");
-        alive = false;
+        isAlive = false;
     }
 
     // Воскрешение?
     void Restart()
     {
         anim.SetTrigger("idle");
-        alive = true;
+        isAlive = true;
         Heal(MaxHealth); //Health = MaxHealth;
     }
 

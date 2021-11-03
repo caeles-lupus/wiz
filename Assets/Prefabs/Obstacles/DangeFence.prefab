@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -5771915196245728218, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
   m_Color: {r: 0.9245283, g: 0.9114454, b: 0.9114454, a: 1}
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -5771915196245728218, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
   m_Color: {r: 0.9245283, g: 0.9114454, b: 0.9114454, a: 1}
@@ -236,7 +236,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -5771915196245728218, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -319,7 +319,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -5771915196245728218, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -402,7 +402,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -1012387330275345332, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
   m_Color: {r: 0.5283019, g: 0.251691, b: 0.251691, a: 1}
@@ -485,7 +485,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -5771915196245728218, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -568,7 +568,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -5771915196245728218, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
   m_Color: {r: 0.9245283, g: 0.9114454, b: 0.9114454, a: 1}
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 6781174197762003180}
   m_Layer: 0
   m_Name: DangeFence
-  m_TagString: Monsters
+  m_TagString: Traps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -754,7 +754,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -5771915196245728218, guid: fceca1505e49a4a0082ffc7ce7f0d741, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
