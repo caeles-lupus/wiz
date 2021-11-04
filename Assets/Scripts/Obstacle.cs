@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class TargetAndItsTiming : IEquatable<TargetAndItsTiming>
+public class TargetAndItsTiming : IEquatable<TargetAndItsTiming>
 {
     public GameObject Target;
     public float TimeAttack;

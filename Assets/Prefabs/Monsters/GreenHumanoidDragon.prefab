@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 1387330289759189013}
   - component: {fileID: 1387330289759189008}
   - component: {fileID: 5203089578402021860}
+  - component: {fileID: 3187170741392077308}
   m_Layer: 0
   m_Name: GreenHumanoidDragon
   m_TagString: Monsters
@@ -311,6 +312,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.7458305, y: 117.7095}
   m_EdgeRadius: 0
+--- !u!95 &3187170741392077308
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387330289759189017}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df2edb9c682ebbd499db6e6f7dd1a7db, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1387330290434001670
 GameObject:
   m_ObjectHideFlags: 0

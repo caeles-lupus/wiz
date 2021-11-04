@@ -17,6 +17,7 @@ class ControllerAnimation
     {
         if (isAnimated)
         {
+            //anim.ResetTrigger("Attack");
             anim.SetBool("isRun", true);
         }
     }
@@ -89,7 +90,10 @@ public class AI: MonoBehaviour
     /// 
     /// </summary>
     [Range(0.5f, 10000f)] public float AttackValue = 1f;
-
+    /// <summary>
+    /// 
+    /// </summary>
+    [Range(0.1f, 1000f)] public float AttackPeriod = 1f;
 
     /// <summary>
     /// Начальная точка.
@@ -105,12 +109,15 @@ public class AI: MonoBehaviour
 
     ControllerAnimation ani;
 
+    private List<TargetAndItsTiming> targets;
+
     private void Start()
     {
         if (entity == null)
         {
             Debug.LogError("У объекта " + gameObject.name + " не привязан скрипт entity или его потомки к скрипту AI!");
         }
+        targets = new List<TargetAndItsTiming>();
     }
 
     void Awake()
@@ -261,7 +268,7 @@ public class AI: MonoBehaviour
             GoBack();
         }
     }
-
+        
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!TagsSets.tagsForAI.Contains(collision.gameObject.tag))
@@ -269,9 +276,52 @@ public class AI: MonoBehaviour
             FlipX();
             MoveRight = !MoveRight;
         }
-        else if (collision.gameObject == Hero.Instance.gameObject)
+
+        // Выходим, если мы никого не атакуем.
+        if (entity.relation == Relation.FrendlyToAll) return;
+        // Выходим, если этот объект не подходит для атаки (земля, монетки, кристаллы).
+        if (TagsSets.tagsNonTarget.Contains(collision.gameObject.tag)) return;
+        //
+        if (targets.Count > 0)
         {
-            attackEnemy(Hero.Instance.gameObject);
+            TargetAndItsTiming foundTarget = targets.Find(trg => trg.Target == collision.gameObject);
+            if (foundTarget != null)
+            {
+                return;
+            }
+        }
+        TargetAndItsTiming target = new TargetAndItsTiming(collision.gameObject, 0f);
+        targets.Add(target);
+        attackEnemy(collision.gameObject);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (targets.Count > 0)
+        {
+            TargetAndItsTiming target = targets.Find(trg => trg.Target == collision.gameObject);
+            if (target != null)
+            {
+                target.TimeAttack += Time.deltaTime;
+                if (target.TimeAttack >= AttackPeriod)
+                {
+                    target.TimeAttack = 0;
+                    attackEnemy(target.Target.gameObject);
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (targets.Count > 0)
+        {
+            TargetAndItsTiming target = targets.Find(trg => trg.Target == collision.gameObject);
+            if (target != null)
+            {
+                targets.Remove(target);
+            }
         }
     }
 

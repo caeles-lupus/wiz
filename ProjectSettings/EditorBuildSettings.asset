@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 5503a5335703bbc4cadd8a4294eafe2a
+  - enabled: 0
+    path: Assets/Imported/Low_Swordman/Demo/demo.unity
+    guid: 9a24e8e0a81fd78488635ca9091a25a4
   m_configObjects: {}

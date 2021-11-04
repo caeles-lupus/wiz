@@ -29,7 +29,7 @@ public static class TagsSets
     /// <summary>
     /// Список тегов, которыми помечены объекты, которые не могут быть целями атаки.
     /// </summary>
-    public static List<string> tagsNonTarget = new List<string> { "Ground", "Platform", "" };
+    public static List<string> tagsNonTarget = new List<string> { "Ground", "Platform" };
 
     
 
