@@ -1,5 +1,21 @@
 using UnityEngine;
 
+public enum TypeOfEntity
+{
+    Obstacle,
+    Monster,
+    Decor,
+    Hero
+}
+
+public enum Relation
+{
+    FrendlyToAll,
+    FrendlyToPlayer,
+    AggressiveToAll,
+    AggressiveToPlayer,
+}
+
 public class Entity : MonoBehaviour
 {
     [Header("Прочность")]
@@ -38,14 +54,6 @@ public class Entity : MonoBehaviour
     /// </summary>
     //public float RegenerationMana = 0f;
 
-    public enum Relation
-    {
-        FrendlyToAll,
-        FrendlyToPlayer,
-        AggressiveToAll,
-        AggressiveToPlayer,
-    }
-
     /// <summary>
     /// Отношение к окружающим.
     /// </summary>
@@ -58,6 +66,7 @@ public class Entity : MonoBehaviour
     [Header("Эффект получения урона")]
     public Effect effectOfDamage;
 
+    protected TypeOfEntity myType;
     //======================================================
     //======================================================
 
@@ -146,5 +155,13 @@ public class Entity : MonoBehaviour
             Mana = 0;
             //???
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public virtual void Alert(GameObject intruder, TypeOfEntity typeOfEntity)
+    {
+        Debug.Log("Внимание! В области объекта " + gameObject.name + " замечен объект " + intruder.name);
     }
 }

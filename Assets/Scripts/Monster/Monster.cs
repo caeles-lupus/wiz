@@ -8,6 +8,8 @@ public class Monster : Entity
     new void Start()
     {
         base.Start();
+
+        myType = TypeOfEntity.Monster;
         ListsOfObjects.AddMonster(this);
     }
 

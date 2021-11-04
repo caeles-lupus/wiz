@@ -211,7 +211,7 @@ public class AI: MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        if (entity.relation != Entity.Relation.AggressiveToAll && isCompanion)
+        if (entity.relation != Relation.AggressiveToAll && isCompanion)
         {
             if (Friend)
             {
@@ -233,7 +233,7 @@ public class AI: MonoBehaviour
             goBack = false;
         }
         
-        if (entity.relation == Entity.Relation.AggressiveToAll || entity.relation == Entity.Relation.AggressiveToPlayer &&
+        if (entity.relation == Relation.AggressiveToAll || entity.relation == Relation.AggressiveToPlayer &&
             Vector2.Distance(transform.position, Hero.Instance.transform.position) < DistanceOfArgession)
         {
             angry = true;

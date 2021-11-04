@@ -8,6 +8,7 @@ public class Decor : Entity
     new void Start()
     {
         base.Start();
+        myType = TypeOfEntity.Decor;
         ListsOfObjects.AddDecor(this);
     }
 

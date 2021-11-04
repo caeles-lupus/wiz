@@ -77,6 +77,7 @@ public class Hero : Entity
     {
         base.Start();
         Instance = this;
+        myType = TypeOfEntity.Hero;
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();

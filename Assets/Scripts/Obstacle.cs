@@ -3,6 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TypeAttack
+{
+    Range,
+    Melee,
+    Combi//ned
+}
+
+class ControllerAnimatioObstacle
+{
+    Animator anim;
+    bool isAnimated = false;
+    public ControllerAnimatioObstacle(Animator anim)
+    {
+        this.anim = anim;
+        isAnimated = anim != null;
+    }
+
+    public void Attack()
+    {
+        if (isAnimated)
+        {
+            anim.SetTrigger("Attack");
+        }
+    }
+}
+
 public class TargetAndItsTiming : IEquatable<TargetAndItsTiming>
 {
     public GameObject Target;
@@ -75,11 +101,51 @@ public class Obstacle : Entity
     public float AttackValue = 1f;
     [Range (0.1f, 1000f)]
     public float AttackPeriod = 0.5f;
+    public TypeAttack TypeOfAttack = TypeAttack.Melee;
+    public Bullet bullet;
+
+    //[Header("Связки")]
+    //public GameObject RadarObj;
 
     private List<TargetAndItsTiming> Targets;
+    //private Radar radar;
+    private ControllerAnimatioObstacle ani;
+    private float timeOfAnimOfAttack = .36f;
+    private Coroutine coroutineAttack;
+
+    //================================================
+    //================================================
+
+    void Awake()
+    {
+        ani = new ControllerAnimatioObstacle(GetComponent<Animator>());
+    }
+
+    // Start is called before the first frame update
+    new void Start()
+    {
+        base.Start();
+        myType = TypeOfEntity.Obstacle;
+        ListsOfObjects.AddObstacle(this);
+
+        Targets = new List<TargetAndItsTiming>();
+
+        ////TODO: Why?
+        //radar = RadarObj.GetComponent<Radar>();
+    }
+
+    // Update is called once per frame
+    new void Update()
+    {
+        base.Update();
+
+
+    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        // Выходим, если тип атаки у нас - ближний.
+        if (TypeOfAttack == TypeAttack.Range) return;
         //attackTarget(collision.gameObject);
         if (Targets.Count > 0)
         {
@@ -102,6 +168,9 @@ public class Obstacle : Entity
     private new void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
+
+        // Выходим, если тип атаки у нас - ближний.
+        if (TypeOfAttack == TypeAttack.Range) return;
 
         // Выходим, если этот объект не подходит для атаки (земля, монетки, кристаллы).
         if (TagsSets.tagsNonTarget.Contains(collision.gameObject.tag)) return;
@@ -137,20 +206,6 @@ public class Obstacle : Entity
     {
         base.OnTriggerEnter2D(collision);
 
-    }
-
-    // Start is called before the first frame update
-    new void Start()
-    {
-        base.Start();
-        Targets = new List<TargetAndItsTiming>();
-        ListsOfObjects.AddObstacle(this);
-    }
-
-    // Update is called once per frame
-    new void Update()
-    {
-        base.Update();
     }
 
     void attackTarget(GameObject target)
@@ -210,5 +265,26 @@ public class Obstacle : Entity
             //    obstacle.GetDamage();
             //}
         }
+    }
+
+    public override void Alert(GameObject intruder, TypeOfEntity typeOfEntity)
+    {
+        base.Alert(intruder, typeOfEntity);
+
+        // Настраиваем пулю.
+        bullet.Target = intruder;
+        bullet.TargetType = typeOfEntity;
+        bullet.AttackValue = AttackValue;
+        // Включаем анимацию залпа.
+        ani.Attack();
+        // Запускаем отложенный вылет пули.
+        if (coroutineAttack != null) StopCoroutine(coroutineAttack);
+        coroutineAttack = StartCoroutine(DoAttack(intruder, typeOfEntity));
+    }
+
+    IEnumerator DoAttack(GameObject intruder, TypeOfEntity typeOfEntity)
+    {
+        yield return new WaitForSeconds(timeOfAnimOfAttack);
+        bullet.gameObject.SetActive(true);
     }
 }
