@@ -4,57 +4,36 @@ using UnityEngine;
 
 public class Presettings : MonoBehaviour
 {
-    [Header("Объекты")]
-    public GameObject StartScreenObj;
-    public GameObject Level1;
-    public GameObject Level2;
-    public GameObject StatisticScreenObj;
-    public GameObject MagicWall;
+    [Header("Активация/дезактивация объектов")]
+    public GameObject[] ObjectsToActivate;
+    public GameObject[] ObjectsToDeactivate;
 
+    [Header("Объекты для перемещения")]
+    public bool TestMode = true;
+    public GameObject[] Objects;
+    public Vector2[] Coordinates;
 
     private void Awake()
     {
-        if (StartScreenObj != null)
+        foreach (var item in ObjectsToActivate)
         {
-            if (!StartScreenObj.activeSelf)
-            {
-                StartScreenObj.SetActive(true);
-            }
+            item.SetActive(true);
         }
 
-        if (Level1 != null)
+        foreach (var item in ObjectsToDeactivate)
         {
-            if (!Level1.activeSelf)
-            {
-                Level1.SetActive(true);
-            }
+            item.SetActive(false);
         }
 
-        if (Level2 != null)
+        if (!TestMode)
         {
-            if (Level2.activeSelf)
+            for (int i = 0; i < Objects.Length; i++)
             {
-                Level2.SetActive(false);
-            }
-        }
-
-        if (StatisticScreenObj != null)
-        {
-            if (StatisticScreenObj.activeSelf)
-            {
-                StatisticScreenObj.SetActive(false);
-            }
-        }
-
-        if (MagicWall != null)
-        {
-            if (MagicWall.activeSelf)
-            {
-                MagicWall.SetActive(false);
+                Objects[i].transform.position = Coordinates[i];
             }
         }
     }
-
+    //x:-235 y:1.81
     // Start is called before the first frame update
     void Start()
     {

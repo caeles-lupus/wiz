@@ -77,6 +77,7 @@ public class Hero : Entity
     {
         base.Start();
         Instance = this;
+
         myType = TypeOfEntity.Hero;
 
         rb = GetComponent<Rigidbody2D>();
@@ -119,7 +120,7 @@ public class Hero : Entity
                     magic.ToCast(typeAbility.Fly);
 
                 //For test:
-                if (Input.GetKeyDown(KeyCode.T)) InceasedSpeed();
+                if (Input.GetKeyDown(KeyCode.T)) IncreasedSpeed();
                 
                 Run();
             }
@@ -322,7 +323,7 @@ public class Hero : Entity
         else if (Protection < 0) Protection = 0;
     }
 
-    public void InceasedSpeed(float val = 0.2f)
+    public void IncreasedSpeed(float val = 0.2f)
     {
         Speed += val;
         anim.SetFloat("speedAttack", Speed - 1f);

@@ -17,6 +17,11 @@ public class Bullet : MonoBehaviour
 
     Entity entityOfTarget;
 
+    //
+    // TODO: ѕри завершении своей миссии, пол€ должна вызывать метод у Entity дл€ возвращени€ на место.
+    //
+    //
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +33,7 @@ public class Bullet : MonoBehaviour
         if (isReady)
         {
             direction = Target.transform.position;
+            defineEntityOfTarget();
         }
     }
 
@@ -37,7 +43,7 @@ public class Bullet : MonoBehaviour
         if (!isReady) return;
 
         distance = Vector2.Distance(transform.position, Target.transform.position);
-        if (!AimBot && !lostAim && distance <= MaxDistance)
+        if (AimBot && !lostAim && distance <= MaxDistance)
         {
             direction = Target.transform.position;
         }
@@ -51,10 +57,16 @@ public class Bullet : MonoBehaviour
 
     void MoveTo(Vector2 place)
     {
+        if (transform.position.x == place.x && transform.position.y == place.y)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         transform.position = Vector2.Lerp(transform.position, place, Speed * Time.deltaTime);
     }
 
-    void ff()
+    void defineEntityOfTarget()
     {
         entityOfTarget = Target.GetComponent<Entity>();
     }
@@ -64,6 +76,8 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject == Target)
         {
             entityOfTarget.GetDamage(AttackValue);
+            gameObject.SetActive(false);
+
             //switch (TargetType)
             //{
             //    case TypeOfEntity.Obstacle:
