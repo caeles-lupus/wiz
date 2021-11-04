@@ -237,7 +237,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 6372180937319379283, guid: 4b86f827d2fe04fd9812d726434afc05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 843807381462506899}
   - component: {fileID: 498938355629625298}
   - component: {fileID: 6111769956325490308}
+  - component: {fileID: 2823959478334167220}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Monsters
@@ -439,6 +440,7 @@ MonoBehaviour:
   Speed: 3.5
   DistanceOfPatrol: 4
   DistanceOfArgession: 5
+  AttackValue: 1
 --- !u!70 &843807381462506899
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -502,6 +504,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.10857439, y: 1.4093266}
   m_EdgeRadius: 0
+--- !u!95 &2823959478334167220
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7951777805622185502}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 57c5758e2c8be2b4f9825b2b7e87049d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7951777805664508382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,7 +1341,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 7672765731302292991, guid: 4b86f827d2fe04fd9812d726434afc05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1403,7 +1424,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
   m_SortingLayer: 2
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: -86529195903976247, guid: 4b86f827d2fe04fd9812d726434afc05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1523,7 +1544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7951777806823280867}
   m_LocalRotation: {x: -0, y: -0, z: 0.043785155, w: -0.999041}
-  m_LocalPosition: {x: -0.04199992, y: -0.38899994, z: 0}
+  m_LocalPosition: {x: 0.35, y: -0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7951777805622185503}
@@ -1569,7 +1590,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1499347525
   m_SortingLayer: 2
-  m_SortingOrder: 6
+  m_SortingOrder: 4
   m_Sprite: {fileID: -35270464537545177, guid: 4b86f827d2fe04fd9812d726434afc05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.7254902}
   m_FlipX: 0
