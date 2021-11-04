@@ -176,6 +176,7 @@ MonoBehaviour:
   Speed: 6
   DistanceOfPatrol: 20
   DistanceOfArgession: 5
+  AttackValue: 1
 --- !u!60 &6303278689800104822
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -251,7 +252,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.12, y: -1.0956436}
+  m_Offset: {x: -3.81, y: -1.0956436}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}

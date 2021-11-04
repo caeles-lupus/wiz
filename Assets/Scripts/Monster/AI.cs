@@ -3,9 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Entity;
 
+class ControllerAnimation
+{
+    Animator anim;
+    bool isAnimated = false;
+    public ControllerAnimation(Animator anim)
+    {
+        this.anim = anim;
+        isAnimated = anim != null;
+    }
+
+    public void Run()
+    {
+        if (isAnimated)
+        {
+            anim.SetBool("isRun", true);
+        }
+    }
+
+    public void Attack()
+    {
+        if (isAnimated)
+        {
+            anim.SetBool("isRun", false);
+            anim.SetTrigger("Attack");
+        }
+    }
+}
+
 // Указывает, что для данного скрипта необходим скрипт либо Entity, либо основанные на нём.
 [RequireComponent(typeof(Entity))]
-
 public class AI: MonoBehaviour
 {
     [Header("Сущность")]
@@ -76,8 +103,7 @@ public class AI: MonoBehaviour
 
     bool MoveRight;
 
-    private Animator anim;
-    bool isAnimated = false;
+    ControllerAnimation ani;
 
     private void Start()
     {
@@ -92,13 +118,9 @@ public class AI: MonoBehaviour
         startPos = transform.position;
         MoveRight = StartDrirection == dir.toRight;
 
-        anim = GetComponent<Animator>();
-        if (anim != null)
-        {
-            isAnimated = true;
-            // Т.к. патрулирование подразумевает под собой постоянное хождение.
-            anim.SetBool("isRun", true);
-        }
+        ani = new ControllerAnimation(GetComponent<Animator>());
+        // Т.к. патрулирование подразумевает под собой постоянное хождение.
+        ani.Run();
     }
 
     void Follow()
@@ -181,12 +203,7 @@ public class AI: MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        //if (gameObject.name == "Pig 1")
-        //{
-        //    Debug.Log("11");
-        //}
-        
+    {        
         if (entity.relation != Entity.Relation.AggressiveToAll && isCompanion)
         {
             if (Friend)
@@ -225,18 +242,22 @@ public class AI: MonoBehaviour
 
         if (follow)
         {
+            ani.Run();
             Follow();
         }
         else if (chill)
         {
+            ani.Run();
             Chill();
         }
         else if (angry)
         {
+            ani.Run();
             Angry();
         }
         else if (goBack)
         {
+            ani.Run();
             GoBack();
         }
     }
@@ -250,11 +271,6 @@ public class AI: MonoBehaviour
         }
         else if (collision.gameObject == Hero.Instance.gameObject)
         {
-            if (isAnimated)
-            {
-                //anim.SetBool("isRun", false);
-                anim.SetTrigger("Attack");
-            }
             attackEnemy(Hero.Instance.gameObject);
         }
     }
@@ -293,21 +309,25 @@ public class AI: MonoBehaviour
             //Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
             //if (dec)
             //{
+            //    ani.Attack();
             //    dec.GetDamage();
             //}
             Monster monster = ListsOfObjects.GetMonsterOfGameObject(target);
             if (monster)
             {
+                ani.Attack();
                 monster.GetDamage(AttackValue, gameObject);
             }
             //Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
             //if (obstacle)
             //{
+            //    ani.Attack();
             //    obstacle.GetDamage();
             //}
             Hero hero = Hero.Instance;
             if (target == hero.gameObject)
             {
+                ani.Attack();
                 hero.GetDamage(AttackValue, gameObject);
                 //inContact = true;
             }
@@ -317,6 +337,7 @@ public class AI: MonoBehaviour
             Hero hero = Hero.Instance;
             if (target == hero.gameObject)
             {
+                ani.Attack();
                 hero.GetDamage(AttackValue, gameObject);
                 //inContact = true;
             }
@@ -326,20 +347,21 @@ public class AI: MonoBehaviour
             //Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
             //if (dec)
             //{
+            //    ani.Attack();
             //    dec.GetDamage();
             //}
             Monster monster = ListsOfObjects.GetMonsterOfGameObject(target);
             if (monster)
             {
+                ani.Attack();
                 monster.GetDamage(AttackValue, gameObject);
             }
             //Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
             //if (obstacle)
             //{
+            //    ani.Attack();
             //    obstacle.GetDamage();
             //}
         }
     }
-
-
 }
