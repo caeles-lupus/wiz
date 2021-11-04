@@ -88,7 +88,7 @@ public class Hero : Entity
 
         //TODO: длина анимации атаки.
         lengthOfAttack = .467f;
-
+        
         Pause();
     }
 

@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1.1422616, y: 1.1517056, z: 1}
   m_Children: []
   m_Father: {fileID: 5637396456043369706}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5637396454527518546
 SpriteRenderer:
@@ -112,7 +112,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.87071, z: 1}
   m_Children: []
   m_Father: {fileID: 5637396456043369706}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.83800006}
 --- !u!212 &5637396454632694810
 SpriteRenderer:
@@ -195,7 +195,7 @@ Transform:
   m_LocalScale: {x: -1.1177658, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5637396456043369706}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5637396455106259019
 SpriteRenderer:
@@ -361,7 +361,7 @@ Transform:
   m_LocalScale: {x: 0.97142243, y: 0.97142243, z: 1}
   m_Children: []
   m_Father: {fileID: 5637396456043369706}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5637396455496136013
 SpriteRenderer:
@@ -439,12 +439,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5637396455961809804}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.754, y: 1.52, z: 0}
   m_LocalScale: {x: 1.1259295, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5637396456043369706}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5637396455961809806
 SpriteRenderer:
@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 8303697377707139858}
   - component: {fileID: 8066887208211772138}
   - component: {fileID: 3211813462012756172}
+  - component: {fileID: 5276632997902861697}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Monsters
@@ -529,11 +530,11 @@ Transform:
   m_LocalScale: {x: 0.5276786, y: 0.5276786, z: 0.5276786}
   m_Children:
   - {fileID: 5637396455423051048}
-  - {fileID: 5637396454527518547}
   - {fileID: 5637396454632694811}
   - {fileID: 5637396455961809807}
   - {fileID: 5637396455496136010}
   - {fileID: 5637396455106259016}
+  - {fileID: 5637396454527518547}
   - {fileID: 5637396456067933738}
   - {fileID: 5637396456196001290}
   - {fileID: 5637396456228485467}
@@ -595,6 +596,26 @@ MonoBehaviour:
   Speed: 8
   DistanceOfPatrol: 10
   DistanceOfArgession: 5
+  AttackValue: 1
+--- !u!95 &5276632997902861697
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637396456043369707}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 150300eda045575498fd8d5639e62b8b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5637396456067933739
 GameObject:
   m_ObjectHideFlags: 0
