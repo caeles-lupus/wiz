@@ -50,6 +50,10 @@ public class Hero : Entity
     public Magic magic;
     public WizAnim wizAnim;
 
+    [Header("АХАХАХ")]
+    public bool GodMode = false;
+
+
     // Вспомогательные.
     private Rigidbody2D rb;
     private Animator anim;
@@ -101,16 +105,16 @@ public class Hero : Entity
 
         if (!isStopped)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha0)) Restart();
+            if (GodMode && Input.GetKeyDown(KeyCode.Alpha0)) Restart();
             if (isAlive)
             {
-                if (Input.GetKeyDown(KeyCode.Alpha2)) Hurt();
-                if (Input.GetKeyDown(KeyCode.Alpha3)) Die();
+                if (GodMode && Input.GetKeyDown(KeyCode.Alpha2)) Hurt();
+                if (GodMode && Input.GetKeyDown(KeyCode.Alpha3)) Die();
                 if (Input.GetButtonDown("Fire1") && !isAttacking) Attacks();
                 if (Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0) Jump();
                 
                 // Magic:
-                if (Input.GetKeyDown(KeyCode.Q) && allowedMagicWall && isGrounded) 
+                if (Input.GetKeyDown(KeyCode.Q) && (allowedMagicWall || GodMode) && isGrounded) 
                     magic.ToCast(typeAbility.Wall);
                 if (Input.GetKeyDown(KeyCode.F) && allowedFireball) 
                     magic.ToCast(typeAbility.Fireball);
@@ -173,7 +177,8 @@ public class Hero : Entity
                 if (StatisticCollector.CrystalCount == 10 && !allowedMagicWall)
                 {
                     allowedMagicWall = true;
-                    Hint.ShowHint("Поздравляю! Собрав 10 эссенций земли, ты получаешь возможность воспользоваться магией полёта! Для этого зажми клавишу Shift и лети! Но помни, пока ты летишь - тратятся запасы магии! Если магия закончится, то полёт прервётся и ты упадёшь!");
+                    //Hint.ShowHint("Поздравляю! Собрав 10 эссенций земли, ты получаешь возможность воспользоваться этой магией! Для этого нажми клавишу Q и под тобой тут же вырастит столб земли, за которым ты сможешь спрятать от врагов! Но помни, на каждый вызов тратятся запасы магии!");
+                        //"Поздравляю! Собрав 10 эссенций земли, ты получаешь возможность воспользоваться магией полёта! Для этого зажми клавишу Shift и лети! Но помни, пока ты летишь - тратятся запасы магии! Если магия закончится, то полёт прервётся и ты упадёшь!");
                 }
                 break;
             // Воздух. Скорость. Полёт.
@@ -323,9 +328,26 @@ public class Hero : Entity
         else if (Protection < 0) Protection = 0;
     }
 
+    /// <summary>
+    /// Уменьшение брони.
+    /// </summary>
+    /// <param name="valInPercentage">Сколько процентов убрать к проценту брони</param>
+    public void DecreasedProtection(int valInPercentage)
+    {
+        Protection -= valInPercentage;
+        if (Protection < 0) Protection = 0;
+        else if (Protection > 99) Protection = 99;
+    }
+
     public void IncreasedSpeed(float val = 0.2f)
     {
         Speed += val;
+        anim.SetFloat("speedAttack", Speed - 1f);
+    }
+
+    public void DecreasedSpeed(float val = 0.2f)
+    {
+        Speed -= val;
         anim.SetFloat("speedAttack", Speed - 1f);
     }
 
@@ -343,6 +365,8 @@ public class Hero : Entity
     // Получает урон.
     public override void GetDamage(float DamageValue, GameObject attacker = null)
     {
+        if (GodMode) return;
+
         //base.GetDamage();
         Health -= (DamageValue - DamageValue * Protection / 100f);
         if (Health > 0)
@@ -359,6 +383,8 @@ public class Hero : Entity
 
     public override void SpendMana(float spentMana)
     {
+        if (GodMode) return;
+
         base.SpendMana(spentMana);
         manaBar.UpdateValue(Mana, MaxMana);
     }

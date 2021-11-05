@@ -91,6 +91,8 @@ public class Entity : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (Immortal) return;
+
         if (collision.gameObject.name == "Attack_Staff")
         {
             GetDamage(Hero.Instance.Attack);

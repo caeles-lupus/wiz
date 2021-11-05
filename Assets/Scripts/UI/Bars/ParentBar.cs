@@ -28,7 +28,7 @@ public class ParentBar : MonoBehaviour
 
         if (resVal > 1f) resVal = 1f;
         else if (resVal < 0f) resVal = 0f;
-        return Mathf.CeilToInt(resVal);
+        return resVal;
     }
 
     public virtual void UpdateValue(float val, float maxVal)

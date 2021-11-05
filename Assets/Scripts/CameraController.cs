@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
         //pos.y = offsetY + pos.y; // offsetY - высота, на которую будет "задрана" камера.
         //transform.position = Vector3.Lerp(transform.position, pos, 2f * Time.deltaTime);
 
-        transform.position = new Vector3(hero.position.x, 7.55f + hero.position.y, -10f);
+        transform.position = new Vector3(hero.position.x, 7.20f + hero.position.y, -10f);
 
     }
 }

@@ -55,6 +55,7 @@ public class Magic : MonoBehaviour
                     notEnoughMana();
                     return;
                 }
+                magicWall.gameObject.SetActive(true);
                 magicWall.castWall();
                 hero.SpendMana(costWall); // TODO определить оптимальное количество.
                 break;

@@ -17,6 +17,8 @@ TagManager:
   - Crystal_DarkBlue
   - Block
   - Bullet
+  - Booster
+  - Hint
   layers:
   - Default
   - TransparentFX

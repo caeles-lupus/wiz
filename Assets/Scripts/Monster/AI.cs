@@ -104,6 +104,7 @@ public class AI: MonoBehaviour
     /// </summary>
     [Range(0.1f, 1000f)] public float AttackPeriod = 1f;
 
+
     /// <summary>
     /// Начальная точка.
     /// </summary>

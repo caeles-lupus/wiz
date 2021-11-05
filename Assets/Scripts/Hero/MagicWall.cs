@@ -22,7 +22,8 @@ public class MagicWall : MonoBehaviour
     BoxCollider2D colliderOfWall;
     float heightOfWall;
     float increasedHeight = 0f;
-    private Coroutine coroutineWall;
+    private Coroutine coroutineHideWall;
+    private Coroutine coroutineGrowWall;
 
 
 
@@ -50,14 +51,14 @@ public class MagicWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (wallGrowing)
-        {
-            timePassed += Time.deltaTime;
-            if (timePassed >= Period)
-            {
-                wallUp();
-            }
-        }
+        //if (wallGrowing)
+        //{
+        //    timePassed += Time.deltaTime;
+        //    if (timePassed >= Period)
+        //    {
+        //        wallUp();
+        //    }
+        //}
     }
 
     /// <summary>
@@ -69,8 +70,12 @@ public class MagicWall : MonoBehaviour
         // Показываем стену.
         gameObject.SetActive(true);
         // Это включает "рост" стены в методе Update().
-        timePassed = 0f;
+        //timePassed = 0f;
         wallGrowing = true;
+
+
+        if (coroutineGrowWall != null) StopCoroutine(coroutineGrowWall);
+        coroutineGrowWall = StartCoroutine(growWall(Period));
     }
 
     /// <summary>
@@ -79,7 +84,7 @@ public class MagicWall : MonoBehaviour
     void toPlantWall()
     {
         float dirDistance = Distance * hero.Direction;
-        float newY = hero.transform.position.y - heightOfWall / 2;
+        float newY = hero.transform.position.y - heightOfWall;
         transform.position = new Vector3(hero.transform.position.x + dirDistance, newY);
         increasedHeight = 0f;
     }
@@ -89,6 +94,7 @@ public class MagicWall : MonoBehaviour
     {
         transform.position =
             new Vector3(transform.position.x, transform.position.y + sizeOfGrownPart);
+
         increasedHeight += sizeOfGrownPart;
         if (increasedHeight >= heightOfWall)
         {
@@ -96,8 +102,17 @@ public class MagicWall : MonoBehaviour
             wallGrowing = false;
 
             // Скрываем стену спустя PeriodOfLifeOfWall секунд.
-            if (coroutineWall != null) StopCoroutine(coroutineWall);
-            coroutineWall = StartCoroutine(hideWall(PeriodOfLifeOfWall));
+            if (coroutineHideWall != null) StopCoroutine(coroutineHideWall);
+            coroutineHideWall = StartCoroutine(hideWall(PeriodOfLifeOfWall));
+        }
+    }
+
+    IEnumerator growWall(float waitInSec = 5f)
+    {
+        while (wallGrowing)
+        {
+            yield return new WaitForSeconds(waitInSec);
+            wallUp();
         }
     }
 

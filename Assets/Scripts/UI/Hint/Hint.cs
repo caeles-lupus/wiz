@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hint : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public bool isTimed = false;
+    public float MaxTime = 15f;
+    float timeElapsed = 0f;
     void Start()
     {
         
@@ -13,16 +15,33 @@ public class Hint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!isTimed) return;
+
+        timeElapsed += Time.deltaTime;
+        if (timeElapsed >= MaxTime)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (isTimed) return;
+
+        if (collision.gameObject == Hero.Instance.gameObject)
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public static void ShowHint(string message)
+    public void ShowHint()
     {
-        //TODO: доделать подсказку.
-        Debug.Log(message);
+        //ThisText.text = Sentence;
+        //gameObject.SetActive(true);
     }
 
 }
