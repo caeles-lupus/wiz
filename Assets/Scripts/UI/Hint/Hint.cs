@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class Hint : MonoBehaviour
 {
+    public bool FollowToMaster = false;
+    public GameObject Master;
 
     public bool isTimed = false;
     public float MaxTime = 15f;
@@ -15,6 +17,14 @@ public class Hint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (FollowToMaster)
+        {
+            if (Master != null)
+            {
+                transform.position = new Vector3(Master.transform.position.x, Master.transform.position.y + 3.4f, 0);
+            }
+        }
+
         if (!isTimed) return;
 
         timeElapsed += Time.deltaTime;

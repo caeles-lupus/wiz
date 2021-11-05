@@ -34,8 +34,8 @@ public class MagicWall : MonoBehaviour
         {
             hero = Hero.Instance;
         }
-
-        gameObject.SetActive(false);
+        
+        //gameObject.SetActive(false);
         // A WALL
         // Коллайдер стены.
         colliderOfWall = GetComponent<BoxCollider2D>();

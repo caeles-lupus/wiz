@@ -177,8 +177,15 @@ public class Hero : Entity
                 if (StatisticCollector.CrystalCount == 10 && !allowedMagicWall)
                 {
                     allowedMagicWall = true;
-                    //Hint.ShowHint("Поздравляю! Собрав 10 эссенций земли, ты получаешь возможность воспользоваться этой магией! Для этого нажми клавишу Q и под тобой тут же вырастит столб земли, за которым ты сможешь спрятать от врагов! Но помни, на каждый вызов тратятся запасы магии!");
-                        //"Поздравляю! Собрав 10 эссенций земли, ты получаешь возможность воспользоваться магией полёта! Для этого зажми клавишу Shift и лети! Но помни, пока ты летишь - тратятся запасы магии! Если магия закончится, то полёт прервётся и ты упадёшь!");
+                    var hints = Resources.FindObjectsOfTypeAll<Hint>();
+                    foreach (var hint in hints)
+                    {
+                        if (hint.gameObject.name == "HintWall")
+                        {
+                            hint.gameObject.SetActive(true);
+                        }
+                    }
+
                 }
                 break;
             // Воздух. Скорость. Полёт.
