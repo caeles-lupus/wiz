@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         if (!isReady) return;
-        return;
+
         distance = Vector2.Distance(transform.position, Target.transform.position);
         if (AimBot && !lostAim && distance <= MaxDistance)
         {

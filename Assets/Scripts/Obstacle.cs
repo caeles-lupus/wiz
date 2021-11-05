@@ -101,15 +101,24 @@ public class Obstacle : Entity
     public float AttackValue = 1f;
     [Range (0.1f, 1000f)]
     public float AttackPeriod = 0.5f;
-    public TypeAttack TypeOfAttack = TypeAttack.Melee;
-    public Bullet bullet;
-    public GameObject StartPosOfBullet;
+
+    // Не доделано. УБрано - нет времени.
+    //public TypeAttack TypeOfAttack = TypeAttack.Melee;
+
+    // Не доделано. УБрано - нет времени.
+    //public Bullet bullet;
+
+    // Не доделано. УБрано - нет времени.
+    //public GameObject StartPosOfBullet;
 
 
     private List<TargetAndItsTiming> Targets;
     private ControllerAnimatioObstacle ani;
-    private float timeOfAnimOfAttack = .33f; //36
-    private Coroutine coroutineAttack;
+    // Не доделано. УБрано - нет времени.
+    //private float timeOfAnimOfAttack = .33f; //36
+
+    // Не доделано. УБрано - нет времени.
+    //private Coroutine coroutineAttack;
 
     //================================================
     //================================================
@@ -140,7 +149,9 @@ public class Obstacle : Entity
     private void OnCollisionStay2D(Collision2D collision)
     {
         // Выходим, если тип атаки у нас - ближний.
-        if (TypeOfAttack == TypeAttack.Range) return;
+
+        // Не доделано. УБрано - нет времени.
+        //if (TypeOfAttack == TypeAttack.Range) return;
 
         if (Targets.Count > 0)
         {
@@ -165,7 +176,9 @@ public class Obstacle : Entity
         base.OnCollisionEnter2D(collision);
 
         // Выходим, если тип атаки у нас - ближний.
-        if (TypeOfAttack == TypeAttack.Range) return;
+
+        // Не доделано. УБрано - нет времени.
+        //if (TypeOfAttack == TypeAttack.Range) return;
 
         // Выходим, если этот объект не подходит для атаки (земля, монетки, кристаллы).
         if (TagsSets.tagsNonTarget.Contains(collision.gameObject.tag)) return;
@@ -219,6 +232,7 @@ public class Obstacle : Entity
             Monster monster = ListsOfObjects.GetMonsterOfGameObject(target);
             if (monster)
             {
+                ani.Attack();
                 monster.GetDamage(AttackValue);
             }
             //Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
@@ -229,6 +243,7 @@ public class Obstacle : Entity
             Hero hero = Hero.Instance;
             if (target == hero.gameObject)
             {
+                ani.Attack();
                 hero.GetDamage(AttackValue);
                 //inContact = true;
             }
@@ -238,6 +253,7 @@ public class Obstacle : Entity
             Hero hero = Hero.Instance;
             if (target == hero.gameObject)
             {
+                ani.Attack();
                 hero.GetDamage(AttackValue);
                 //inContact = true;
             }
@@ -252,6 +268,7 @@ public class Obstacle : Entity
             Monster monster = ListsOfObjects.GetMonsterOfGameObject(target);
             if (monster)
             {
+                ani.Attack();
                 monster.GetDamage(AttackValue);
             }
             //Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
@@ -262,31 +279,35 @@ public class Obstacle : Entity
         }
     }
 
-    public override void Alert(GameObject intruder, TypeOfEntity typeOfEntity)
-    {
-        base.Alert(intruder, typeOfEntity);
 
-        if (StartPosOfBullet == null)
-        {
-            Debug.LogError("У объекта " + gameObject.name + " не задан объект в качестве стартовой позиции.");
-            return;
-        }
+    // Не доделано. УБрано - нет времени.
+    //public override void Alert(GameObject intruder, TypeOfEntity typeOfEntity)
+    //{
+    //    base.Alert(intruder, typeOfEntity);
 
-        // Настраиваем пулю.
-        bullet.Target = intruder;
-        bullet.TargetType = typeOfEntity;
-        bullet.AttackValue = AttackValue;
-        // Включаем анимацию залпа.
-        ani.Attack();
-        // Запускаем отложенный вылет пули.
-        if (coroutineAttack != null) StopCoroutine(coroutineAttack);
-        coroutineAttack = StartCoroutine(DoAttack(intruder, typeOfEntity));
-    }
+    //    if (StartPosOfBullet == null)
+    //    {
+    //        Debug.LogError("У объекта " + gameObject.name + " не задан объект в качестве стартовой позиции.");
+    //        return;
+    //    }
 
-    IEnumerator DoAttack(GameObject intruder, TypeOfEntity typeOfEntity)
-    {
-        yield return new WaitForSeconds(timeOfAnimOfAttack);
-        bullet.gameObject.transform.position = StartPosOfBullet.transform.position;
-        bullet.gameObject.SetActive(true);
-    }
+    //    // Настраиваем пулю.
+    //    bullet.Target = intruder;
+    //    bullet.TargetType = typeOfEntity;
+    //    bullet.AttackValue = AttackValue;
+    //    // Включаем анимацию залпа.
+    //    ani.Attack();
+    //    // Запускаем отложенный вылет пули.
+    //    if (coroutineAttack != null) StopCoroutine(coroutineAttack);
+    //    coroutineAttack = StartCoroutine(DoAttack(intruder, typeOfEntity));
+    //}
+
+
+    // Не доделано. УБрано - нет времени.
+    //IEnumerator DoAttack(GameObject intruder, TypeOfEntity typeOfEntity)
+    //{
+    //    yield return new WaitForSeconds(timeOfAnimOfAttack);
+    //    bullet.gameObject.transform.position = StartPosOfBullet.transform.position;
+    //    bullet.gameObject.SetActive(true);
+    //}
 }

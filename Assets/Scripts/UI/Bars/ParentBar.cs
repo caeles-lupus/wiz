@@ -18,7 +18,7 @@ public class ParentBar : MonoBehaviour
     public virtual void Update()
     {
         Bar.fillAmount = getConvertVal();
-        text.text = value.ToString("0.0") + "/"+ maxValue.ToString("0.0");
+        text.text = ((int)value).ToString() + "/"+ ((int)maxValue).ToString();
     }
 
 
@@ -28,7 +28,7 @@ public class ParentBar : MonoBehaviour
 
         if (resVal > 1f) resVal = 1f;
         else if (resVal < 0f) resVal = 0f;
-        return resVal;
+        return Mathf.CeilToInt(resVal);
     }
 
     public virtual void UpdateValue(float val, float maxVal)

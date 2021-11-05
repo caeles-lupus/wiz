@@ -9,11 +9,11 @@ public class Presettings : MonoBehaviour
     public GameObject[] ObjectsToDeactivate;
 
     [Header("Объекты для перемещения")]
-    public bool Test = true;
     public GameObject[] Objects;
     public Vector2[] Coordinates;
 
     [Header("TestMode")]
+    public bool Test = true;
     public TestMode testModeScript;
 
     private void Awake()

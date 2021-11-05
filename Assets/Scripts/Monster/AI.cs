@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Entity;
 
 class ControllerAnimation
 {
@@ -11,6 +9,15 @@ class ControllerAnimation
     {
         this.anim = anim;
         isAnimated = anim != null;
+    }
+
+    public void Relax()
+    {
+        if (isAnimated)
+        {
+            anim.SetBool("isRelax", true);
+            anim.SetBool("isRun", false);
+        }
     }
 
     public void Run()
@@ -38,6 +45,8 @@ public class AI: MonoBehaviour
 {
     [Header("Сущность")]
     public Entity entity;
+
+    public bool isCannotMove = false;
 
     //TODO: чтобы можно было задавать стартовое направление.
     public enum dir
@@ -118,6 +127,7 @@ public class AI: MonoBehaviour
             Debug.LogError("У объекта " + gameObject.name + " не привязан скрипт entity или его потомки к скрипту AI!");
         }
         targets = new List<TargetAndItsTiming>();
+        if (isCannotMove) ani.Relax();
     }
 
     void Awake()
@@ -211,6 +221,11 @@ public class AI: MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
+        if (isCannotMove)
+        {
+            return;
+        }
+
         if (entity.relation != Relation.AggressiveToAll && isCompanion)
         {
             if (Friend)
