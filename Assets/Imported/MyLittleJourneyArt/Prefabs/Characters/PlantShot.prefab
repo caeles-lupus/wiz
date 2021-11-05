@@ -566,9 +566,6 @@ MonoBehaviour:
   effectOfDamage: {fileID: 8435448251525999574}
   AttackValue: 1
   AttackPeriod: 0.5
-  TypeOfAttack: 1
-  bullet: {fileID: 0}
-  StartPosOfBullet: {fileID: 0}
 --- !u!114 &8435448251525999574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1337,7 +1334,7 @@ GameObject:
   - component: {fileID: 2744144181564747527}
   - component: {fileID: 4067572825928831969}
   m_Layer: 0
-  m_Name: GreenCloud_ellipse
+  m_Name: GreebCloud_ellipse
   m_TagString: Monsters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -289,10 +289,10 @@ public class Hero : Entity
     void Hurt()
     {
         anim.SetTrigger("hurt");
-        if (direction == 1)
-            rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-        else
-            rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
+        //if (direction == 1)
+        //    rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
+        //else
+        //    rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
     }
 
     /// <summary>

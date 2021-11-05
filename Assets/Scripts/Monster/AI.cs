@@ -116,6 +116,10 @@ public class AI: MonoBehaviour
 
     bool MoveRight;
 
+    //TEMP FIX:
+    [Header("Временно :(")]
+    public bool haveBullet = false;
+
     ControllerAnimation ani;
 
     private List<TargetAndItsTiming> targets;
@@ -226,6 +230,7 @@ public class AI: MonoBehaviour
             return;
         }
 
+        // Проверка: компаньон
         if (entity.relation != Relation.AggressiveToAll && isCompanion)
         {
             if (Friend)
@@ -248,7 +253,9 @@ public class AI: MonoBehaviour
             goBack = false;
         }
         
-        if (entity.relation == Relation.AggressiveToAll || entity.relation == Relation.AggressiveToPlayer &&
+        //TEMP FIX
+        if (!haveBullet)
+        if (!goBack && entity.relation == Relation.AggressiveToAll || entity.relation == Relation.AggressiveToPlayer &&
             Vector2.Distance(transform.position, Hero.Instance.transform.position) < DistanceOfArgession)
         {
             angry = true;
@@ -291,11 +298,11 @@ public class AI: MonoBehaviour
             FlipX();
             MoveRight = !MoveRight;
         }
-
-        // Выходим, если мы никого не атакуем.
-        if (entity.relation == Relation.FrendlyToAll) return;
         // Выходим, если этот объект не подходит для атаки (земля, монетки, кристаллы).
         if (TagsSets.tagsNonTarget.Contains(collision.gameObject.tag)) return;
+        // Выходим, если мы никого не атакуем.
+        if (entity.relation == Relation.FrendlyToAll) return;
+
         //
         if (targets.Count > 0)
         {
@@ -307,7 +314,16 @@ public class AI: MonoBehaviour
         }
         TargetAndItsTiming target = new TargetAndItsTiming(collision.gameObject, 0f);
         targets.Add(target);
-        attackEnemy(collision.gameObject);
+
+        //Временно
+        if (haveBullet)
+        {
+            ani.Attack();
+        }
+        else
+        {
+            attackEnemy(collision.gameObject);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -321,7 +337,15 @@ public class AI: MonoBehaviour
                 if (target.TimeAttack >= AttackPeriod)
                 {
                     target.TimeAttack = 0;
-                    attackEnemy(target.Target.gameObject);
+
+                    if (haveBullet)
+                    {
+                        ani.Attack();
+                    }
+                    else
+                    {
+                        attackEnemy(collision.gameObject);
+                    }
                 }
             }
         }

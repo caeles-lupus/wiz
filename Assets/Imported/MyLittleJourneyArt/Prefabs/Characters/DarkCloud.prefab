@@ -1007,6 +1007,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2481015699565700003}
   - component: {fileID: 2481015699565700000}
+  - component: {fileID: 5630294122169616328}
+  - component: {fileID: 4263481311800244714}
   m_Layer: 0
   m_Name: cloud_tunder
   m_TagString: Untagged
@@ -1080,6 +1082,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5630294122169616328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481015699565700002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bec07f367e659e43acb181eab8e7e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BigMother: {fileID: 2481015700409070348}
+--- !u!60 &4263481311800244714
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481015699565700002}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.63, y: 1.23}
+    newSize: {x: 0.63, y: 1.23}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.22398013, y: 0.05616442}
+      - {x: 0.02750482, y: 0.16461074}
+      - {x: -0.06593038, y: 0.6865368}
+      - {x: -0.24063508, y: -0.006051818}
+      - {x: -0.061805498, y: -0.0970516}
+      - {x: -0.05423759, y: -0.62530696}
 --- !u!1 &2481015699604546352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,12 +1305,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2481015700409070349}
   - component: {fileID: 731250116140680988}
+  - component: {fileID: 453069546118631517}
   - component: {fileID: 8503188289753079196}
   - component: {fileID: 251312846165987241}
   - component: {fileID: 2022019095182188569}
   - component: {fileID: 4794745455910429476}
   - component: {fileID: 2240446747113546156}
-  - component: {fileID: 453069546118631517}
   - component: {fileID: 1431464644718281602}
   m_Layer: 0
   m_Name: DarkCloud
@@ -1336,6 +1382,32 @@ PolygonCollider2D:
       - {x: 1.8114182, y: -0.948859}
       - {x: 2.0422668, y: 0.037057817}
       - {x: 1.6153021, y: 1.3578334}
+--- !u!61 &453069546118631517
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481015700409070348}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.026977539, y: -4.411457}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.4030151, y: 5.3979664}
+  m_EdgeRadius: 0
 --- !u!61 &8503188289753079196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1407,6 +1479,7 @@ MonoBehaviour:
   DistanceOfArgession: 8
   AttackValue: 1
   AttackPeriod: 1
+  haveBullet: 0
 --- !u!114 &4794745455910429476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1443,32 +1516,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeOfWorking: 0.3
   PowerOfShake: 0.2
---- !u!61 &453069546118631517
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2481015700409070348}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.026977539, y: -4.411457}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.4030151, y: 5.3979664}
-  m_EdgeRadius: 0
 --- !u!95 &1431464644718281602
 Animator:
   serializedVersion: 3
