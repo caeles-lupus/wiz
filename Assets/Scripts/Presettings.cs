@@ -9,12 +9,21 @@ public class Presettings : MonoBehaviour
     public GameObject[] ObjectsToDeactivate;
 
     [Header("Объекты для перемещения")]
-    public bool TestMode = true;
+    public bool Test = true;
     public GameObject[] Objects;
     public Vector2[] Coordinates;
 
+    [Header("TestMode")]
+    public TestMode testModeScript;
+
     private void Awake()
     {
+        if (Test)
+        {
+            testModeScript.DoIt();
+            return;
+        }
+
         foreach (var item in ObjectsToActivate)
         {
             item.SetActive(true);
@@ -25,12 +34,9 @@ public class Presettings : MonoBehaviour
             item.SetActive(false);
         }
 
-        if (!TestMode)
+        for (int i = 0; i < Objects.Length; i++)
         {
-            for (int i = 0; i < Objects.Length; i++)
-            {
-                Objects[i].transform.position = Coordinates[i];
-            }
+            Objects[i].transform.position = Coordinates[i];
         }
     }
     //x:-235 y:1.81

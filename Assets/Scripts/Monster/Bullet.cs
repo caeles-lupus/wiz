@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public float AttackValue = 0f;
 
     float distance;
-    Vector2 direction;
+    Vector3 direction;
 
     bool isReady = true;
     bool lostAim = false;
@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         if (!isReady) return;
-
+        return;
         distance = Vector2.Distance(transform.position, Target.transform.position);
         if (AimBot && !lostAim && distance <= MaxDistance)
         {
@@ -55,15 +55,16 @@ public class Bullet : MonoBehaviour
         MoveTo(direction);
     }
 
-    void MoveTo(Vector2 place)
+    void MoveTo(Vector3 place)
     {
-        if (transform.position.x == place.x && transform.position.y == place.y)
+        if (transform.position == place)
         {
             gameObject.SetActive(false);
             return;
         }
 
-        transform.position = Vector2.Lerp(transform.position, place, Speed * Time.deltaTime);
+        //transform.position = Vector2.Lerp(transform.position, place, Speed * Time.deltaTime);
+        transform.Translate(Speed * Time.deltaTime * place, Space.World);
     }
 
     void defineEntityOfTarget()
