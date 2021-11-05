@@ -103,14 +103,12 @@ public class Obstacle : Entity
     public float AttackPeriod = 0.5f;
     public TypeAttack TypeOfAttack = TypeAttack.Melee;
     public Bullet bullet;
+    public GameObject StartPosOfBullet;
 
-    //[Header("Связки")]
-    //public GameObject RadarObj;
 
     private List<TargetAndItsTiming> Targets;
-    //private Radar radar;
     private ControllerAnimatioObstacle ani;
-    private float timeOfAnimOfAttack = .36f;
+    private float timeOfAnimOfAttack = .33f; //36
     private Coroutine coroutineAttack;
 
     //================================================
@@ -129,9 +127,6 @@ public class Obstacle : Entity
         ListsOfObjects.AddObstacle(this);
 
         Targets = new List<TargetAndItsTiming>();
-
-        ////TODO: Why?
-        //radar = RadarObj.GetComponent<Radar>();
     }
 
     // Update is called once per frame
@@ -146,7 +141,7 @@ public class Obstacle : Entity
     {
         // Выходим, если тип атаки у нас - ближний.
         if (TypeOfAttack == TypeAttack.Range) return;
-        //attackTarget(collision.gameObject);
+
         if (Targets.Count > 0)
         {
             TargetAndItsTiming target = Targets.Find(trg => trg.Target == collision.gameObject);
@@ -271,6 +266,12 @@ public class Obstacle : Entity
     {
         base.Alert(intruder, typeOfEntity);
 
+        if (StartPosOfBullet == null)
+        {
+            Debug.LogError("У объекта " + gameObject.name + " не задан объект в качестве стартовой позиции.");
+            return;
+        }
+
         // Настраиваем пулю.
         bullet.Target = intruder;
         bullet.TargetType = typeOfEntity;
@@ -285,6 +286,7 @@ public class Obstacle : Entity
     IEnumerator DoAttack(GameObject intruder, TypeOfEntity typeOfEntity)
     {
         yield return new WaitForSeconds(timeOfAnimOfAttack);
+        bullet.gameObject.transform.position = StartPosOfBullet.transform.position;
         bullet.gameObject.SetActive(true);
     }
 }
