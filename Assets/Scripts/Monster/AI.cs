@@ -15,7 +15,6 @@ class ControllerAnimation
     {
         if (isAnimated)
         {
-            anim.SetBool("isRelax", true);
             anim.SetBool("isRun", false);
         }
     }
@@ -25,6 +24,14 @@ class ControllerAnimation
         if (isAnimated)
         {
             //anim.ResetTrigger("Attack");
+            var thisParams = anim.parameters;
+            foreach (var parameter in thisParams)
+            {
+                if (parameter.name == "isRelax")
+                {
+                    anim.SetBool("isRelax", true);
+                }
+            }
             anim.SetBool("isRun", true);
         }
     }
@@ -34,6 +41,14 @@ class ControllerAnimation
         if (isAnimated)
         {
             anim.SetBool("isRun", false);
+            var thisParams = anim.parameters;
+            foreach (var parameter in thisParams)
+            {
+                if (parameter.name == "isRelax")
+                {
+                    anim.SetBool("isRelax", true);
+                }
+            }
             anim.SetTrigger("Attack");
         }
     }
@@ -291,7 +306,13 @@ public class AI: MonoBehaviour
             GoBack();
         }
     }
-        
+
+    public void YouCanMove()
+    {
+        isCannotMove = false;
+        ani.Run();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!TagsSets.tagsForAI.Contains(collision.gameObject.tag))

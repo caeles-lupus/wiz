@@ -169,6 +169,7 @@ public class Hero : Entity
     }
     void collectingCrystals(string tagOfCrystall)
     {
+        RestoringMana(1f);
         switch (tagOfCrystall)
         {
             // Земля. Защита. Стена.
