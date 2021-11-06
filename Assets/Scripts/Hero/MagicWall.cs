@@ -35,7 +35,6 @@ public class MagicWall : MonoBehaviour
             hero = Hero.Instance;
         }
         
-        //gameObject.SetActive(false);
         // A WALL
         // Коллайдер стены.
         colliderOfWall = GetComponent<BoxCollider2D>();
@@ -43,9 +42,6 @@ public class MagicWall : MonoBehaviour
         heightOfWall = colliderOfWall.size.y * transform.localScale.y;
         // На сколько вырастает стена каждые Period сек.
         sizeOfGrownPart = heightOfWall / (TimeOfGrowing / Period);
-
-        // A FIREBALL
-        //....
     }
 
     // Update is called once per frame
@@ -68,7 +64,7 @@ public class MagicWall : MonoBehaviour
     {
         toPlantWall();
         // Показываем стену.
-        gameObject.SetActive(true);
+        Show();
         // Это включает "рост" стены в методе Update().
         //timePassed = 0f;
         wallGrowing = true;
@@ -122,6 +118,18 @@ public class MagicWall : MonoBehaviour
     IEnumerator hideWall(float waitInSec = 5f)
     {
         yield return new WaitForSeconds(waitInSec);
-        gameObject.SetActive(false);
+        Hide();
+    }
+
+    void Hide()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+    }
+
+    void Show()
+    {
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
     }
 }

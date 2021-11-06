@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GoToNextLevel : MonoBehaviour
 {
+    public Booster booster;
     public Hero hero;
     public GameObject Statistic;
     public GameObject PreviousLevelObject;
@@ -44,6 +45,7 @@ public class GoToNextLevel : MonoBehaviour
         // Восстанавливаем здоровье и ману.
         hero.Health = hero.MaxHealth;
         hero.Mana = hero.MaxMana;
+        booster.RemovePositiveEffects();
 
         // разБлокируем героя
         hero.Play();
@@ -62,7 +64,10 @@ public class GoToNextLevel : MonoBehaviour
         {
             Debug.LogError("Для скрипта перехода к новому уровню не был задан объект следующего уровня!");
         }
-
+        if (booster == null)
+        {
+            Debug.LogError("Для скрипта перехода к новому уровню не был задан объект Booster!");
+        }
         if (hero == null)
         {
             Debug.LogError("Для скрипта перехода к новому уровню не был задан объект гг!");

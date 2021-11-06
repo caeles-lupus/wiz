@@ -6,6 +6,10 @@ public class Booster : MonoBehaviour
 {
 
     public Hero hero;
+    public float kSpeed = 1f;
+    public int kProtection = 1;
+    private int countOfBosters = 0;
+
 
     private void Awake()
     {
@@ -17,26 +21,36 @@ public class Booster : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //TODO: а вдруг не Bird??? Нужно больше абстракции!!!
-        if (collision.gameObject.name == "Bird")
+        if (collision.gameObject.tag == "Booster")
         {
-            hero.IncreasedSpeed(0.5f);
-            hero.IncreasedProtection(1);
+            hero.IncreasedSpeed(kSpeed);
+            hero.IncreasedProtection(kProtection);
+            countOfBosters++;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //TODO: а вдруг не Bird??? Нужно больше абстракции!!!
-        if (collision.gameObject.name == "Bird")
+        if (collision.gameObject.tag == "Booster")
         {
-            hero.DecreasedSpeed(0.5f);
-            hero.DecreasedProtection(1);
+            hero.DecreasedSpeed(kSpeed);
+            hero.DecreasedProtection(kProtection);
+            countOfBosters--;
         }
     }
 
     private void Update()
     {
         transform.position = hero.transform.position;
+    }
+
+
+    public void RemovePositiveEffects()
+    {
+        for (int i = 0; i < countOfBosters; i++)
+        {
+            hero.DecreasedSpeed(kSpeed);
+            hero.DecreasedProtection(kProtection);
+        }
     }
 }

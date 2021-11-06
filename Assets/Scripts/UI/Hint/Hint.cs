@@ -21,7 +21,8 @@ public class Hint : MonoBehaviour
         {
             if (Master != null)
             {
-                transform.position = new Vector3(Master.transform.position.x, Master.transform.position.y + 3.4f, 0);
+                var h = Master.GetComponent<CapsuleCollider2D>().size.y;
+                transform.position = new Vector3(Master.transform.position.x, Master.transform.position.y + h/*3.4f*/, 0);
             }
         }
 
@@ -37,6 +38,7 @@ public class Hint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (Master != null && collision.gameObject == Master.gameObject) return;
         if (isTimed) return;
 
         if (collision.gameObject == Hero.Instance.gameObject)

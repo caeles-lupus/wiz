@@ -250,6 +250,7 @@ public class Hero : Entity
 
         }
         transform.position += moveVelocity * (MovementSpeed + Speed) * Time.deltaTime;
+
     }
 
     /// <summary>
