@@ -16,6 +16,14 @@ class ControllerAnimation
         if (isAnimated)
         {
             anim.SetBool("isRun", false);
+            var thisParams = anim.parameters;
+            foreach (var parameter in thisParams)
+            {
+                if (parameter.name == "isRelax")
+                {
+                    anim.SetBool("isRelax", true);
+                }
+            }
         }
     }
 
@@ -29,7 +37,7 @@ class ControllerAnimation
             {
                 if (parameter.name == "isRelax")
                 {
-                    anim.SetBool("isRelax", true);
+                    anim.SetBool("isRelax", false);
                 }
             }
             anim.SetBool("isRun", true);
@@ -41,12 +49,13 @@ class ControllerAnimation
         if (isAnimated)
         {
             anim.SetBool("isRun", false);
+
             var thisParams = anim.parameters;
             foreach (var parameter in thisParams)
             {
                 if (parameter.name == "isRelax")
                 {
-                    anim.SetBool("isRelax", true);
+                    anim.SetBool("isRelax", false);
                 }
             }
             anim.SetTrigger("Attack");

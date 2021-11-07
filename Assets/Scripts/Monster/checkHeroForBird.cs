@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class checkHeroForBird : MonoBehaviour
 {
-
     public Hero hero;
     public AI bird;
 
@@ -13,6 +12,7 @@ public class checkHeroForBird : MonoBehaviour
         if (collision.gameObject == hero.gameObject)
         {
             bird.YouCanMove();
+            gameObject.SetActive(false);
         }
     }
 }

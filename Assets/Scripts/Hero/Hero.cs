@@ -170,6 +170,7 @@ public class Hero : Entity
     void collectingCrystals(string tagOfCrystall)
     {
         RestoringMana(1f);
+
         switch (tagOfCrystall)
         {
             // Земля. Защита. Стена.
@@ -388,6 +389,12 @@ public class Hero : Entity
             Die(attacker);
         }
         healthBar.UpdateValue(Health, MaxHealth);
+    }
+
+    public override void RestoringMana(float RestoringValue)
+    {
+        base.RestoringMana(RestoringValue);
+        manaBar.UpdateValue(Mana, MaxMana);
     }
 
     public override void SpendMana(float spentMana)

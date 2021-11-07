@@ -45,6 +45,7 @@ public class GoToNextLevel : MonoBehaviour
         // Восстанавливаем здоровье и ману.
         hero.Health = hero.MaxHealth;
         hero.Mana = hero.MaxMana;
+        // Забираем бустеры.
         booster.RemovePositiveEffects();
 
         // разБлокируем героя
