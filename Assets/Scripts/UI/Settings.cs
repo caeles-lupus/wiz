@@ -51,6 +51,7 @@ public class Settings : MonoBehaviour
                 // пауза.
                 GamePause = true;
                 Hero.Instance.Pause();
+                Cursor.visible = true;
 
                 this.settingsWindow.SetActive(false);
                 this.AboutWindow.SetActive(false);
