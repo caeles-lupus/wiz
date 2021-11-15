@@ -72,7 +72,7 @@ public class Entity : MonoBehaviour
 
     public void Update()
     {
-
+        if (Settings.Instance.GamePause) return;
     }
 
     public void Start()
@@ -116,6 +116,12 @@ public class Entity : MonoBehaviour
     /// </summary>
     public virtual void GetDamage(float DamageValue, GameObject attacker = null)
     {
+        // Уровень сложности. Типа...
+        if (gameObject != Hero.Instance.gameObject)
+        {
+            DamageValue = DamageValue - ((Settings.Instance.Difficult * 40f) / 100f * DamageValue);
+        }
+
         if (Immortal) return;
         if (effectOfDamage) effectOfDamage.EffectStart();
         Health -= DamageValue;
@@ -159,11 +165,11 @@ public class Entity : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public virtual void Alert(GameObject intruder, TypeOfEntity typeOfEntity)
-    {
-        Debug.Log("Внимание! В области объекта " + gameObject.name + " замечен объект " + intruder.name);
-    }
+    ///// <summary>
+    ///// 
+    ///// </summary>
+    //public virtual void Alert(GameObject intruder, TypeOfEntity typeOfEntity)
+    //{
+    //    Debug.Log("Внимание! В области объекта " + gameObject.name + " замечен объект " + intruder.name);
+    //}
 }

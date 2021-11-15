@@ -103,6 +103,8 @@ public class Hero : Entity
     {
         base.Update();
 
+        if (Settings.Instance.GamePause) return;
+
         if (!isStopped)
         {
             if (GodMode && Input.GetKeyDown(KeyCode.Alpha0)) Restart();

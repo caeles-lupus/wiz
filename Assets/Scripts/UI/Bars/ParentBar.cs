@@ -18,7 +18,7 @@ public class ParentBar : MonoBehaviour
     public virtual void Update()
     {
         Bar.fillAmount = getConvertVal();
-        text.text = ((int)value).ToString() + "/"+ ((int)maxValue).ToString();
+        text.text = Mathf.CeilToInt(value).ToString() + "/"+ ((int)maxValue).ToString();
     }
 
 

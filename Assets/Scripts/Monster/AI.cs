@@ -249,7 +249,9 @@ public class AI: MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        if (Settings.Instance.GamePause) return;
+
         if (isCannotMove)
         {
             return;
@@ -359,6 +361,9 @@ public class AI: MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        // Ничего не проверяем, если пауза.
+        if (Settings.Instance.GamePause) return;
+
         if (targets.Count > 0)
         {
             TargetAndItsTiming target = targets.Find(trg => trg.Target == collision.gameObject);

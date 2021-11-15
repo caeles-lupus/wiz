@@ -18,6 +18,8 @@ public class Monster : Entity
     {
         base.Update();
 
+        // Ничего не проверяем, если пауза.
+        if (Settings.Instance.GamePause) return;
     }
 
     public override void Die(GameObject attacker = null)

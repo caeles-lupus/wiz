@@ -38,6 +38,7 @@ public class Presettings : MonoBehaviour
         {
             Objects[i].transform.position = Coordinates[i];
         }
+
     }
     //x:-235 y:1.81
     // Start is called before the first frame update

@@ -41,6 +41,9 @@ public class Booster : MonoBehaviour
 
     private void Update()
     {
+        // Ничего не проверяем, если пауза.
+        if (Settings.Instance.GamePause) return;
+
         transform.position = hero.transform.position;
     }
 

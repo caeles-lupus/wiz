@@ -16,6 +16,7 @@ public class Decor : Entity
     new void Update()
     {
         base.Update();
+        if (Settings.Instance.GamePause) return;
     }
 
     //=====================================================

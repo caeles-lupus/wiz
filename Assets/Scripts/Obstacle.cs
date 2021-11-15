@@ -143,11 +143,15 @@ public class Obstacle : Entity
     {
         base.Update();
 
+        if (Settings.Instance.GamePause) return;
 
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        // Если пауза - не наносим урон и не считаем время.
+        if (Settings.Instance.GamePause) return;
+
         // Выходим, если тип атаки у нас - ближний.
 
         // Не доделано. УБрано - нет времени.

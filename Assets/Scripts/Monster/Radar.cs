@@ -27,63 +27,63 @@ public class Radar : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Выходим, если этот объект не подходит для атаки (земля, монетки, кристаллы).
-        if (TagsSets.tagsNonTarget.Contains(collision.tag)) return;
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    // Выходим, если этот объект не подходит для атаки (земля, монетки, кристаллы).
+    //    if (TagsSets.tagsNonTarget.Contains(collision.tag)) return;
 
-        //
-        if (entity.relation == Relation.AggressiveToAll)
-        {
-            Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
-            if (dec)
-            {
-                entity.Alert(collision.gameObject, TypeOfEntity.Decor);
-            }
-            Monster monster = ListsOfObjects.GetMonsterOfGameObject(collision.gameObject);
-            if (monster)
-            {
-                entity.Alert(collision.gameObject, TypeOfEntity.Monster);
-            }
-            Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
-            if (obstacle)
-            {
-                entity.Alert(collision.gameObject, TypeOfEntity.Obstacle);
-            }
-            Hero hero = Hero.Instance;
-            if (collision.gameObject == hero.gameObject)
-            {
-                entity.Alert(collision.gameObject, TypeOfEntity.Hero);
-            }
-        }
-        else if (entity.relation == Relation.AggressiveToPlayer)
-        {
-            Hero hero = Hero.Instance;
-            if (collision.gameObject == hero.gameObject)
-            {
-                entity.Alert(collision.gameObject, TypeOfEntity.Hero);
-            }
-        }
-        else if (entity.relation == Relation.FrendlyToPlayer)
-        {
-            Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
-            if (dec)
-            {
-                entity.Alert(collision.gameObject, TypeOfEntity.Decor);
-            }
-            Monster monster = ListsOfObjects.GetMonsterOfGameObject(collision.gameObject);
-            if (monster)
-            {
-                entity.Alert(collision.gameObject, TypeOfEntity.Monster);
-            }
-            Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
-            if (obstacle)
-            {
-                entity.Alert(collision.gameObject, TypeOfEntity.Obstacle);
-            }
-        }
+    //    //
+    //    if (entity.relation == Relation.AggressiveToAll)
+    //    {
+    //        Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
+    //        if (dec)
+    //        {
+    //            entity.Alert(collision.gameObject, TypeOfEntity.Decor);
+    //        }
+    //        Monster monster = ListsOfObjects.GetMonsterOfGameObject(collision.gameObject);
+    //        if (monster)
+    //        {
+    //            entity.Alert(collision.gameObject, TypeOfEntity.Monster);
+    //        }
+    //        Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
+    //        if (obstacle)
+    //        {
+    //            entity.Alert(collision.gameObject, TypeOfEntity.Obstacle);
+    //        }
+    //        Hero hero = Hero.Instance;
+    //        if (collision.gameObject == hero.gameObject)
+    //        {
+    //            entity.Alert(collision.gameObject, TypeOfEntity.Hero);
+    //        }
+    //    }
+    //    else if (entity.relation == Relation.AggressiveToPlayer)
+    //    {
+    //        Hero hero = Hero.Instance;
+    //        if (collision.gameObject == hero.gameObject)
+    //        {
+    //            entity.Alert(collision.gameObject, TypeOfEntity.Hero);
+    //        }
+    //    }
+    //    else if (entity.relation == Relation.FrendlyToPlayer)
+    //    {
+    //        Decor dec = ListsOfObjects.GetDecorOfGameObject(collision.gameObject);
+    //        if (dec)
+    //        {
+    //            entity.Alert(collision.gameObject, TypeOfEntity.Decor);
+    //        }
+    //        Monster monster = ListsOfObjects.GetMonsterOfGameObject(collision.gameObject);
+    //        if (monster)
+    //        {
+    //            entity.Alert(collision.gameObject, TypeOfEntity.Monster);
+    //        }
+    //        Obstacle obstacle = ListsOfObjects.GetObstacleOfGameObject(collision.gameObject);
+    //        if (obstacle)
+    //        {
+    //            entity.Alert(collision.gameObject, TypeOfEntity.Obstacle);
+    //        }
+    //    }
 
-    }
+    //}
 
     // Start is called before the first frame update
     void Start()
